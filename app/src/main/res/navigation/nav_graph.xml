@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main">
+
+    <fragment
+        android:id="@+id/main"
+        android:name="com.example.timesaver.MainFragment"
+        tools:layout="@layout/fragment_main"
+        android:label="Main">
+
+        <action
+            android:id="@+id/action_main_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.timesaver.SettingsFragment"
+        tools:layout="@layout/fragment_settings"
+        android:label="Settings" />
+
+</navigation>
