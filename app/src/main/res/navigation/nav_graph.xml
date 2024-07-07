@@ -4,23 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main">
+    app:startDestination="@id/mainFragment">
 
     <fragment
-        android:id="@+id/main"
+        android:id="@+id/mainFragment"
         android:name="com.example.timesaver.MainFragment"
         tools:layout="@layout/fragment_main"
         android:label="Main">
 
         <action
             android:id="@+id/action_main_to_settings"
-            app:destination="@id/settings" />
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_main_to_activitiesFragment"
+            app:destination="@id/activitiesFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/settings"
+        android:id="@+id/settingsFragment"
         android:name="com.example.timesaver.SettingsFragment"
         tools:layout="@layout/fragment_settings"
         android:label="Settings" />
+    <fragment
+        android:id="@+id/activitiesFragment"
+        android:name="com.example.timesaver.ActivitiesFragment"
+        android:label="fragment_activities"
+        tools:layout="@layout/fragment_activities" />
 
 </navigation>
