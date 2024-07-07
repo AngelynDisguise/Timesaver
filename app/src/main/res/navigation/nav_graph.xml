@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="com.example.timesaver.ActivitiesFragment"
-        android:label="fragment_activities"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/fragment_activities"
+        android:label="Activities" />
 
 </navigation>
