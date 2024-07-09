@@ -10,7 +10,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.timesaver.MainFragment"
         tools:layout="@layout/fragment_main"
-        android:label="Main">
+        android:label="Timesaver">
 
         <action
             android:id="@+id/action_main_to_settings"

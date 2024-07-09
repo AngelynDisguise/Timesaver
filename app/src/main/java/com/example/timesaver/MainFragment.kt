@@ -36,7 +36,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
 
     }
@@ -46,13 +45,13 @@ class MainFragment : Fragment() {
 
         circularButton = view.findViewById(R.id.circularButton)
 
+        circularButton.outerCircleSections = 8
+
         circularButton.setOnInnerCircleClickListener {
-            // Handle inner circle click
             Toast.makeText(requireContext(), "Inner circle clicked", Toast.LENGTH_SHORT).show()
         }
 
         circularButton.setOnOuterCircleClickListener { section ->
-            // Handle outer circle section click
             Toast.makeText(requireContext(), "Outer circle section $section clicked", Toast.LENGTH_SHORT).show()
         }
     }
