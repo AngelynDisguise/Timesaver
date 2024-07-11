@@ -199,6 +199,7 @@ class CircularButtonView @JvmOverloads constructor(
             pauseIcon
         }
         isPlaying = !isPlaying
+        updatePlayIconColor()
         invalidate()
     }
 
