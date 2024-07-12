@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.timesaver.database.TimesaverDatabase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,8 +27,12 @@ class MainFragment : Fragment() {
 
     private lateinit var circularButton: CircularButtonView
     private lateinit var timerText: TextView
-
     private lateinit var stopwatch: Stopwatch
+
+    // Set up shared view model
+    private val viewModel: MainViewModel by activityViewModels {
+        MainViewModelFactory((requireActivity() as MainActivity).dao)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +40,6 @@ class MainFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -49,7 +54,6 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         circularButton = view.findViewById(R.id.circularButton)
-
         circularButton.outerCircleSections = 8
 
         timerText = view.findViewById(R.id.timerText)
@@ -68,6 +72,19 @@ class MainFragment : Fragment() {
         circularButton.setOnOuterCircleClickListener { section ->
             Toast.makeText(requireContext(), "Outer circle section $section clicked", Toast.LENGTH_SHORT).show()
         }
+
+        // Update Time logs
+        viewModel.todaysLogs.observe(viewLifecycleOwner) { logs ->
+            // TODO()
+        }
+    }
+
+    private fun initStopWatch() {
+
+    }
+
+    private fun initActivityButtons() {
+
     }
 
     companion object {

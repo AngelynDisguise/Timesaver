@@ -33,6 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    sourceSets {
+        getByName("main") {
+            java {
+                srcDirs("src/main/java", "src/main/java/2")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -42,6 +49,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -49,5 +59,9 @@ dependencies {
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    val lifecycle_version = "2.6.1"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
 
 }
