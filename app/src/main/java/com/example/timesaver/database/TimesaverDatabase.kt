@@ -4,10 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 // Room Database class
-@Database(entities = [],
+@Database(entities = [
+    Activity::class,
+    TimeLog::class],
     version = 14)
+@TypeConverters(Converters::class)
 abstract class TimesaverDatabase : RoomDatabase() {
     abstract fun timesaverDao(): TimesaverDao
 

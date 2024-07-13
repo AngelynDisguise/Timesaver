@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
 
     // Set up shared view model
     private val viewModel: MainViewModel by activityViewModels {
-        MainViewModelFactory((requireActivity() as MainActivity).dao)
+        MainViewModelFactory((requireActivity() as MainActivity).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,14 +77,6 @@ class MainFragment : Fragment() {
         viewModel.todaysLogs.observe(viewLifecycleOwner) { logs ->
             // TODO()
         }
-    }
-
-    private fun initStopWatch() {
-
-    }
-
-    private fun initActivityButtons() {
-
     }
 
     companion object {
