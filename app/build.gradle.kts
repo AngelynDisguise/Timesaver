@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.play.services.pal)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,4 +77,6 @@ dependencies {
 
     implementation("com.google.guava:guava:31.0.1-android") // fixed ClassNotFoundException for "com.google.common.util.concurrent.ListenableFuture"
 
+    val activity_version = "1.9.0"
+    implementation("androidx.activity:activity-ktx:$activity_version")
 }
