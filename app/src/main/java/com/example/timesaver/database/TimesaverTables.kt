@@ -1,9 +1,11 @@
 package com.example.timesaver.database
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import androidx.room.TypeConverters
 import java.time.LocalDate
 import java.time.Duration
@@ -33,5 +35,15 @@ data class TimeLog(
     @ColumnInfo(index = true) val activityId: Long,
     val date: LocalDate,
     val timeElapsed: Duration
+)
+
+// An instance of an activity with a time log
+data class ActivityTimeLogs(
+    @Embedded val activity: Activity,
+    @Relation(
+        parentColumn = "activityId",
+        entityColumn = "activityId"
+    )
+    val exercises: List<TimeLog>
 )
 

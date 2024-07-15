@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import java.time.LocalDate
 
@@ -28,6 +29,16 @@ interface TimesaverDao {
     @Delete
     suspend fun deleteTimeLog(timeLog: TimeLog)
 
-    @Query("SELECT * FROM time_log WHERE date = :date")
-    fun getLogsFromDate(date: LocalDate): LiveData<List<TimeLog>>
+    @Transaction
+    @Query("""
+        SELECT t.*, a.activityName, a.timeLimit
+        FROM time_log t
+        LEFT JOIN activity a ON t.activityId = a.activityId
+        WHERE t.date = :date
+    """)
+    fun getActivityTimeLogsFromDate(date: LocalDate): LiveData<List<ActivityTimeLogs>>
+
+    @Transaction
+    @Query("SELECT * FROM activity")
+    fun getAllActivities(): LiveData<List<Activity>>
 }
