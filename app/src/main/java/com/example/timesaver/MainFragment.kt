@@ -61,16 +61,24 @@ class MainFragment : Fragment() {
 
         circularButton.setOnInnerCircleClickListener {
             if (circularButton.isPlaying()) {
-                Toast.makeText(requireContext(), "Timer Paused", Toast.LENGTH_SHORT).show()
-                stopwatch.pause()
+                Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
+                viewModel.pauseStopwatch()
             } else {
-                Toast.makeText(requireContext(), "Timer Playing", Toast.LENGTH_SHORT).show()
-                stopwatch.start()
+                val playState: String = if (viewModel.elapsedTime.value != null) "Resumed" else "Started"
+                Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
+                viewModel.startStopwatch()
             }
         }
 
         circularButton.setOnOuterCircleClickListener { section ->
             Toast.makeText(requireContext(), "Outer circle section $section clicked", Toast.LENGTH_SHORT).show()
+        // Update stopwatch UI
+        viewModel.elapsedTime.observe(viewLifecycleOwner) { duration ->
+            val hours = duration.toHours()
+            val minutes = duration.toMinutes() % 60
+            val seconds = duration.seconds % 60
+            val text = "%02d:%02d:%02d".format(hours, minutes, seconds)
+            timerText.text = text
         }
 
         // Update Time logs

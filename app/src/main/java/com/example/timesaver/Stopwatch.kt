@@ -1,16 +1,14 @@
 package com.example.timesaver
 
-import android.widget.TextView
-import androidx.lifecycle.LifecycleCoroutineScope
 import kotlinx.coroutines.*
 import java.time.Duration
 
-class Stopwatch(private val textView: TextView, private val scope: LifecycleCoroutineScope) {
+class Stopwatch {
     private var job: Job? = null
     private var elapsedTime: Duration = Duration.ZERO
     private var lastStartTime: Long = 0
 
-    fun start() {
+    fun start(scope: CoroutineScope) {
         if (job == null) {
             lastStartTime = System.currentTimeMillis()
             job = scope.launch {
@@ -18,8 +16,7 @@ class Stopwatch(private val textView: TextView, private val scope: LifecycleCoro
                     val currentTime = System.currentTimeMillis()
                     elapsedTime = elapsedTime.plusMillis(currentTime - lastStartTime)
                     lastStartTime = currentTime
-                    updateDisplay()
-                    delay(1000)
+                    delay(1000) // delay by 1 second
                 }
             }
         }
@@ -30,18 +27,16 @@ class Stopwatch(private val textView: TextView, private val scope: LifecycleCoro
         job = null
     }
 
+    fun isRunning(): Boolean {
+        return job?.isActive ?: false
+    }
+
     fun reset() {
         pause()
         elapsedTime = Duration.ZERO
-        updateDisplay()
     }
 
-    private fun updateDisplay() {
-        val hours = elapsedTime.toHours()
-        val minutes = elapsedTime.toMinutes() % 60
-        val seconds = elapsedTime.seconds % 60
-
-        val text = "%02d:%02d:%02d".format(hours, minutes, seconds)
-        textView.text = text
+    fun getElapsedTime(): Duration {
+        return elapsedTime
     }
 }
