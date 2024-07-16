@@ -1,4 +1,4 @@
-package com.example.timesaver
+package com.example.timesaver.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.example.timesaver.ActivityTimeLogListAdapter
+import com.example.timesaver.CircularButtonView
+import com.example.timesaver.MainActivity
+import com.example.timesaver.MainViewModel
+import com.example.timesaver.MainViewModelFactory
+import com.example.timesaver.R
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.ActivityTimeLog
 import com.example.timesaver.database.TimeLog
