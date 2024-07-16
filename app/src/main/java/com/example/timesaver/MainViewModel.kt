@@ -47,13 +47,17 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         stopwatch.pause()
     }
 
-    fun stopWatchIsRunning(): Boolean {
-        return stopwatch.isRunning()
-    }
-
     fun resetStopwatch() {
         stopwatch.reset()
         _elapsedTime.value = Duration.ZERO
+    }
+
+    fun stopwatchIsRunning(): Boolean {
+        return stopwatch.isRunning()
+    }
+
+    fun timeHasElapsed(): Boolean {
+        return stopwatch.getElapsedTime() != Duration.ZERO
     }
 
     private fun updateElapsedTime() {

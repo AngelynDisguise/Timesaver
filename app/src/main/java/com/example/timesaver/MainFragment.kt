@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
@@ -17,6 +18,7 @@ var activityLabels = listOf("Work", "LitAI", "Break", "Reddit", "Cooking") // Si
 class MainFragment : Fragment() {
 
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
+    private lateinit var refreshButton: ImageView
 
     private lateinit var timerText: TextView
 
@@ -47,13 +49,23 @@ class MainFragment : Fragment() {
         circularButton.sectionLabels = activityLabels // temp value: remove later
 
         // Set icon back to pause if stopwatch is running
-        if (viewModel.stopWatchIsRunning()) {
-            circularButton.icon = circularButton.pauseIcon
-            circularButton.invalidate()
+        if (viewModel.stopwatchIsRunning()) {
+            circularButton.changeButton()
         }
 
-        // Setup timer text
+        // Setup timer text and refresh
         timerText = view.findViewById(R.id.timerText)
+        refreshButton = view.findViewById(R.id.refreshButton)
+
+        refreshButton.setOnClickListener {
+            if (viewModel.timeHasElapsed()) {
+                if(viewModel.stopwatchIsRunning()) {
+                    circularButton.changeButton()
+                }
+                viewModel.resetStopwatch()
+                Toast.makeText(requireContext(), "Stopwatch Reset", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // Click Play/Pause
         circularButton.setOnInnerCircleClickListener {
@@ -61,7 +73,7 @@ class MainFragment : Fragment() {
                 Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
                 viewModel.pauseStopwatch()
             } else {
-                val playState: String = if (viewModel.elapsedTime.value != null) "Resumed" else "Started"
+                val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
                 Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
                 viewModel.startStopwatch()
             }
@@ -71,7 +83,7 @@ class MainFragment : Fragment() {
         circularButton.setOnOuterCircleClickListener { section ->
             Toast.makeText(requireContext(), "Activity Button \"${activityLabels[section]}\" clicked", Toast.LENGTH_SHORT).show()
             //Toast.makeText(requireContext(), "Outer circle section $section clicked", Toast.LENGTH_SHORT).show()
-            if (viewModel.stopWatchIsRunning()) {
+            if (viewModel.stopwatchIsRunning()) {
                 // TODO(): Save previous activity time elapsed
             }
         }

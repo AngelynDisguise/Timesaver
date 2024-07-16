@@ -27,7 +27,7 @@ class CircularButtonView @JvmOverloads constructor(
 
     // Play icon things
     private val playIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.play_button)!!
-    val pauseIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.pause_button)!!
+    private val pauseIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.pause_button)!!
     var icon: Drawable = playIcon
     private var isPlaying: Boolean = false
 
@@ -262,7 +262,7 @@ class CircularButtonView @JvmOverloads constructor(
         return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
     }
 
-    private fun changeButton() {
+    fun changeButton() {
         icon = if (isPlaying) {
             playIcon
         } else {
