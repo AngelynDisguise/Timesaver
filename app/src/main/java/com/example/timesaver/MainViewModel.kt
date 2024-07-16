@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.timesaver.database.Activity
-import com.example.timesaver.database.ActivityTimeLogs
+import com.example.timesaver.database.ActivityTimeLog
 import com.example.timesaver.database.TimeLog
 import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import java.time.Duration
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     lateinit var activities: LiveData<List<Activity>>
-    lateinit var todaysLogs: LiveData<List<ActivityTimeLogs>>
+    lateinit var todaysLogs: LiveData<List<ActivityTimeLog>>
 
     private val stopwatch = Stopwatch()
     private val _elapsedTime = MutableLiveData<Duration>() // only ViewModel modifies this

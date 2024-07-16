@@ -10,20 +10,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.example.timesaver.database.ActivityTimeLogs
+import androidx.recyclerview.widget.RecyclerView
+import com.example.timesaver.database.Activity
+import com.example.timesaver.database.ActivityTimeLog
+import com.example.timesaver.database.TimeLog
+import java.time.Duration
+import java.time.LocalDate
 
-var numActivities = 5
-var activityLabels = listOf("Work", "LitAI", "Break", "Reddit", "Cooking") // Size MUST match numActivities
+// Dummies
+var dummyNumActivities: Int = 5
+var dummyActivityLabels: List<String> = listOf("Work", "LitAI", "Break", "Reddit", "Cooking") // Size MUST match numActivities
+val dummyLogs: List<ActivityTimeLog> = listOf(ActivityTimeLog(Activity(0,"Break", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ZERO)))
 
 class MainFragment : Fragment() {
+
+    private lateinit var activityTimeLogListAdapter: ActivityTimeLogListAdapter
 
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
     private lateinit var refreshButton: ImageView
 
     private lateinit var timerText: TextView
 
-    private lateinit var activityTimeLogs: List<ActivityTimeLogs>
-    private lateinit var currentActivityTimeLog: ActivityTimeLogs
+    private var numActivities: Int = dummyNumActivities
+    private var activityLabels: List<String> = dummyActivityLabels
+    private var activityTimeLogs: List<ActivityTimeLog> = dummyLogs
+
+    private lateinit var currentActivityTimeLog: ActivityTimeLog
     private var currentActivityIndex: Int = 0
 
     // Set up shared view model
@@ -43,7 +55,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Draw Circular Button (the "timesaver" :P)
-        circularButton = view.findViewById(R.id.circularButton)
+        circularButton = view.findViewById(R.id.circular_button_view)
 
         circularButton.outerCircleSections = numActivities // temp value: remove later
         circularButton.sectionLabels = activityLabels // temp value: remove later
@@ -54,8 +66,8 @@ class MainFragment : Fragment() {
         }
 
         // Setup timer text and refresh
-        timerText = view.findViewById(R.id.timerText)
-        refreshButton = view.findViewById(R.id.refreshButton)
+        timerText = view.findViewById(R.id.timer_text_view)
+        refreshButton = view.findViewById(R.id.refresh_button_image_view)
 
         refreshButton.setOnClickListener {
             if (viewModel.timeHasElapsed()) {
@@ -66,6 +78,11 @@ class MainFragment : Fragment() {
                 Toast.makeText(requireContext(), "Stopwatch Reset", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Setup RecyclerView and List Adapters
+        activityTimeLogListAdapter = ActivityTimeLogListAdapter(activityTimeLogs)
+        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
+        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
 
         // Click Play/Pause
         circularButton.setOnInnerCircleClickListener {
@@ -98,14 +115,14 @@ class MainFragment : Fragment() {
         }
 
         // Update Activity Buttons UI
-        viewModel.activities.observe(viewLifecycleOwner) {
+        viewModel.activities.observe(viewLifecycleOwner) { activities ->
             // TODO(): Update wheel with activity names
-            if (it.isNotEmpty()) {
-                val activities: MutableList<String> = mutableListOf()
-                for (activity in it) {
-                    activities.add(activity.activityName)
+            if (activities.isNotEmpty()) {
+                val activityNames: MutableList<String> = mutableListOf()
+                for (a in activities) {
+                    activityNames.add(a.activityName)
                 }
-                activityLabels = activities
+                activityLabels = activityNames
                 numActivities = activities.size
                 circularButton.invalidate() // draw new buttons
             } else {
@@ -117,15 +134,11 @@ class MainFragment : Fragment() {
         }
 
         // Update Activity time logs list UI
-        viewModel.todaysLogs.observe(viewLifecycleOwner) {
+        viewModel.todaysLogs.observe(viewLifecycleOwner) { logs ->
             // TODO(): Update listview with activity names and time elapsed
-            if (it.isNotEmpty()) {
-                val logs: MutableList<ActivityTimeLogs> = mutableListOf()
-                for (activityTimeLog in it) {
-                    logs.add(activityTimeLog)
-                }
+            if (logs.isNotEmpty()) {
                 activityTimeLogs = logs
-                // notifyDataSetChanged()
+                activityTimeLogListAdapter.notifyDataSetChanged()
             } else {
                 Log.d(
                     "MainFragment",
@@ -134,13 +147,5 @@ class MainFragment : Fragment() {
             }
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        if (viewModel.stopWatchIsRunning()) {
-//            circularButton.icon = circularButton.pauseIcon
-//            circularButton.invalidate()
-//        }
-//    }
 
 }

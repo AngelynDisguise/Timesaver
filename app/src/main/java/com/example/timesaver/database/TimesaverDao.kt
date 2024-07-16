@@ -31,12 +31,20 @@ interface TimesaverDao {
 
     @Transaction
     @Query("""
-        SELECT t.*, a.activityName, a.timeLimit
-        FROM time_log t
-        LEFT JOIN activity a ON t.activityId = a.activityId
-        WHERE t.date = :date
+        SELECT * 
+        FROM activity 
+        INNER JOIN time_log ON activity.activityId = time_log.activityId 
+        WHERE time_log.date = :date
     """)
-    fun getActivityTimeLogsFromDate(date: LocalDate): LiveData<List<ActivityTimeLogs>>
+    fun getAllActivityTimeLogsOnDate(date: LocalDate): LiveData<List<ActivityTimeLog>>
+
+    @Transaction
+    @Query("SELECT * FROM activity WHERE activityId = :activityId")
+    fun getActivityWithAllTimeLogs(activityId: Long): ActivityWithAllTimeLogs
+
+    @Transaction
+    @Query("SELECT * FROM activity")
+    fun getAllActivitiesWithAllTimeLogs(): List<ActivityWithAllTimeLogs>
 
     @Transaction
     @Query("SELECT * FROM activity")

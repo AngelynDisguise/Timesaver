@@ -37,8 +37,18 @@ data class TimeLog(
     val timeElapsed: Duration
 )
 
-// An instance of an activity with a time log
-data class ActivityTimeLogs(
+// 1:1 activity-timelog; An instance of an activity with its time log on one date
+data class ActivityTimeLog(
+    @Embedded val activity: Activity,
+    @Relation(
+        parentColumn = "activityId",
+        entityColumn = "activityId"
+    )
+    val timeLog: TimeLog
+)
+
+// 1:N activity-timelog; An activity with all its time logs on all dates
+data class ActivityWithAllTimeLogs(
     @Embedded val activity: Activity,
     @Relation(
         parentColumn = "activityId",

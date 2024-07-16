@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import java.time.LocalDate
 
 class TimesaverRepository(private val dao: TimesaverDao) {
-    fun getActivityTimeLogsFromDate(date: LocalDate): LiveData<List<ActivityTimeLogs>> {
-        return dao.getActivityTimeLogsFromDate(date)
+    fun getActivityTimeLogsFromDate(date: LocalDate): LiveData<List<ActivityTimeLog>> {
+        return dao.getAllActivityTimeLogsOnDate(date)
     }
 
     suspend fun insertTimeLog(log: TimeLog) {
