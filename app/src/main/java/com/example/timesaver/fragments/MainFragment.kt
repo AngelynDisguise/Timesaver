@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,6 +21,7 @@ import com.example.timesaver.R
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.ActivityTimeLog
 import com.example.timesaver.database.TimeLog
+import org.checkerframework.checker.index.qual.GTENegativeOne
 import java.time.Duration
 import java.time.LocalDate
 
@@ -45,14 +47,15 @@ class MainFragment : Fragment() {
 
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
     private lateinit var refreshButton: ImageView
-
+    private lateinit var doneButton: Button
+    private lateinit var currentActivityText: TextView
     private lateinit var timerText: TextView
 
     private var numActivities: Int = dummyNumActivities
     private var activityLabels: List<String> = dummyActivityLabels
     private var activityTimeLogs: List<ActivityTimeLog> = dummyLogs
 
-    private lateinit var currentActivityTimeLog: ActivityTimeLog
+    private var currentActivityTimeLog: ActivityTimeLog? = null
     private var currentActivityIndex: Int = 0
 
     // Set up shared view model
@@ -81,19 +84,21 @@ class MainFragment : Fragment() {
             circularButton.changeButton()
         }
 
-        // Setup timer text and refresh
+        // Setup views
         timerText = view.findViewById(R.id.timer_text_view)
         refreshButton = view.findViewById(R.id.refresh_button_image_view)
+        doneButton = view.findViewById(R.id.done_button_view)
+        currentActivityText = view.findViewById(R.id.current_activity_text_view)
 
         // Setup RecyclerView and List Adapters
         activityTimeLogListAdapter = ActivityTimeLogListAdapter(activityTimeLogs)
         val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
         activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
 
-        // Remove arrow if list doesn't overflow
-        if (activityTimeLogs.size <= 5) {
+        // Reveal arrow if list overflows
+        if (activityTimeLogs.size > 5) {
             val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-            arrow.visibility = View.GONE
+            arrow.visibility = View.VISIBLE
         }
 
         // Click Refresh
@@ -107,16 +112,38 @@ class MainFragment : Fragment() {
             }
         }
 
+        // Click Done
+        doneButton.setOnClickListener {
+            if(viewModel.stopwatchIsRunning()) {
+                circularButton.changeButton()
+            }
+
+            // TODO(): Save timelog
+            viewModel.resetStopwatch()
+
+            doneButton.visibility = View.GONE
+            val text = "Select an Activity"
+            currentActivityText.text = text
+
+            Toast.makeText(requireContext(), "Activity finished", Toast.LENGTH_SHORT).show()
+        }
+
         // Click Play/Pause
         circularButton.setOnInnerCircleClickListener {
-            if (circularButton.isPlaying()) {
-                Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
-                viewModel.pauseStopwatch()
+            if (currentActivityTimeLog != null) {
+                if (circularButton.isPlaying()) {
+                    Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
+                    viewModel.pauseStopwatch()
+                } else {
+                    val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
+                    Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
+                    viewModel.startStopwatch()
+                }
+                circularButton.changeButton()
             } else {
-                val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
-                Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
-                viewModel.startStopwatch()
+                Toast.makeText(requireContext(), "Select an Activity", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         // Click Activity Wheel

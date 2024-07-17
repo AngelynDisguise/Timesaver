@@ -28,11 +28,11 @@ class CircularButtonView @JvmOverloads constructor(
     // Play icon things
     private val playIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.play_button)!!
     private val pauseIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.pause_button)!!
-    var icon: Drawable = playIcon
+    private var icon: Drawable = playIcon
     private var isPlaying: Boolean = false
 
     // Some random activity button colors (make pretty later)
-    private val sectionColors = listOf(
+    private val sectionColors: List<Int> = listOf(
         0xFF4cb6ff.toInt(), // Light blue (#4cb6ff)
         0xFFFF5733.toInt(), // Coral (#FF5733)
         0xFFFFC300.toInt(), // Vivid Yellow (#FFC300)
@@ -250,7 +250,6 @@ class CircularButtonView @JvmOverloads constructor(
 
         if (lastTouchedSection == -1) {
             onInnerCircleClickListener?.invoke()
-            changeButton()
         } else {
             onOuterCircleClickListener?.invoke(lastTouchedSection) // starts at 0
         }
@@ -275,5 +274,9 @@ class CircularButtonView @JvmOverloads constructor(
 
     fun isPlaying(): Boolean {
         return isPlaying
+    }
+
+    fun getSectionColor(index: Int): Int {
+        return sectionColors[index]
     }
 }
