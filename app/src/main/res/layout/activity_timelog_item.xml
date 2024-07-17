@@ -3,25 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="10dp">
+    android:gravity="center_vertical"
+    android:padding="6dp">
 
     <TextView
-    android:id="@+id/activity_text_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:textSize="12sp"
-    android:text="activity"
-    android:gravity="start" />
+        android:id="@+id/activity_text_view"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="activity"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_marginEnd="8dp" />
+
+    <FrameLayout
+        android:id="@+id/bar_container"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_weight="1">
+
+        <View
+            android:id="@+id/timelog_bar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/red" />
+
+    </FrameLayout>
 
     <TextView
-    android:id="@+id/timelog_text_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:textSize="12sp"
+        android:id="@+id/timelog_text_view"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
         android:textStyle="italic"
-    android:text="timelog"
-    android:gravity="end" />
+        android:text="timelog"
+        android:gravity="right"
+        android:layout_marginStart="12dp" />
 
 </LinearLayout>

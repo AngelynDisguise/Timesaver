@@ -216,7 +216,7 @@ class CircularButtonView @JvmOverloads constructor(
         val iconSize = innerRadius * 0.75f
         val left = centerX - iconSize / 2
         val top = centerY - iconSize / 2
-        val right = 20 + centerX + iconSize / 2 // looked a bit off-center
+        val right = centerX + iconSize / 2 // looked a bit off-center
         val bottom = centerY + iconSize / 2
 
         icon.setBounds(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())

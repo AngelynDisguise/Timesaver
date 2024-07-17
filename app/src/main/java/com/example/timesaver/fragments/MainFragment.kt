@@ -26,7 +26,18 @@ import java.time.LocalDate
 // Dummies
 var dummyNumActivities: Int = 5
 var dummyActivityLabels: List<String> = listOf("Work", "LitAI", "Break", "Reddit", "Cooking") // Size MUST match numActivities
-val dummyLogs: List<ActivityTimeLog> = listOf(ActivityTimeLog(Activity(0,"Break", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ZERO)))
+val dummyLogs: List<ActivityTimeLog> = listOf(
+    ActivityTimeLog(Activity(0,"Work", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofMinutes(12))),
+    ActivityTimeLog(Activity(0,"LitAI", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofHours(1))),
+    ActivityTimeLog(Activity(0,"Break", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ZERO)),
+    ActivityTimeLog(Activity(0,"Reddit", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofMinutes(30))),
+    ActivityTimeLog(Activity(0,"Cooking", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofSeconds(5023))), // repeated
+    ActivityTimeLog(Activity(0,"Work", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofMinutes(12))),
+    ActivityTimeLog(Activity(0,"LitAI", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofHours(1))),
+    ActivityTimeLog(Activity(0,"Break", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ZERO)),
+    ActivityTimeLog(Activity(0,"Reddit", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofMinutes(30))),
+    ActivityTimeLog(Activity(0,"Cooking", Duration.ZERO), TimeLog(0,0, LocalDate.now(), Duration.ofSeconds(5023)))
+)
 
 class MainFragment : Fragment() {
 
@@ -60,9 +71,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Draw Circular Button (the "timesaver" :P)
+        // Draw and setup Circular Button (the "timesaver" :P)
         circularButton = view.findViewById(R.id.circular_button_view)
-
         circularButton.outerCircleSections = numActivities // temp value: remove later
         circularButton.sectionLabels = activityLabels // temp value: remove later
 
@@ -75,6 +85,18 @@ class MainFragment : Fragment() {
         timerText = view.findViewById(R.id.timer_text_view)
         refreshButton = view.findViewById(R.id.refresh_button_image_view)
 
+        // Setup RecyclerView and List Adapters
+        activityTimeLogListAdapter = ActivityTimeLogListAdapter(activityTimeLogs)
+        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
+        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
+
+        // Remove arrow if list doesn't overflow
+        if (activityTimeLogs.size <= 5) {
+            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+            arrow.visibility = View.GONE
+        }
+
+        // Click Refresh
         refreshButton.setOnClickListener {
             if (viewModel.timeHasElapsed()) {
                 if(viewModel.stopwatchIsRunning()) {
@@ -84,11 +106,6 @@ class MainFragment : Fragment() {
                 Toast.makeText(requireContext(), "Stopwatch Reset", Toast.LENGTH_SHORT).show()
             }
         }
-
-        // Setup RecyclerView and List Adapters
-        activityTimeLogListAdapter = ActivityTimeLogListAdapter(activityTimeLogs)
-        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
-        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
 
         // Click Play/Pause
         circularButton.setOnInnerCircleClickListener {
