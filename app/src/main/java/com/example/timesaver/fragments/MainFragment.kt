@@ -76,8 +76,9 @@ class MainFragment : Fragment() {
 
         // Draw and setup Circular Button (the "timesaver" :P)
         circularButton = view.findViewById(R.id.circular_button_view)
-        circularButton.outerCircleSections = numActivities // temp value: remove later
-        circularButton.sectionLabels = activityLabels // temp value: remove later
+        circularButton.outerCircleSections = numActivities
+        circularButton.sectionLabels = activityLabels
+        circularButton.padding = 28f
 
         // Set icon back to pause if stopwatch is running
         if (viewModel.stopwatchIsRunning()) {

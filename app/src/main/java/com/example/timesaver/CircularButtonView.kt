@@ -1,7 +1,9 @@
 package com.example.timesaver
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.BlurMaskFilter
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Color.WHITE
@@ -24,6 +26,12 @@ class CircularButtonView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
+
+    var padding: Float = 0f
+        set(value) {
+            field = value
+            requestLayout()
+        }
 
     // Play icon things
     private val playIcon: Drawable = AppCompatResources.getDrawable(context, R.drawable.play_button)!!
@@ -59,6 +67,24 @@ class CircularButtonView @JvmOverloads constructor(
         textAlign = Paint.Align.CENTER
     }
 
+    // Glowing stuff
+    private val glowThickness = 20f
+    private val glowDistance = 5f
+    private var glowingSection: Int = -1
+    private val glowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeWidth = glowThickness
+        maskFilter = BlurMaskFilter(15f, BlurMaskFilter.Blur.NORMAL) // blurr
+    }
+    private val glowAnimator = ValueAnimator().apply {
+        duration = 300 // milliseconds
+        addUpdateListener { animator ->
+            glowPaint.alpha = (255 * animator.animatedValue as Float).toInt()
+            invalidate()
+        }
+    }
+
+
     // Circle dimensions
     private val centerX: Float
         get() = width / 2f
@@ -66,6 +92,7 @@ class CircularButtonView @JvmOverloads constructor(
         get() = height / 2f
     private val radius: Float
         get() = width.coerceAtMost(height) / 2f
+
 
     // Inner circle things
     private val innerRadius: Float
@@ -110,7 +137,6 @@ class CircularButtonView @JvmOverloads constructor(
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        //updatePlayIconColor()
         invalidate()
     }
 
@@ -129,20 +155,36 @@ class CircularButtonView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        rect.set(
+            padding,
+            padding,
+            width.toFloat() - padding,
+            height.toFloat() - padding
+        )
+
         drawOuterCircle(canvas)
         drawInnerCircle(canvas)
         drawIcon(canvas)
+        drawGlowEffect(canvas)
     }
 
     private fun drawOuterCircle(canvas: Canvas) {
-        rect.set(0f, 0f, width.toFloat(), height.toFloat())
         val sweepAngle = 360f / outerCircleSections
+
+        //rect.set(0f, 0f, width.toFloat(), height.toFloat())
+        val outerRect = RectF(
+            padding,
+            padding,
+            width.toFloat() - padding,
+            height.toFloat() - padding
+        )
 
         // Draw sections with color
         for (i in 0 until outerCircleSections) {
             paint.color = sectionColors[i % sectionColors.size]
             val startAngle = i * sweepAngle
-            canvas.drawArc(rect, startAngle, sweepAngle, true, paint)
+            canvas.drawArc(outerRect, startAngle, sweepAngle, true, paint)
 
             // Draw activity label for section
             drawTextOnArc(canvas, sectionLabels[i], startAngle, sweepAngle)
@@ -155,22 +197,46 @@ class CircularButtonView @JvmOverloads constructor(
                 val dx = cos(Math.toRadians(startAngle.toDouble())).toFloat()
                 val dy = sin(Math.toRadians(startAngle.toDouble())).toFloat()
 
+                val outerRadius = radius - padding // Calculate the actual outer radius with padding
                 canvas.drawLine(
                     centerX + innerRadius * dx,
                     centerY + innerRadius * dy,
-                    centerX + radius * dx,
-                    centerY + radius * dy,
+                    centerX + outerRadius * dx, // Use outerRadius instead of radius
+                    centerY + outerRadius * dy, // Use outerRadius instead of radius
                     borderPaint
                 )
             }
         }
     }
 
-    private fun drawInnerCircle(canvas: Canvas) {
-        paint.color = backgroundColor
-        canvas.drawCircle(centerX, centerY, innerRadius, paint)
-        canvas.drawCircle(centerX, centerY, innerRadius, borderPaint)
+    private fun drawGlowEffect(canvas: Canvas) {
+        if (glowingSection != -1) {
+            val sweepAngle = 360f / outerCircleSections
+            val startAngle = glowingSection * sweepAngle
+            val glowColor = sectionColors[glowingSection % sectionColors.size]
+            glowPaint.color = makeNeonColor(glowColor)
+
+            val glowRect = RectF().apply {
+                set(rect)
+                inset(-glowDistance, -glowDistance)
+            }
+
+            // More glow arcs
+            for (i in 0 until 3) {
+                glowPaint.alpha = (glowPaint.alpha * (3 - i) / 3f).toInt()
+                canvas.drawArc(glowRect, startAngle, sweepAngle, false, glowPaint)
+            }
+        }
     }
+
+    private fun makeNeonColor(baseColor: Int): Int {
+        val hsv = FloatArray(3)
+        Color.colorToHSV(baseColor, hsv)
+        hsv[1] = hsv[1] * 0.3f // reduce saturation
+        hsv[2] = 1f // max brightness
+        return Color.HSVToColor(180, hsv) // add transparency
+    }
+
 
     private fun drawTextOnArc(canvas: Canvas, text: String, startAngle: Float, sweepAngle: Float) {
         val textRadius = (radius + innerRadius) / 2
@@ -209,6 +275,12 @@ class CircularButtonView @JvmOverloads constructor(
         canvas.restore()
     }
 
+    private fun drawInnerCircle(canvas: Canvas) {
+        paint.color = backgroundColor
+        canvas.drawCircle(centerX, centerY, innerRadius, paint)
+        canvas.drawCircle(centerX, centerY, innerRadius, borderPaint)
+    }
+
     private fun drawIcon(canvas: Canvas) {
         updatePlayIconColor() // set color according to light/dark theme
 
@@ -236,7 +308,9 @@ class CircularButtonView @JvmOverloads constructor(
                     performClick()
                 } else if (distance <= radius) {
                     val angle = Math.toDegrees(atan2(dy.toDouble(), dx.toDouble())).toFloat()
-                    lastTouchedSection = ((angle + 360) % 360 / (360f / outerCircleSections)).toInt()
+                    val touchedSection = ((angle + 360) % 360 / (360f / outerCircleSections)).toInt()
+                    animateGlowEffect(touchedSection)
+                    lastTouchedSection = touchedSection
                     performClick()
                 }
                 return true
@@ -255,6 +329,21 @@ class CircularButtonView @JvmOverloads constructor(
         }
 
         return true
+    }
+
+    private fun animateGlowEffect(section: Int) {
+        if (section == glowingSection) {
+            // Turn off glowing
+            glowingSection = -1
+            glowAnimator.cancel()
+            invalidate()
+        } else {
+            // Start glowing
+            glowingSection = section
+            glowAnimator.cancel()
+            glowAnimator.setFloatValues(0f, 1f)
+            glowAnimator.start()
+        }
     }
 
     private fun isInDarkMode(): Boolean {
@@ -276,7 +365,39 @@ class CircularButtonView @JvmOverloads constructor(
         return isPlaying
     }
 
+    fun setLabels(labels: List<String>) {
+        sectionLabels = labels
+        invalidate()
+    }
+
     fun getSectionColor(index: Int): Int {
         return sectionColors[index]
     }
+
+    fun isGlowing(): Boolean {
+        return glowingSection != -1
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val desiredSize = (2 * (radius + padding)).toInt()  // Add padding to desired size
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
+
+        val width = when (widthMode) {
+            MeasureSpec.EXACTLY -> widthSize
+            MeasureSpec.AT_MOST -> desiredSize.coerceAtMost(widthSize)
+            else -> desiredSize
+        }
+
+        val height = when (heightMode) {
+            MeasureSpec.EXACTLY -> heightSize
+            MeasureSpec.AT_MOST -> desiredSize.coerceAtMost(heightSize)
+            else -> desiredSize
+        }
+
+        setMeasuredDimension(width, height)
+    }
+
 }
