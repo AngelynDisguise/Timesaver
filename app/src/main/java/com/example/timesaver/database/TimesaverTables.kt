@@ -13,7 +13,7 @@ import java.time.Duration
 @Entity(tableName = "activity")
 @TypeConverters(Converters::class)
 data class Activity(
-    @PrimaryKey val activityId: Long = 0,
+    @PrimaryKey(autoGenerate = true) val activityId: Long,
     val activityName: String,
     val timeLimit: Duration
 )
@@ -31,7 +31,7 @@ data class Activity(
 )
 @TypeConverters(Converters::class)
 data class TimeLog(
-    @PrimaryKey(autoGenerate = true) val timeLogId: Long = 0,
+    @PrimaryKey(autoGenerate = true) val timeLogId: Long,
     @ColumnInfo(index = true) val activityId: Long,
     val date: LocalDate,
     val timeElapsed: Duration

@@ -13,7 +13,15 @@ class TimesaverRepository(private val dao: TimesaverDao) {
     }
 
     suspend fun updateTimeLog(log: TimeLog) {
-        dao.insertTimeLog(log)
+        dao.updateTimeLog(log)
+    }
+
+    suspend fun insertActivity(activity: Activity) {
+        dao.insertActivity(activity)
+    }
+
+    suspend fun updateActivity(activity: Activity) {
+        dao.updateActivity(activity)
     }
 
     fun getAllActivities(): LiveData<List<Activity>> {

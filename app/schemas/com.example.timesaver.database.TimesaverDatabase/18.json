@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 14,
-    "identityHash": "c9ab21e7f07ce34d926d268c46c4a8cf",
+    "version": 18,
+    "identityHash": "0726067d51e76b7fe196f7c49a6f34e2",
     "entities": [
       {
         "tableName": "activity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` INTEGER NOT NULL, `activityName` TEXT NOT NULL, `timeLimit` INTEGER NOT NULL, PRIMARY KEY(`activityId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`activityId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `activityName` TEXT NOT NULL, `timeLimit` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "activityId",
@@ -28,7 +28,7 @@
           }
         ],
         "primaryKey": {
-          "autoGenerate": false,
+          "autoGenerate": true,
           "columnNames": [
             "activityId"
           ]
@@ -100,7 +100,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c9ab21e7f07ce34d926d268c46c4a8cf')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0726067d51e76b7fe196f7c49a6f34e2')"
     ]
   }
 }
