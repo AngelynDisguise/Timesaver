@@ -10,7 +10,7 @@ import com.example.timesaver.database.ActivityTimeLog
 import java.time.Duration
 
 
-class ActivityTimeLogListAdapter(private val logs: List<ActivityTimeLog>) :
+class ActivityTimeLogListAdapter(private var logs: MutableList<ActivityTimeLog>, private var colors: MutableList<Int>) :
     RecyclerView.Adapter<ActivityTimeLogListAdapter.ViewHolder>() {
 
     private var maxDuration = Duration.ofHours(1)
@@ -33,21 +33,31 @@ class ActivityTimeLogListAdapter(private val logs: List<ActivityTimeLog>) :
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val log = logs[position]
-        viewHolder.activityTextView.text = log.activity.activityName
-        viewHolder.timeLogTextView.text = formatDuration(log.timeLog.timeElapsed)
+        val log: ActivityTimeLog = logs[position]
+        val timeElapsed: Duration = log.timeLog.timeElapsed
+        if (timeElapsed != Duration.ZERO) {
+            viewHolder.activityTextView.text = log.activity.activityName
+            viewHolder.timeLogTextView.text = formatDuration(timeElapsed)
 
-        viewHolder.barContainer.post {
-            val barWidthRatio = calculateBarWidthRatio(log.timeLog.timeElapsed)
-            val barWidth = (viewHolder.barContainer.width * barWidthRatio).toInt()
-            val layoutParams = viewHolder.timeLogBar.layoutParams
-            layoutParams.width = barWidth
-            viewHolder.timeLogBar.layoutParams = layoutParams
+            viewHolder.barContainer.post {
+                val barWidthRatio = calculateBarWidthRatio(timeElapsed)
+                val barWidth = (viewHolder.barContainer.width * barWidthRatio).toInt()
+                val layoutParams = viewHolder.timeLogBar.layoutParams
+                layoutParams.width = barWidth
+                viewHolder.timeLogBar.layoutParams = layoutParams
+                viewHolder.timeLogBar.setBackgroundColor(colors[position])
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return logs.size
+    }
+
+    fun addLogs(newLogs: MutableList<ActivityTimeLog>, colors: MutableList<Int>) {
+        this.logs = newLogs
+        this.colors = colors
+        notifyDataSetChanged()
     }
 
     private fun formatDuration(duration: Duration): String {

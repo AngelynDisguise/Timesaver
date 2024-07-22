@@ -68,13 +68,13 @@ class CircularButtonView @JvmOverloads constructor(
     }
 
     // Glowing stuff
-    private val glowThickness = 20f
-    private val glowDistance = 5f
+    private val glowThickness = 30f
+    private val glowDistance = 0f
     private var glowingSection: Int = -1
     private val glowPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         strokeWidth = glowThickness
-        maskFilter = BlurMaskFilter(15f, BlurMaskFilter.Blur.NORMAL) // blurr
+        maskFilter = BlurMaskFilter(15f, BlurMaskFilter.Blur.SOLID) // blurr
     }
     private val glowAnimator = ValueAnimator().apply {
         duration = 300 // milliseconds
@@ -309,8 +309,8 @@ class CircularButtonView @JvmOverloads constructor(
                 } else if (distance <= radius) {
                     val angle = Math.toDegrees(atan2(dy.toDouble(), dx.toDouble())).toFloat()
                     val touchedSection = ((angle + 360) % 360 / (360f / outerCircleSections)).toInt()
-                    animateGlowEffect(touchedSection)
-                    lastTouchedSection = touchedSection
+                    animateGlowEffect(touchedSection) // ***
+                    lastTouchedSection = touchedSection // ***
                     performClick()
                 }
                 return true
@@ -350,15 +350,29 @@ class CircularButtonView @JvmOverloads constructor(
         return (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
     }
 
-    fun changeButton() {
-        icon = if (isPlaying) {
-            playIcon
-        } else {
-            pauseIcon
-        }
-        isPlaying = !isPlaying
+//    fun changeButton() {
+//        icon = if (isPlaying) {
+//            playIcon
+//        } else {
+//            pauseIcon
+//        }
+//        isPlaying = !isPlaying
+//        updatePlayIconColor()
+//        invalidate()
+//    }
+
+    fun changeToPlayButton() {
+        icon = playIcon
         updatePlayIconColor()
         invalidate()
+        isPlaying = false
+    }
+
+    fun changeToPauseButton() {
+        icon = pauseIcon
+        updatePlayIconColor()
+        invalidate()
+        isPlaying = true
     }
 
     fun isPlaying(): Boolean {
@@ -374,8 +388,23 @@ class CircularButtonView @JvmOverloads constructor(
         return sectionColors[index]
     }
 
+    fun getAllSectionColors(): List<Int> {
+        return sectionColors
+    }
+
     fun isGlowing(): Boolean {
         return glowingSection != -1
+    }
+
+    // !!! Note: ONLY for unselecting
+    fun turnOffGlowing() {
+        animateGlowEffect(glowingSection)
+    }
+
+    // !!! Note: ONLY for cancelling dialog
+    fun rollbackTouch(section: Int) {
+        animateGlowEffect(section)
+        lastTouchedSection = section
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
