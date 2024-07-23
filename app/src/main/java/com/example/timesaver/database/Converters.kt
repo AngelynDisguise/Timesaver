@@ -3,6 +3,7 @@ package com.example.timesaver.database
 import androidx.room.TypeConverter
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class Converters {
     @TypeConverter
@@ -23,5 +24,15 @@ class Converters {
     @TypeConverter
     fun toLocalDate(value: Long?): LocalDate? {
         return value?.let { LocalDate.ofEpochDay(it) }
+    }
+
+    @TypeConverter
+    fun fromLocalDateTime(value: String?): LocalDateTime? {
+        return value?.let { LocalDateTime.parse(it) }
+    }
+
+    @TypeConverter
+    fun toLocalDateTime(date: LocalDateTime?): String? {
+        return date?.toString()
     }
 }

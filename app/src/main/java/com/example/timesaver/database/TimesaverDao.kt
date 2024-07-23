@@ -16,38 +16,51 @@ interface TimesaverDao {
     suspend fun insertActivity(activity: Activity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTimeLog(timeLog: TimeLog)
+    suspend fun insertTimelog(timelog: Timelog)
 
     @Update
     suspend fun updateActivity(activity: Activity)
 
     @Update
-    suspend fun updateTimeLog(timeLog: TimeLog)
+    suspend fun updateTimelog(timelog: Timelog)
 
     @Delete
     suspend fun deleteActivity(activity: Activity)
 
     @Delete
-    suspend fun deleteTimeLog(timeLog: TimeLog)
+    suspend fun deleteTimelog(timelog: Timelog)
 
+    /** Get all activities */
+    @Query("SELECT * FROM activities")
+    fun getActivities(): LiveData<List<Activity>>
+
+    /** Get all activities with their list of timelogs */
+    @Query("SELECT * FROM activities")
+    fun getActivityTimelogs(): LiveData<List<ActivityTimelog>>
+
+    /** Get all activities with their list timelogs from a specific date */
     @Transaction
     @Query("""
-        SELECT * 
-        FROM activity 
-        INNER JOIN time_log ON activity.activityId = time_log.activityId 
-        WHERE time_log.date = :date
-    """)
-    fun getAllActivityTimeLogsOnDate(date: LocalDate): LiveData<List<ActivityTimeLog>>
+        SELECT a.*
+        FROM activities a
+        INNER JOIN timelogs t ON a.activityId = t.activityId
+        WHERE date(startTime) = :date
+        """)
+    fun getActivityTimelogsOnDate(date: LocalDate): LiveData<List<ActivityTimelog>>
 
+    /** Get total time elapsed for an activity on a specific date */
     @Transaction
-    @Query("SELECT * FROM activity WHERE activityId = :activityId")
-    fun getActivityWithAllTimeLogs(activityId: Long): ActivityWithAllTimeLogs
+    @Query("""SELECT SUM(strftime('%s', endTime) - strftime('%s', startTime))
+            FROM timelogs
+            WHERE activityId = :activityId AND date(startTime) = :date 
+            """)
+    fun getTotalActivityTimeOnDate(activityId: Long, date: LocalDate): Long
 
+    /** Get total time elapsed for an activity in all history */
     @Transaction
-    @Query("SELECT * FROM activity")
-    fun getAllActivitiesWithAllTimeLogs(): List<ActivityWithAllTimeLogs>
-
-    @Transaction
-    @Query("SELECT * FROM activity")
-    fun getAllActivities(): LiveData<List<Activity>>
+    @Query("""SELECT SUM(strftime('%s', endTime) - strftime('%s', startTime))
+            FROM timelogs
+            WHERE activityId = :activityId 
+            """)
+    fun getTotalActivityTime(activityId: Long): Long
 }

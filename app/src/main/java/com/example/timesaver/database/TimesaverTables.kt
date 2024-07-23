@@ -7,18 +7,16 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import androidx.room.TypeConverters
-import java.time.LocalDate
-import java.time.Duration
+import java.time.LocalDateTime
 
-@Entity(tableName = "activity")
+@Entity(tableName = "activities")
 @TypeConverters(Converters::class)
 data class Activity(
-    @PrimaryKey(autoGenerate = true) val activityId: Long,
-    val activityName: String,
-    val timeLimit: Duration
+    @PrimaryKey(autoGenerate = true) val activityId: Long = 0,
+    val activityName: String
 )
 
-@Entity(tableName = "time_log",
+@Entity(tableName = "timelogs",
     foreignKeys = [
         ForeignKey(
             entity = Activity::class,
@@ -30,30 +28,20 @@ data class Activity(
     ]
 )
 @TypeConverters(Converters::class)
-data class TimeLog(
-    @PrimaryKey(autoGenerate = true) val timeLogId: Long,
+data class Timelog(
+    @PrimaryKey(autoGenerate = true) val timelogId: Long = 0,
     @ColumnInfo(index = true) val activityId: Long,
-    val date: LocalDate,
-    val timeElapsed: Duration
+    val startTime: LocalDateTime,
+    val endTime: LocalDateTime
 )
 
-// 1:1 activity-timelog; An instance of an activity with its time log on one date
-data class ActivityTimeLog(
+// 1:N activity-timelog; An activity with all timelogs in history
+data class ActivityTimelog(
     @Embedded val activity: Activity,
     @Relation(
         parentColumn = "activityId",
         entityColumn = "activityId"
     )
-    val timeLog: TimeLog
-)
-
-// 1:N activity-timelog; An activity with all its time logs on all dates
-data class ActivityWithAllTimeLogs(
-    @Embedded val activity: Activity,
-    @Relation(
-        parentColumn = "activityId",
-        entityColumn = "activityId"
-    )
-    val exercises: List<TimeLog>
+    val timelogs: List<Timelog>
 )
 
