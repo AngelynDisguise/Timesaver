@@ -28,10 +28,19 @@ import com.example.timesaver.MainViewModel
 import com.example.timesaver.MainViewModelFactory
 import com.example.timesaver.R
 import com.example.timesaver.database.Activity
+import com.example.timesaver.database.ActivityTimelog
+import com.example.timesaver.database.Timelog
 //import com.example.timesaver.database.ActivityTimeLog
 //import com.example.timesaver.database.TimeLog
 import java.time.Duration
 import java.time.LocalDate
+import kotlin.time.toKotlinDuration
+
+data class UILog (
+    val activityName: String,
+    val totalTime: Duration,
+    val color: Int
+)
 
 class MainFragment : Fragment() {
 
@@ -54,11 +63,8 @@ class MainFragment : Fragment() {
     private lateinit var timeDiffText: TextView
 
     // Note: There will always be at least 1 activity and shall always be 1:1 with timelogs
-    private lateinit var activities: List<Activity>
-//    private var timelogs: List<ActivityTimeLog> = listOf()
-//    private var adapterLogs: MutableList<ActivityTimeLog> = mutableListOf() // adapter version of timelogs (will be out of order)
-
-    private var colors: MutableList<Int> = mutableListOf()
+    private lateinit var activityTimelogs: List<ActivityTimelog>
+    private val UILogs: MutableMap<Long, UILog> = mutableMapOf()
 
     private var currentActivityIndex: Int = -1
 
@@ -73,37 +79,34 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        // Init views
-//        refreshButton = view.findViewById(R.id.refresh_button_image_view)
-//        doneButton = view.findViewById(R.id.done_button_view)
-//        currentActivityText = view.findViewById(R.id.current_activity_text_view)
-//        timerText = view.findViewById(R.id.timer_text_view)
-//        timeDiffText = view.findViewById(R.id.time_diff_text_view)
-//
-//        // Draw and setup Circular Button (the "timesaver" :P)
-//        circularButton = view.findViewById(R.id.circular_button_view)
-//        circularButton.padding = 30f // any smaller will push glow off the canvas
-//
-//        //colors.add(circularButton.getSectionColor(0))
-//        //colors = circularButton.getAllSectionColors().take()
-//
-//        // Setup RecyclerView and List Adapters
-//        activityTimeLogListAdapter = ActivityTimeLogListAdapter(adapterLogs, colors)
-//        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
-//        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
-//
-//
-//        // Config fix: Set icon back to pause if stopwatch is running
-//        if (viewModel.stopwatchIsRunning()) {
-//            circularButton.changeToPauseButton()
-//        }
-//
-//        // Reveal arrow if timelog list overflows
-//        if (timelogs.size > 5) {
-//            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-//            arrow.visibility = VISIBLE
-//        }
-//
+        // Init views
+        refreshButton = view.findViewById(R.id.refresh_button_image_view)
+        doneButton = view.findViewById(R.id.done_button_view)
+        currentActivityText = view.findViewById(R.id.current_activity_text_view)
+        timerText = view.findViewById(R.id.timer_text_view)
+        timeDiffText = view.findViewById(R.id.time_diff_text_view)
+
+        // Draw and setup Circular Button (the "timesaver" :P)
+        circularButton = view.findViewById(R.id.circular_button_view)
+        circularButton.padding = 30f // any smaller will push glow off the canvas
+
+        // Setup RecyclerView and List Adapters
+        activityTimeLogListAdapter = ActivityTimeLogListAdapter(UILogs.values.toList())
+        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
+        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
+
+
+        // Config fix: Set icon back to pause if stopwatch is running
+        if (viewModel.stopwatchIsRunning()) {
+            circularButton.changeToPauseButton()
+        }
+
+        // Reveal arrow if timelog list overflows
+        if (UILogs.size > 5) {
+            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+            arrow.visibility = VISIBLE
+        }
+
 //        // Listeners
 //        refreshButton.setOnClickListener { rollbackTime() }
 //        doneButton.setOnClickListener { finishActivity(currentActivityIndex) }
@@ -118,64 +121,51 @@ class MainFragment : Fragment() {
 //                timeDiffText.text = text
 //            }
 //        }
-//
-//        // Update existing activities and their timelogs (if any)
-//        // Note: timelogs depend on size of activities
-//        viewModel.combinedData.observe(viewLifecycleOwner) { (acts, logs): Pair<List<Activity>, List<ActivityTimeLog>> ->
-//            if (acts.isNotEmpty()) {
-//                activities = acts
-//                circularButton.outerCircleSections = acts.size
-//                circularButton.setLabels(acts.map { it.activityName })
-//
-//                Log.d(
-//                    "MainFragment",
-//                    "Received activities from LiveData: $activities"
-//                )
-//
-//                if (logs.isEmpty()) {
-//                    Log.d(
-//                        "MainFragment",
-//                        "WARNING: Received empty list of time logs. Populating empty logs..."
-//                    )
-//                }
-//
-//                // Map activities to a list of timelogs (add empty timelog if there isn't one)
-//                val logsMap: Map<Long, ActivityTimeLog> = logs.associateBy { it.activity.activityId }
-//                timelogs = activities.map { activity ->
-//                    logsMap[activity.activityId] ?: ActivityTimeLog(
-//                        activity,
-//                        TimeLog(
-//                            timeLogId = 0,
-//                            activityId = activity.activityId,
-//                            date = LocalDate.now(),
-//                            timeElapsed = Duration.ZERO
-//                        )
-//                    )
-//                }
-//
-//                Log.d(
-//                    "MainFragment",
-//                    "Created timelogs: $timelogs\n with colors: $colors"
-//                )
-//
-//                adapterLogs = logs.toMutableList()
-//
-//                colors = logs.map { log ->
-//                    val index = acts.indexOfFirst { it.activityId == log.timeLog.activityId }
-//                    circularButton.getSectionColor(index)
-//                }.toMutableList()
-//
-//                // Update timelogs list UI
-//                activityTimeLogListAdapter.addLogs(adapterLogs, colors) // this okay since max. 8 activities/logs
-//            } else {
-//                Log.d(
-//                    "MainFragment",
-//                    "ERROR: Received empty list of activities."
-//                )
-//            }
-//        }
+
+        // Update activity wheel UI and list UI
+        viewModel.activityTimelogs.observe(viewLifecycleOwner) { ats: List<ActivityTimelog> ->
+            if (ats.isNotEmpty()) {
+                // Update list UI
+                activityTimelogs = ats
+                circularButton.outerCircleSections = ats.size
+                circularButton.setLabels(ats.map { it.activity.activityName })
+
+                Log.d(
+                    "MainFragment",
+                    "Received activities from LiveData: $ats"
+                )
+
+                // Populate map for list UI
+                for (i in ats.indices) {
+                    val a: Activity = ats[i].activity
+                    val t: List<Timelog> = ats[i].timelogs
+
+                    val logTime: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
+                    val totalTime: Duration = logTime.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
+
+                    UILogs[a.activityId] = UILog(
+                        activityName = a.activityName,
+                        totalTime = totalTime,
+                        color = circularButton.getSectionColor(i)
+                    )
+                }
+
+                Log.d(
+                    "MainFragment",
+                    "Updated UI time logs: $UILogs"
+                )
+
+                // Update list UI
+                //activityTimeLogListAdapter.submitList(UITimelogs.values.toList())
+            } else {
+                Log.d(
+                    "MainFragment",
+                    "ERROR: Received empty list of activities."
+                )
+            }
+        }
     }
-//
+
 //    private fun rollbackTime() {
 //        if (viewModel.timeHasElapsed()) {
 //            private fun finishActivity(activityIndex: Int) {
@@ -367,6 +357,188 @@ class MainFragment : Fragment() {
 //                    Log.d(
 //                        "MainFragment",
 //                        "WARNING: Tried to save but no time elapsed."
+//                 //
+//    private fun rollbackTime() {
+//        if (viewModel.timeHasElapsed()) {
+//            private fun finishActivity(activityIndex: Int) {
+//                Toast.makeText(requireContext(), "Finished ${activities[activityIndex].activityName}", Toast.LENGTH_SHORT).show()
+//                saveActivityTimeLog(activityIndex)
+//                clearUI()
+//            }
+//
+//            // Click an Activity Button
+//            private val onClickActivity = { selectedIndex: Int ->
+//                Log.d(
+//                    "MainFragment", "Previous selection: $currentActivityIndex (${if (currentActivityIndex > -1) activities[currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
+//                )
+//
+//                // Different button pressed (from none or a different activity)
+//                if (selectedIndex != currentActivityIndex) {
+//
+//                    // Switching while progress made
+//                    if (currentActivityIndex > -1 && viewModel.timeHasElapsed()) {
+//
+//                        // Switching while running (progress made)
+//                        if (viewModel.stopwatchIsRunning()) {
+//                            Log.d(
+//                                "MainFragment",
+//                                "User chose a different activity while current is running. Sending Alert Dialogue."
+//                            )
+//                            if (!warningSuppressed) {
+//                                warnUser(selectedIndex)
+//                            } else { // Warning supressed
+//                                finishActivity(currentActivityIndex)
+//                                switchActivity(selectedIndex)
+//                            }
+//                        } else { // Switching while not running, but progress made
+//                            finishActivity(currentActivityIndex)
+//                            switchActivity(selectedIndex)
+//                        }
+//                    } else { // 1) None selected and no time passed, 2) None selected and time passed (impossible), 3) Selected and no time passed
+//                        if (currentActivityIndex > -1) {
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "Switched to Activity \"${activities[selectedIndex].activityName}\"",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        } else {
+//                            Toast.makeText(
+//                                requireContext(),
+//                                "Selected Activity \"${activities[selectedIndex].activityName}\"",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }
+//                        switchActivity(selectedIndex)
+//                    }
+//                } else { // Same button pressed
+//                    if (circularButton.isGlowing()) {
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "Selected Activity \"${activities[selectedIndex].activityName}\"",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        switchActivity(selectedIndex)
+//                    } else {
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "Activity \"${activities[selectedIndex].activityName}\" unselected",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        if (viewModel.timeHasElapsed()) {
+//                            finishActivity(currentActivityIndex)
+//                        } else {
+//                            clearUI()
+//                        }
+//                    }
+//
+//                }
+//            }
+//
+//            private fun warnUser(selectedIndex: Int) {
+//                val builder = AlertDialog.Builder(requireContext())
+//                builder.setTitle("Activity in Progress")
+//                    .setMessage("Finish current activity and switch to another? Progress will be saved.")
+//
+//                builder.setPositiveButton("Yes") { _, _ ->
+//                    finishActivity(currentActivityIndex)
+//                    switchActivity(selectedIndex)
+//                }
+//                builder.setNegativeButton("No") { _, _ ->
+//                    circularButton.rollbackTouch(currentActivityIndex)
+//                }
+//                val dialog: AlertDialog = builder.create()
+//                dialog.show()
+//            }
+//
+//            private val onClickPlayPause = {
+//                Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $currentActivityIndex")
+//
+//                // Start/Resume/Pause the time for the current activity
+//                if(currentActivityIndex > -1) {
+//                    if (circularButton.isPlaying()) {
+//                        Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
+//                        viewModel.pauseStopwatch()
+//                        circularButton.changeToPlayButton()
+//                    } else {
+//                        val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
+//                        Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
+//                        viewModel.startStopwatch()
+//                        circularButton.changeToPauseButton()
+//                    }
+//                } else {
+//                    Toast.makeText(requireContext(), "Select an Activity", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            private fun switchActivity(newActivityIndex: Int) {
+//                // Update current activity
+//                currentActivityIndex = newActivityIndex
+//
+//                val timeElapsed: Duration = timelogs[newActivityIndex].timeLog.timeElapsed
+//                timerText.text = formatStopwatchDuration(timeElapsed)
+//                var text = "(Diff: " + formatStopwatchDuration(Duration.ZERO) + ")"
+//                timeDiffText.text = text
+//
+//                currentActivityText.text = activities[newActivityIndex].activityName
+//                currentActivityText.setTextColor(circularButton.getSectionColor(newActivityIndex))
+//                currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.BOLD))
+//
+//                doneButton.visibility = VISIBLE
+//            }
+//
+//            private fun saveActivityTimeLog(activityIndex: Int) {
+//                if (viewModel.timeHasElapsed()) {
+//                    // Stop stopwatch, record time elapsed
+//                    val oldElapsedTime: Duration = timelogs[activityIndex].timeLog.timeElapsed // 0 if new log
+//                    val timeElapsed: Duration = viewModel.stopStopwatch()
+//
+//                    val newTimeLog = TimeLog(
+//                        timeLogId = timelogs[activityIndex].timeLog.timeLogId,
+//                        activityId = activities[activityIndex].activityId,
+//                        date = LocalDate.now(),
+//                        timeElapsed = timeElapsed + oldElapsedTime
+//                    )
+//
+//                    val newActivityTimeLog = ActivityTimeLog(activities[activityIndex], newTimeLog)
+//                    val newColor = circularButton.getSectionColor(activityIndex)
+//
+//                    Log.d(
+//                        "MainFragment",
+//                        "Attempting to save: $newTimeLog with color $newColor"
+//                    )
+//
+//                    // Save or update new time
+//                    if (oldElapsedTime == Duration.ZERO) {
+//                        Log.d(
+//                            "MainFragment",
+//                            "1\nlogs = $adapterLogs\ncolors = $colors"
+//                        )
+//                        colors.add(newColor)
+//                        Log.d(
+//                            "MainFragment",
+//                            "2:\nlogs = $adapterLogs\ncolors = $colors"
+//                        )
+//                        viewModel.saveNewTimeLog(newTimeLog)
+//
+//                        adapterLogs.add(newActivityTimeLog)
+//                        activityTimeLogListAdapter.notifyItemInserted(adapterLogs.size-1)
+//
+//                        Log.d(
+//                            "MainFragment",
+//                            "Insert successful!"
+//                        )
+//                    } else {
+//                        viewModel.updateTimeLog(newTimeLog)
+//
+//                        // Update timelogs list
+//                        val i = adapterLogs.indexOfFirst { it.activity.activityId == newTimeLog.activityId }
+//                        if (i != -1) adapterLogs[i] = newActivityTimeLog // color won't change, so no need to update colors
+//                        activityTimeLogListAdapter.notifyItemChanged(i)
+//
+//                        Log.d(
+//                            "MainFragment",
+//                            "Update successful!"
+//                        )
 //                    )
 //                }
 //            }

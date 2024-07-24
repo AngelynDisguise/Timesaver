@@ -7,10 +7,11 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.database.ActivityTimelog
+import com.example.timesaver.fragments.UILog
 import java.time.Duration
 
 
-class ActivityTimeLogListAdapter(private var logs: MutableList<ActivityTimelog>, private var colors: MutableList<Int>) :
+class ActivityTimeLogListAdapter(private val logs: List<UILog>) :
     RecyclerView.Adapter<ActivityTimeLogListAdapter.ViewHolder>() {
 
     private var maxDuration = Duration.ofHours(1)
@@ -33,7 +34,7 @@ class ActivityTimeLogListAdapter(private var logs: MutableList<ActivityTimelog>,
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val log: ActivityTimelog = logs[position]
+        val log: UILog = logs[position]
 //        val timeElapsed: Duration = log.timelog.timeElapsed
 //        if (timeElapsed != Duration.ZERO) {
 //            viewHolder.activityTextView.text = log.activity.activityName
