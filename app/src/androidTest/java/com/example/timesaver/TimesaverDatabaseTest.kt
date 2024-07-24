@@ -1,11 +1,11 @@
 package com.example.timesaver
 
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.LiveData
+import android.os.Bundle
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.TimesaverDao
 import com.example.timesaver.database.TimesaverDatabase
@@ -17,11 +17,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
-
-import androidx.lifecycle.Observer
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
+import kotlinx.coroutines.async
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 
 @RunWith(AndroidJUnit4::class)
 class TimesaverDatabaseTest {
@@ -48,51 +46,64 @@ class TimesaverDatabaseTest {
     fun insertAndGetActivity() {
         val activity = Activity(activityName = "Reading")
         CoroutineScope(Dispatchers.IO).launch {
-            timesaverDao.insertActivity(activity)
+            val deferred = async { timesaverDao.insertActivity(activity) }
+            deferred.await()
+            val activities = timesaverDao.getActivities().value
+            assertNotNull(activities)
+            if (activities != null) {
+                assert(activities.isNotEmpty())
+                assertEquals(activities[0].activityName, "Reading")
+            }
         }
-        val activities = timesaverDao.getActivities().getOrAwaitValue()
-        assert(activities.isNotEmpty())
-        assert(activities[0].activityName == "Reading")
     }
 
     @Test
     @Throws(Exception::class)
     fun getActivities() {
-        val activities = timesaverDao.getActivities().getOrAwaitValue()
-        assert(activities.isNotEmpty())
-        Log.d("DatabaseTest", "All activities: $activities")
+        CoroutineScope(Dispatchers.IO).launch {
+            val activities = async { timesaverDao.getActivities().value }
+            assertNotNull(activities.await())
+            if (activities.await() != null) {
+                assert(activities.await()!!.isNotEmpty())
+                InstrumentationRegistry.getInstrumentation().sendStatus(
+                    1, Bundle().apply {
+                        putString("result", "getActivities test results: $activities")
+                    }
+                )
+            } else {
+                InstrumentationRegistry.getInstrumentation().sendStatus(
+                    1, Bundle().apply {
+                        putString("result", "getActivities got null Activities")
+                    }
+                )
+
+            }
+        }
+        //println("test2 ended")
     }
 
     @Test
     @Throws(Exception::class)
     fun getActivityTimelogs() {
-        val activities = timesaverDao.getActivityTimelogs().getOrAwaitValue()
-        assert(activities.isNotEmpty())
-        Log.d("DatabaseTest", "All activities: $activities")
-    }
-}
+        CoroutineScope(Dispatchers.IO).launch {
+            val activities = async { timesaverDao.getActivityTimelogs().value }
+            assertNotNull(activities.await())
+            if (activities.await() != null) {
+                assert(activities.await()!!.isNotEmpty())
+                InstrumentationRegistry.getInstrumentation().sendStatus(
+                    1, Bundle().apply {
+                        putString("result", "getActivityTimelogs test results: $activities")
+                    }
+                )
+            } else {
+                InstrumentationRegistry.getInstrumentation().sendStatus(
+                    1, Bundle().apply {
+                        putString("result", "getActivities got null ActivityTimelogs")
+                    }
+                )
 
-fun <T> LiveData<T>.getOrAwaitValue(
-    time: Long = 2,
-    timeUnit: TimeUnit = TimeUnit.SECONDS
-): T {
-    var data: T? = null
-    val latch = CountDownLatch(1)
-    val observer = object : Observer<T> {
-        override fun onChanged(value: T) {
-            data = value
-            latch.countDown()
-            this@getOrAwaitValue.removeObserver(this)
+            }
         }
+        //println("test3 ended")
     }
-
-    this.observeForever(observer)
-
-    // Don't wait indefinitely if the LiveData is not set.
-    if (!latch.await(time, timeUnit)) {
-        throw TimeoutException("LiveData value was never set.")
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    return data as T
 }

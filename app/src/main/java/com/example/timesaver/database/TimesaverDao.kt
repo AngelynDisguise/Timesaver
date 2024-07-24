@@ -35,6 +35,7 @@ interface TimesaverDao {
     fun getActivities(): LiveData<List<Activity>>
 
     /** Get all activities with their list of timelogs */
+    @Transaction
     @Query("SELECT * FROM activities")
     fun getActivityTimelogs(): LiveData<List<ActivityTimelog>>
 
