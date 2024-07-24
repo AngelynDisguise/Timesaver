@@ -60,7 +60,6 @@ class MainFragment : Fragment() {
     private lateinit var refreshButton: ImageView
     private lateinit var currentActivityText: TextView
     private lateinit var timerText: TextView
-    private lateinit var timeDiffText: TextView
 
     // Note: There will always be at least 1 activity and shall always be 1:1 with timelogs
     private lateinit var activityTimelogs: List<ActivityTimelog>
@@ -79,48 +78,23 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Init views
-        refreshButton = view.findViewById(R.id.refresh_button_image_view)
-        doneButton = view.findViewById(R.id.done_button_view)
-        currentActivityText = view.findViewById(R.id.current_activity_text_view)
-        timerText = view.findViewById(R.id.timer_text_view)
-        timeDiffText = view.findViewById(R.id.time_diff_text_view)
+        initViews(view)
+        initCircularButton(view) // Draw the "timesaver" :P
+        initListAdapter(view)
+        initUI(view)
 
-        // Draw and setup Circular Button (the "timesaver" :P)
-        circularButton = view.findViewById(R.id.circular_button_view)
-        circularButton.padding = 30f // any smaller will push glow off the canvas
+        // Listeners
+        //refreshButton.setOnClickListener { rollbackTime() }
+        //doneButton.setOnClickListener { finishActivity(currentActivityIndex) }
+        circularButton.setOnInnerCircleClickListener(onClickPlayPause)
+        //circularButton.setOnOuterCircleClickListener(onClickActivity)
 
-        // Setup RecyclerView and List Adapters
-        activityTimeLogListAdapter = ActivityTimeLogListAdapter(UILogs.values.toList())
-        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
-        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
-
-
-        // Config fix: Set icon back to pause if stopwatch is running
-        if (viewModel.stopwatchIsRunning()) {
-            circularButton.changeToPauseButton()
+        // Update stopwatch
+        viewModel.elapsedTime.observe(viewLifecycleOwner) { duration: Duration ->
+            if (currentActivityIndex > -1) {
+                timerText.text = formatStopwatchDuration(duration)
+            }
         }
-
-        // Reveal arrow if timelog list overflows
-        if (UILogs.size > 5) {
-            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-            arrow.visibility = VISIBLE
-        }
-
-//        // Listeners
-//        refreshButton.setOnClickListener { rollbackTime() }
-//        doneButton.setOnClickListener { finishActivity(currentActivityIndex) }
-//        circularButton.setOnInnerCircleClickListener(onClickPlayPause)
-//        circularButton.setOnOuterCircleClickListener(onClickActivity)
-//
-//        // Update stopwatch
-//        viewModel.elapsedTime.observe(viewLifecycleOwner) { duration: Duration ->
-//            if (currentActivityIndex > -1) {
-//                timerText.text = formatStopwatchDuration(duration + timelogs[currentActivityIndex].timeLog.timeElapsed)
-//                val text = "(Diff: " + formatStopwatchDuration(duration) + ")"
-//                timeDiffText.text = text
-//            }
-//        }
 
         // Update activity wheel UI and list UI
         viewModel.activityTimelogs.observe(viewLifecycleOwner) { ats: List<ActivityTimelog> ->
@@ -164,6 +138,52 @@ class MainFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun initViews(view: View) {
+        refreshButton = view.findViewById(R.id.refresh_button_image_view)
+        doneButton = view.findViewById(R.id.done_button_view)
+        currentActivityText = view.findViewById(R.id.current_activity_text_view)
+        timerText = view.findViewById(R.id.timer_text_view)
+    }
+
+    private fun initCircularButton(view: View) {
+        circularButton = view.findViewById(R.id.circular_button_view)
+        circularButton.padding = 30f // any smaller will push glow off the canvas
+    }
+
+    private fun initListAdapter(view: View) {
+        activityTimeLogListAdapter = ActivityTimeLogListAdapter(UILogs.values.toList())
+        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
+        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
+    }
+
+    private fun initUI(view: View) {
+        // Config fix: Set icon back to pause if stopwatch is running
+        if (viewModel.stopwatchIsRunning()) {
+            circularButton.changeToPauseButton()
+        }
+
+        // Reveal arrow if timelog list overflows
+        if (UILogs.size > 5) {
+            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+            arrow.visibility = VISIBLE
+        }
+    }
+
+    private fun clearUI() {
+        circularButton.changeToPlayButton()
+        viewModel.resetStopwatch()
+
+        timerText.text = formatStopwatchDuration(Duration.ZERO)
+
+        doneButton.visibility = GONE
+        val text = "Select an Activity"
+        currentActivityText.text = text
+        currentActivityText.setTextColor(requireContext().getColorResCompat(android.R.attr.textColorPrimary))
+        currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.NORMAL))
+        circularButton.turnOffGlowing()
+        currentActivityIndex = -1
     }
 
 //    private fun rollbackTime() {
@@ -258,25 +278,25 @@ class MainFragment : Fragment() {
 //                dialog.show()
 //            }
 //
-//            private val onClickPlayPause = {
-//                Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $currentActivityIndex")
-//
-//                // Start/Resume/Pause the time for the current activity
-//                if(currentActivityIndex > -1) {
-//                    if (circularButton.isPlaying()) {
-//                        Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
-//                        viewModel.pauseStopwatch()
-//                        circularButton.changeToPlayButton()
-//                    } else {
-//                        val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
-//                        Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
-//                        viewModel.startStopwatch()
-//                        circularButton.changeToPauseButton()
-//                    }
-//                } else {
-//                    Toast.makeText(requireContext(), "Select an Activity", Toast.LENGTH_SHORT).show()
-//                }
-//            }
+    private val onClickPlayPause = {
+        Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $currentActivityIndex")
+
+        // Start/Resume/Pause the time for the current activity
+        if(currentActivityIndex > -1) {
+            if (circularButton.isPlaying()) {
+                Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
+                viewModel.pauseStopwatch()
+                circularButton.changeToPlayButton()
+            } else {
+                val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
+                Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
+                viewModel.startStopwatch()
+                circularButton.changeToPauseButton()
+            }
+        } else {
+            Toast.makeText(requireContext(), "Select an Activity", Toast.LENGTH_SHORT).show()
+        }
+    }
 //
 //            private fun switchActivity(newActivityIndex: Int) {
 //                // Update current activity
@@ -543,48 +563,20 @@ class MainFragment : Fragment() {
 //                }
 //            }
 //
-//            private fun formatStopwatchDuration(duration: Duration): String {
-//                val hours = duration.toHours()
-//                val minutes = duration.toMinutes() % 60
-//                val seconds = duration.seconds % 60
-//                return "%02d:%02d:%02d".format(hours, minutes, seconds)
-//            }
-//
-//            @ColorInt
-//            private fun Context.getColorResCompat(@AttrRes id: Int): Int {
-//                val resolvedAttr = TypedValue()
-//                this.theme.resolveAttribute(id, resolvedAttr, true)
-//                val colorRes = resolvedAttr.run { if (resourceId != 0) resourceId else data }
-//                return ContextCompat.getColor(this, colorRes)
-//            }
-//            circularButton.changeToPlayButton()
-//            viewModel.resetStopwatch()
-//
-//            val prevTimeText: String = formatStopwatchDuration(timelogs[currentActivityIndex].timeLog.timeElapsed)
-//            timerText.text = prevTimeText
-//            val zeroDiffText: String = "(Diff: " + formatStopwatchDuration(Duration.ZERO) + ")"
-//            timeDiffText.text = zeroDiffText
-//
-//            Toast.makeText(requireContext(), "Stopwatch Reset", Toast.LENGTH_SHORT).show()
-//        }
-//    }
-//
-//
-//    private fun clearUI() {
-//        circularButton.changeToPlayButton()
-//        viewModel.resetStopwatch()
-//
-//        var text = formatStopwatchDuration(Duration.ZERO)
-//        timerText.text = text
-//        text = "(Diff: " + formatStopwatchDuration(Duration.ZERO) + ")"
-//        timeDiffText.text = text
-//
-//        doneButton.visibility = GONE
-//        text = "Select an Activity"
-//        currentActivityText.text = text
-//        currentActivityText.setTextColor(requireContext().getColorResCompat(android.R.attr.textColorPrimary))
-//        currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.NORMAL))
-//        circularButton.turnOffGlowing()
-//        currentActivityIndex = -1
-//    }
+    private fun formatStopwatchDuration(duration: Duration): String {
+        val hours = duration.toHours()
+        val minutes = duration.toMinutes() % 60
+        val seconds = duration.seconds % 60
+        return "%02d:%02d:%02d".format(hours, minutes, seconds)
+    }
+
+    @ColorInt
+    private fun Context.getColorResCompat(@AttrRes id: Int): Int {
+            val resolvedAttr = TypedValue()
+            this.theme.resolveAttribute(id, resolvedAttr, true)
+            val colorRes = resolvedAttr.run { if (resourceId != 0) resourceId else data }
+            return ContextCompat.getColor(this, colorRes)
+    }
+
+
 }
