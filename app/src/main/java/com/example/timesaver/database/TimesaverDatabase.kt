@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 // Room Database class
 @Database(
-    version = 19,
+    version = 20,
     entities = [
     Activity::class,
     Timelog::class]

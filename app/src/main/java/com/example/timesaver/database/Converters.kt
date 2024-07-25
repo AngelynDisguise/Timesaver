@@ -4,6 +4,8 @@ import androidx.room.TypeConverter
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class Converters {
     @TypeConverter
@@ -14,6 +16,20 @@ class Converters {
     @TypeConverter
     fun toDuration(value: Long?): Duration? {
         return value?.let { Duration.ofMillis(it) }
+    }
+
+    companion object {
+        private val formatter = DateTimeFormatter.ISO_LOCAL_TIME
+    }
+
+    @TypeConverter
+    fun fromLocalTime(value: LocalTime?): String? {
+        return value?.format(formatter)
+    }
+
+    @TypeConverter
+    fun toLocalTime(value: String?): LocalTime? {
+        return value?.let { formatter.parse(it, LocalTime::from) }
     }
 
     @TypeConverter

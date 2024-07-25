@@ -9,7 +9,8 @@ val dummyActivities: List<Activity> = listOf(
     Activity(2,"LitAI"),
     Activity(3,"Break"),
     Activity(4,"Reddit"),
-    Activity(5,"Cooking")
+    Activity(5,"Cooking"),
+    Activity(6,"Cleaning")
 )
 
 val dummyLocalDateTimes: List<Pair<LocalDateTime, LocalDateTime>> = listOf(
@@ -58,16 +59,38 @@ val dummyLocalDateTimes: List<Pair<LocalDateTime, LocalDateTime>> = listOf(
         LocalDateTime.now().minusHours(4).minusMinutes(0).minusSeconds(30)
     ),
     Pair(
-        LocalDateTime.now().minusMinutes(30).minusSeconds(30),
+        LocalDateTime.now().minusMinutes(30),
+        LocalDateTime.now().minusMinutes(29),
+    ),
+    Pair(
+        LocalDateTime.now().minusHours(10),
+        LocalDateTime.now().minusHours(9),
+    ),
+    Pair(
+        LocalDateTime.now().minusMinutes(12).minusSeconds(20),
+        LocalDateTime.now().minusMinutes(0).minusSeconds(37)
+    ),
+    Pair(
+        LocalDateTime.now().minusMinutes(37),
+        LocalDateTime.now().minusMinutes(25),
+    ),
+    Pair(
+        LocalDateTime.now().minusMinutes(30),
+        LocalDateTime.now().minusMinutes(0)
+    ),
+    Pair(
+        LocalDateTime.now().minusMinutes(37),
         LocalDateTime.now().minusMinutes(25),
     )
 )
-
-val dummyTimelogs: List<Timelog> = dummyActivities.mapIndexed { i, a: Activity ->
+val aId: List<Long> = dummyActivities.map { it.activityId }
+val repeatedAId: List<Long> = List(dummyLocalDateTimes.size) { aId }.flatten()
+val dummyTimelogs: List<Timelog> = dummyLocalDateTimes.mapIndexed { i, it ->
     Timelog(
         timelogId = 0,
-        activityId = a.activityId,
-        startTime = dummyLocalDateTimes[i].first,
-        endTime = dummyLocalDateTimes[i].second
+        activityId = repeatedAId[i],
+        date = it.first.toLocalDate(),
+        startTime = it.first.toLocalTime(),
+        endTime = it.second.toLocalTime()
     )
 }

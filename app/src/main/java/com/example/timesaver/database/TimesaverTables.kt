@@ -7,7 +7,9 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import androidx.room.TypeConverters
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @Entity(tableName = "activities")
 @TypeConverters(Converters::class)
@@ -31,8 +33,9 @@ data class Activity(
 data class Timelog(
     @PrimaryKey(autoGenerate = true) val timelogId: Long = 0,
     @ColumnInfo(index = true) val activityId: Long,
-    val startTime: LocalDateTime,
-    val endTime: LocalDateTime
+    val date: LocalDate,
+    val startTime: LocalTime,
+    val endTime: LocalTime
 )
 
 // 1:N activity-timelog; An activity with all timelogs in history

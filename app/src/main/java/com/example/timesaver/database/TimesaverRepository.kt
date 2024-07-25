@@ -2,6 +2,7 @@ package com.example.timesaver.database
 
 import androidx.lifecycle.LiveData
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class TimesaverRepository(private val dao: TimesaverDao) {
     suspend fun insertActivity(activity: Activity) {
@@ -24,12 +25,12 @@ class TimesaverRepository(private val dao: TimesaverDao) {
         return dao.getActivities()
     }
 
-    fun getActivityTimeLogs(): LiveData<List<ActivityTimelog>> {
-        return dao.getActivityTimelogs()
+    fun getTimelogsOnDate(date: LocalDate): LiveData<List<Timelog>> {
+        return dao.getTimelogsOnDate(date)
     }
 
-    fun getActivityTimelogsOnDate(date: LocalDate): LiveData<List<ActivityTimelog>> {
-        return dao.getActivityTimelogsOnDate(date)
+    fun getActivityTimeLogs(): LiveData<List<ActivityTimelog>> {
+        return dao.getActivityTimelogs()
     }
 
     fun getTotalActivityTime(activityId: Long): Long {

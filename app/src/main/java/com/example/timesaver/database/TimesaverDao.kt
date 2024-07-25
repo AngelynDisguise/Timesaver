@@ -34,22 +34,25 @@ interface TimesaverDao {
     @Query("SELECT * FROM activities")
     fun getActivities(): LiveData<List<Activity>>
 
+    /** Get all activities */
+    @Query("SELECT * FROM timelogs")
+    fun getTimelogs(): LiveData<List<Timelog>>
+
+    /** Get all timelogs on a specific date, sorted by the activityId
+     */
+    @Transaction
+    @Query("""
+        SELECT *
+        FROM timelogs
+        WHERE date = :date
+        ORDER BY activityId, startTime ASC
+        """)
+    fun getTimelogsOnDate(date: LocalDate): LiveData<List<Timelog>>
+
     /** Get all activities with their list of timelogs */
     @Transaction
     @Query("SELECT * FROM activities")
     fun getActivityTimelogs(): LiveData<List<ActivityTimelog>>
-
-    /** Get all activities with their list timelogs from a specific date
-     * (Note: Any activity with no timelogs will have an empty list of timelogs)
-     */
-    @Transaction
-    @Query("""
-        SELECT a.*
-        FROM activities a
-        LEFT JOIN timelogs t ON a.activityId = t.activityId
-        WHERE date(startTime) = :date
-        """)
-    fun getActivityTimelogsOnDate(date: LocalDate): LiveData<List<ActivityTimelog>>
 
     /** Get total time elapsed for an activity in all history */
     @Transaction

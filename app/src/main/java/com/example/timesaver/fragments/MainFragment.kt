@@ -63,8 +63,8 @@ class MainFragment : Fragment() {
     private lateinit var currentActivityText: TextView
     private lateinit var timerText: TextView
 
-    // Note: There will always be at least 1 activity and shall always be 1:1 with timelogs
-    private lateinit var activityTimelogs: List<ActivityTimelog>
+    // Note: There will always be at least 1 activity
+    private lateinit var activities: List<Activity>
     private val uiLogs: MutableMap<Long, UILog> = mutableMapOf()
 
     private var currentActivityIndex: Int = -1
@@ -99,48 +99,67 @@ class MainFragment : Fragment() {
         }
 
         // Update activity wheel UI and list UI
-        viewModel.activityTimelogs.observe(viewLifecycleOwner) { ats: List<ActivityTimelog> ->
-            if (ats.isNotEmpty()) {
+        viewModel.combinedData.observe(viewLifecycleOwner) { (acts, logs): Pair<List<Activity>, List<Timelog>> ->
+            if (acts.isNotEmpty()) {
                 // Update list UI
-                activityTimelogs = ats
-                circularButton.outerCircleSections = ats.size
-                circularButton.setLabels(ats.map { it.activity.activityName })
+                activities = acts
+                circularButton.outerCircleSections = acts.size
+                circularButton.setLabels(acts.map { it.activityName })
 
                 Log.d(
                     "MainFragment",
-                    "Received ${ats.size} activities from LiveData: $ats"
+                    "Received ${acts.size} activities from LiveData: $acts\nReceived ${logs.size} timelogs from LiveData: $logs\n..."
                 )
 
                 // Populate map for list UI
-                for (i in ats.indices) {
-                    val a: Activity = ats[i].activity
-                    val t: List<Timelog> = ats[i].timelogs
+                for (i in acts.indices) {
+                    val a: Activity = acts[i]
+                    val t: List<Timelog> = logs.filter { it.activityId == a.activityId }
 
-                    Log.d(
-                        "MainFragment",
-                        "Processing activity $i: $a\nwith time log: $t"
-                    )
-
+                    // If activity has timelogs for today, add to map
                     if (t.isNotEmpty()) {
-                        val logTime: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
-                        val totalTime: Duration = logTime.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
+                        Log.d(
+                            "MainFragment",
+                            "Processing activity $i: ${a.activityName} with ${t.size} time logs: $t\n..."
+                        )
+
+                        val timeElapsed: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
+                        val totalTimeElapsed: Duration = timeElapsed.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
 
                         uiLogs[a.activityId] = UILog(
                             id = a.activityId,
                             activityName = a.activityName,
-                            totalTime = totalTime,
+                            totalTime = totalTimeElapsed,
                             color = circularButton.getSectionColor(i)
+                        )
+                    } else {
+                        Log.d(
+                            "MainFragment",
+                            "No timelogs for activity $i: ${a.activityName}\n..."
                         )
                     }
                 }
 
-                Log.d(
-                    "MainFragment",
-                    "Updated ${uiLogs.size} UI time logs: $uiLogs"
-                )
+                if (uiLogs.isNotEmpty()) {
+                    Log.d(
+                        "MainFragment",
+                        "SUCCESS: Updated UI time logs of size ${uiLogs.size}: $uiLogs\n..."
+                    )
+                } else {
+                    Log.d(
+                        "MainFragment",
+                        "WARNING: uiLogs is empty - no activities have timelogs for today\n..."
+                    )
+                }
 
                 // Update list UI
                 adapter.submitList(uiLogs.values.toList())
+
+                // Reveal arrow UI if uiLog list overflows
+                if (uiLogs.size > 5) {
+                    val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+                    arrow.visibility = VISIBLE
+                }
             } else {
                 Log.d(
                     "MainFragment",

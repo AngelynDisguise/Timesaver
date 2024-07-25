@@ -14,22 +14,44 @@ import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
-    lateinit var activityTimelogs: LiveData<List<ActivityTimelog>>
+    private var activities: LiveData<List<Activity>> = MutableLiveData()
+    private var todaysLogs: LiveData<List<Timelog>> = MutableLiveData()
+
+    private val _combinedData = MediatorLiveData<Pair<List<Activity>, List<Timelog>>>()
+    val combinedData: LiveData<Pair<List<Activity>, List<Timelog>>> = _combinedData
 
     private val stopwatch = Stopwatch()
     private val _elapsedTime = MutableLiveData<Duration>() // only ViewModel modifies this
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
     
     init {
-        getTodaysActivityTimelogs()
+        getActivities()
+        getTodaysLogs()
+
+        _combinedData.addSource(todaysLogs) { logs ->
+            activities.value?.let { acts ->
+                _combinedData.value = Pair(acts, logs)
+            }
+        }
+        _combinedData.addSource(activities) { acts ->
+            todaysLogs.value?.let { logs ->
+                _combinedData.value = Pair(acts, logs)
+            }
+        }
     }
 
-    private fun getTodaysActivityTimelogs() {
-        val today: LocalDate = LocalDate.now()
+    private fun getActivities() {
         viewModelScope.launch {
-            activityTimelogs = repository.getActivityTimelogsOnDate(today)
+            activities = repository.getActivities()
+        }
+    }
+
+    private fun getTodaysLogs() {
+        viewModelScope.launch {
+            todaysLogs = repository.getTimelogsOnDate(LocalDate.now())
         }
     }
 
