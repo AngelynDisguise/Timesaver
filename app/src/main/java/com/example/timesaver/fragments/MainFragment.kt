@@ -20,13 +20,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timesaver.ActivityTimeLogListAdapter
 import com.example.timesaver.CircularButtonView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.MainViewModelFactory
 import com.example.timesaver.R
+import com.example.timesaver.UILogListAdapter
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
@@ -37,6 +38,7 @@ import java.time.LocalDate
 import kotlin.time.toKotlinDuration
 
 data class UILog (
+    val id: Long,
     val activityName: String,
     val totalTime: Duration,
     val color: Int
@@ -52,7 +54,7 @@ class MainFragment : Fragment() {
     }
 
     // Timelog list UI
-    private lateinit var activityTimeLogListAdapter: ActivityTimeLogListAdapter
+    private lateinit var adapter: UILogListAdapter
 
     // UI things
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
@@ -63,7 +65,7 @@ class MainFragment : Fragment() {
 
     // Note: There will always be at least 1 activity and shall always be 1:1 with timelogs
     private lateinit var activityTimelogs: List<ActivityTimelog>
-    private val UILogs: MutableMap<Long, UILog> = mutableMapOf()
+    private val uiLogs: MutableMap<Long, UILog> = mutableMapOf()
 
     private var currentActivityIndex: Int = -1
 
@@ -106,7 +108,7 @@ class MainFragment : Fragment() {
 
                 Log.d(
                     "MainFragment",
-                    "Received activities from LiveData: $ats"
+                    "Received ${ats.size} activities from LiveData: $ats"
                 )
 
                 // Populate map for list UI
@@ -114,23 +116,31 @@ class MainFragment : Fragment() {
                     val a: Activity = ats[i].activity
                     val t: List<Timelog> = ats[i].timelogs
 
-                    val logTime: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
-                    val totalTime: Duration = logTime.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
-
-                    UILogs[a.activityId] = UILog(
-                        activityName = a.activityName,
-                        totalTime = totalTime,
-                        color = circularButton.getSectionColor(i)
+                    Log.d(
+                        "MainFragment",
+                        "Processing activity $i: $a\nwith time log: $t"
                     )
+
+                    if (t.isNotEmpty()) {
+                        val logTime: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
+                        val totalTime: Duration = logTime.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
+
+                        uiLogs[a.activityId] = UILog(
+                            id = a.activityId,
+                            activityName = a.activityName,
+                            totalTime = totalTime,
+                            color = circularButton.getSectionColor(i)
+                        )
+                    }
                 }
 
                 Log.d(
                     "MainFragment",
-                    "Updated UI time logs: $UILogs"
+                    "Updated ${uiLogs.size} UI time logs: $uiLogs"
                 )
 
                 // Update list UI
-                //activityTimeLogListAdapter.submitList(UITimelogs.values.toList())
+                adapter.submitList(uiLogs.values.toList())
             } else {
                 Log.d(
                     "MainFragment",
@@ -153,9 +163,9 @@ class MainFragment : Fragment() {
     }
 
     private fun initListAdapter(view: View) {
-        activityTimeLogListAdapter = ActivityTimeLogListAdapter(UILogs.values.toList())
+        adapter = UILogListAdapter()
         val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
-        activityTimeLogRecyclerView.adapter = activityTimeLogListAdapter
+        activityTimeLogRecyclerView.adapter = adapter
     }
 
     private fun initUI(view: View) {
@@ -165,7 +175,7 @@ class MainFragment : Fragment() {
         }
 
         // Reveal arrow if timelog list overflows
-        if (UILogs.size > 5) {
+        if (uiLogs.size > 5) {
             val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
             arrow.visibility = VISIBLE
         }

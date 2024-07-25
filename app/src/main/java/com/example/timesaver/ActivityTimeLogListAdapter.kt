@@ -5,20 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.fragments.UILog
 import java.time.Duration
 
 
-class ActivityTimeLogListAdapter(private val logs: List<UILog>) :
-    RecyclerView.Adapter<ActivityTimeLogListAdapter.ViewHolder>() {
+class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDiffCallback()) {
 
     private var maxDuration = Duration.ofHours(1)
-
-    init {
-        //updateMaxDuration()
-    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val activityTextView: TextView = view.findViewById(R.id.activity_text_view)
@@ -34,32 +29,28 @@ class ActivityTimeLogListAdapter(private val logs: List<UILog>) :
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val log: UILog = logs[position]
-//        val timeElapsed: Duration = log.timelog.timeElapsed
-//        if (timeElapsed != Duration.ZERO) {
-//            viewHolder.activityTextView.text = log.activity.activityName
-//            viewHolder.timeLogTextView.text = formatDuration(timeElapsed)
-//
-//            viewHolder.barContainer.post {
-//                val barWidthRatio = calculateBarWidthRatio(timeElapsed)
-//                val barWidth = (viewHolder.barContainer.width * barWidthRatio).toInt()
-//                val layoutParams = viewHolder.timeLogBar.layoutParams
-//                layoutParams.width = barWidth
-//                viewHolder.timeLogBar.layoutParams = layoutParams
-//                viewHolder.timeLogBar.setBackgroundColor(colors[position])
-//            }
-//        }
+        val log: UILog = getItem(position)
+        val timeElapsed: Duration = log.totalTime
+
+        if (timeElapsed != Duration.ZERO) { // should never be 0 but just a check
+            viewHolder.activityTextView.text = log.activityName
+            viewHolder.timeLogTextView.text = formatDuration(timeElapsed)
+
+            viewHolder.barContainer.post {
+                val barWidthRatio = calculateBarWidthRatio(timeElapsed)
+                val barWidth = (viewHolder.barContainer.width * barWidthRatio).toInt()
+                val layoutParams = viewHolder.timeLogBar.layoutParams
+                layoutParams.width = barWidth
+                viewHolder.timeLogBar.layoutParams = layoutParams
+                viewHolder.timeLogBar.setBackgroundColor(log.color)
+            }
+        }
     }
 
-    override fun getItemCount(): Int {
-        return logs.size
+    override fun submitList(list: List<UILog>?) {
+        updateMaxDuration(list ?: emptyList())
+        super.submitList(list)
     }
-
-//    fun addLogs(newLogs: MutableList<ActivityTimeLog>, colors: MutableList<Int>) {
-//        this.logs = newLogs
-//        this.colors = colors
-//        notifyDataSetChanged()
-//    }
 
     private fun formatDuration(duration: Duration): String {
         val hours = duration.toHours()
@@ -77,10 +68,10 @@ class ActivityTimeLogListAdapter(private val logs: List<UILog>) :
     }
 
 
-//    private fun updateMaxDuration() {
-//        maxDuration = logs.maxOfOrNull { it.timeLog.timeElapsed } ?: Duration.ofHours(1)
-//        maxDuration = maxDuration.coerceAtLeast(Duration.ofHours(1))
-//    }
+    private fun updateMaxDuration(logs: List<UILog>) {
+        maxDuration = logs.maxOfOrNull { it.totalTime } ?: Duration.ofHours(1)
+        maxDuration = maxDuration.coerceAtLeast(Duration.ofHours(1))
+    }
 
     private fun calculateBarWidthRatio(duration: Duration): Float {
         return (duration.seconds.toFloat() / maxDuration.seconds.toFloat()).coerceIn(0f, 1f)
