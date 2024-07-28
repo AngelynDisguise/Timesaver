@@ -46,8 +46,6 @@ data class UILog (
 
 class MainFragment : Fragment() {
 
-    var warningSuppressed: Boolean = false
-
     // Shared view model with MainActivity
     private val viewModel: MainViewModel by activityViewModels {
         MainViewModelFactory((requireActivity() as MainActivity).repository)
@@ -87,9 +85,8 @@ class MainFragment : Fragment() {
 
         // Listeners
         //refreshButton.setOnClickListener { rollbackTime() }
-        //doneButton.setOnClickListener { finishActivity(currentActivityIndex) }
         circularButton.setOnInnerCircleClickListener(onClickPlayPause)
-        //circularButton.setOnOuterCircleClickListener(onClickActivity)
+        circularButton.setOnOuterCircleClickListener(onClickActivity)
 
         // Update stopwatch
         viewModel.elapsedTime.observe(viewLifecycleOwner) { duration: Duration ->
@@ -171,7 +168,6 @@ class MainFragment : Fragment() {
 
     private fun initViews(view: View) {
         refreshButton = view.findViewById(R.id.refresh_button_image_view)
-        doneButton = view.findViewById(R.id.done_button_view)
         currentActivityText = view.findViewById(R.id.current_activity_text_view)
         timerText = view.findViewById(R.id.timer_text_view)
     }
@@ -326,22 +322,23 @@ class MainFragment : Fragment() {
             Toast.makeText(requireContext(), "Select an Activity", Toast.LENGTH_SHORT).show()
         }
     }
-//
-//            private fun switchActivity(newActivityIndex: Int) {
-//                // Update current activity
-//                currentActivityIndex = newActivityIndex
-//
-//                val timeElapsed: Duration = timelogs[newActivityIndex].timeLog.timeElapsed
-//                timerText.text = formatStopwatchDuration(timeElapsed)
-//                var text = "(Diff: " + formatStopwatchDuration(Duration.ZERO) + ")"
-//                timeDiffText.text = text
-//
-//                currentActivityText.text = activities[newActivityIndex].activityName
-//                currentActivityText.setTextColor(circularButton.getSectionColor(newActivityIndex))
-//                currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.BOLD))
-//
-//                doneButton.visibility = VISIBLE
-//            }
+
+    /**
+     * @param i the selected activity index
+     */
+    private fun startActivity(i: Int) {
+        // Update current activity
+        currentActivityIndex = i
+        timerText.text = formatStopwatchDuration(Duration.ZERO)
+        if (viewModel.timeHasElapsed()) {
+            viewModel.resetStopwatch()
+        }
+        viewModel.startStopwatch()
+
+        currentActivityText.text = activities[i].activityName
+        currentActivityText.setTextColor(circularButton.getSectionColor(i))
+        currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.BOLD))
+    }
 //
 //            private fun saveActivityTimeLog(activityIndex: Int) {
 //                if (viewModel.timeHasElapsed()) {
@@ -415,89 +412,91 @@ class MainFragment : Fragment() {
 //                clearUI()
 //            }
 //
-//            // Click an Activity Button
-//            private val onClickActivity = { selectedIndex: Int ->
-//                Log.d(
-//                    "MainFragment", "Previous selection: $currentActivityIndex (${if (currentActivityIndex > -1) activities[currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
-//                )
-//
-//                // Different button pressed (from none or a different activity)
-//                if (selectedIndex != currentActivityIndex) {
-//
-//                    // Switching while progress made
-//                    if (currentActivityIndex > -1 && viewModel.timeHasElapsed()) {
-//
-//                        // Switching while running (progress made)
-//                        if (viewModel.stopwatchIsRunning()) {
-//                            Log.d(
-//                                "MainFragment",
-//                                "User chose a different activity while current is running. Sending Alert Dialogue."
-//                            )
-//                            if (!warningSuppressed) {
-//                                warnUser(selectedIndex)
-//                            } else { // Warning supressed
-//                                finishActivity(currentActivityIndex)
-//                                switchActivity(selectedIndex)
-//                            }
-//                        } else { // Switching while not running, but progress made
-//                            finishActivity(currentActivityIndex)
-//                            switchActivity(selectedIndex)
-//                        }
-//                    } else { // 1) None selected and no time passed, 2) None selected and time passed (impossible), 3) Selected and no time passed
-//                        if (currentActivityIndex > -1) {
-//                            Toast.makeText(
-//                                requireContext(),
-//                                "Switched to Activity \"${activities[selectedIndex].activityName}\"",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        } else {
-//                            Toast.makeText(
-//                                requireContext(),
-//                                "Selected Activity \"${activities[selectedIndex].activityName}\"",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                        switchActivity(selectedIndex)
-//                    }
-//                } else { // Same button pressed
-//                    if (circularButton.isGlowing()) {
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "Selected Activity \"${activities[selectedIndex].activityName}\"",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        switchActivity(selectedIndex)
-//                    } else {
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "Activity \"${activities[selectedIndex].activityName}\" unselected",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        if (viewModel.timeHasElapsed()) {
-//                            finishActivity(currentActivityIndex)
-//                        } else {
-//                            clearUI()
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//            private fun warnUser(selectedIndex: Int) {
-//                val builder = AlertDialog.Builder(requireContext())
-//                builder.setTitle("Activity in Progress")
-//                    .setMessage("Finish current activity and switch to another? Progress will be saved.")
-//
-//                builder.setPositiveButton("Yes") { _, _ ->
-//                    finishActivity(currentActivityIndex)
-//                    switchActivity(selectedIndex)
-//                }
-//                builder.setNegativeButton("No") { _, _ ->
-//                    circularButton.rollbackTouch(currentActivityIndex)
-//                }
-//                val dialog: AlertDialog = builder.create()
-//                dialog.show()
-//            }
+    // Click an Activity Button
+    private val onClickActivity = { selectedIndex: Int ->
+        Log.d(
+            "MainFragment", "Previous selection: $currentActivityIndex (${if (currentActivityIndex > -1) activities[currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
+        )
+
+        // A different button was selected
+        if (selectedIndex != currentActivityIndex) {
+            // Switching when stopwatch has time
+            if (currentActivityIndex > -1 && viewModel.timeHasElapsed()) {
+                // Switching while stopwatch is running
+                if (viewModel.stopwatchIsRunning()) {
+                    switchingWhileRunning(selectedIndex)
+                }
+            } else {
+                /*
+                Switching while no time passed:
+                1) None selected and no time passed
+                2) None selected and time passed (impossible)
+                3) Selected and no time passed
+                 */
+                startActivity(selectedIndex)
+
+                // Case 3
+                if (currentActivityIndex > -1) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Switched to Activity \"${activities[selectedIndex].activityName}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    // Case 1 and 2
+                    Toast.makeText(
+                        requireContext(),
+                        "Selected Activity \"${activities[selectedIndex].activityName}\"",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        } else { // Same button was selected
+            Toast.makeText(
+                requireContext(),
+                "Activity \"${activities[selectedIndex].activityName}\" unselected",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            // Button no longer glowing - button unselected
+            if (!circularButton.isGlowing()) {
+                // Unselected and time has elapsed
+                if (viewModel.timeHasElapsed()) {
+                    // TODO()
+                    //finishActivity(currentActivityIndex)
+                }
+                clearUI()
+            }
+            // else do nothing
+        }
+    }
+
+private fun switchingWhileRunning(i: Int) {
+    Log.d(
+        "MainFragment",
+        "User chose a different activity while current is running. Sending Alert Dialogue."
+    )
+    if (!viewModel.warningSuppressed) {
+        viewModel.stopStopwatch()
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Activity in Progress")
+            .setMessage("Finish current activity and switch to another? Progress will be saved.")
+
+        builder.setPositiveButton("Yes") { _, _ ->
+            startActivity(i)
+        }
+        builder.setNegativeButton("No") { _, _ ->
+            viewModel.startStopwatch()
+            circularButton.rollbackTouch(currentActivityIndex)
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    } else {
+        startActivity(i)
+    }
+}
+
 //
 //            private val onClickPlayPause = {
 //                Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $currentActivityIndex")
