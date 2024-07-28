@@ -13,11 +13,23 @@
         android:label="Timesaver">
 
         <action
+            android:id="@+id/action_main_to_activity_fragment"
+            app:destination="@id/activity_fragment" />
+        <action
             android:id="@+id/action_main_to_activity_menu_fragment"
             app:destination="@id/activity_menu_fragment" />
         <action
             android:id="@+id/action_main_to_settings_fragment"
             app:destination="@id/settings_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activity_fragment"
+        android:name="com.example.timesaver.fragments.ActivityFragment"
+        tools:layout="@layout/fragment_activity" >
+        <action
+            android:id="@+id/action_activity_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
     </fragment>
 
     <fragment
@@ -27,11 +39,15 @@
         android:label="Activities">
         <action
             android:id="@+id/action_activity_menu_fragment_to_main_fragment"
-            app:destination="@id/main_fragment" />
+            app:destination="@id/main_fragment"
+            app:popUpTo="@id/main_fragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_activity_menu_fragment_to_settings_fragment"
             app:destination="@id/settings_fragment" />
-
+        <action
+            android:id="@+id/action_activity_menu_fragment_to_activity_fragment"
+            app:destination="@id/activity_fragment" />
     </fragment>
 
     <fragment
@@ -41,7 +57,9 @@
         android:label="Settings">
         <action
             android:id="@+id/action_settingsFragment_to_mainFragment"
-            app:destination="@id/main_fragment"/>
+            app:destination="@id/main_fragment"
+            app:popUpTo="@id/main_fragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_settings_fragment_to_activity_menu_fragment2"
             app:destination="@id/activity_menu_fragment" />

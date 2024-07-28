@@ -78,6 +78,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d(
+            "MainFragment",
+            "MainFragment Created"
+        )
+
         initViews(view)
         initCircularButton(view) // Draw the "timesaver" :P
         initListAdapter(view)
@@ -164,6 +169,30 @@ class MainFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(
+            "MainFragment",
+            "MainFragment Paused"
+        )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(
+            "MainFragment",
+            "MainFragment Resumed"
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(
+            "MainFragment",
+            "MainFragment Destroyed"
+        )
     }
 
     private fun initViews(view: View) {
