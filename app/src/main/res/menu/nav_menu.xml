@@ -7,6 +7,6 @@
         android:id="@+id/settings_fragment"
         android:title="Settings" />
     <item
-        android:id="@+id/activities_fragment"
+        android:id="@+id/activity_menu_fragment"
         android:title="Activities" />
 </menu>

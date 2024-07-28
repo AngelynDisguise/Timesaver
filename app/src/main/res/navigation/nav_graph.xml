@@ -13,23 +13,39 @@
         android:label="Timesaver">
 
         <action
-            android:id="@+id/action_main_to_settings"
-            app:destination="@id/settings_fragment" />
+            android:id="@+id/action_main_to_activity_menu_fragment"
+            app:destination="@id/activity_menu_fragment" />
         <action
-            android:id="@+id/action_main_to_activities_fragment"
-            app:destination="@id/activities_fragment" />
+            android:id="@+id/action_main_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activity_menu_fragment"
+        android:name="com.example.timesaver.fragments.ActivityMenuFragment"
+        tools:layout="@layout/fragment_activity_menu"
+        android:label="Activities">
+        <action
+            android:id="@+id/action_activity_menu_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
+        <action
+            android:id="@+id/action_activity_menu_fragment_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/settings_fragment"
         android:name="com.example.timesaver.fragments.SettingsFragment"
         tools:layout="@layout/fragment_settings"
-        android:label="Settings" />
+        android:label="Settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_mainFragment"
+            app:destination="@id/main_fragment"/>
+        <action
+            android:id="@+id/action_settings_fragment_to_activity_menu_fragment2"
+            app:destination="@id/activity_menu_fragment" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/activities_fragment"
-        android:name="com.example.timesaver.fragments.ActivitiesFragment"
-        tools:layout="@layout/fragment_activities"
-        android:label="Activities" />
 
 </navigation>

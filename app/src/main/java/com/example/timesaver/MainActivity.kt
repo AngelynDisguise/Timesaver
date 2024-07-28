@@ -34,7 +34,12 @@ class MainActivity : AppCompatActivity() {
 
         // Set up Action Bar with Drawer Layout
         drawerLayout = findViewById(R.id.drawer_layout)
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf( // the top destinations in the drawer
+            R.id.main_fragment,
+            R.id.settings_fragment,
+            R.id.activity_menu_fragment
+        ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         // Set up Navigation View
