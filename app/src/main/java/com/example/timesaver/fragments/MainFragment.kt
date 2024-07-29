@@ -46,10 +46,7 @@ data class UILog (
 
 class MainFragment : Fragment() {
 
-    // Shared view model with MainActivity
-    private val viewModel: MainViewModel by activityViewModels {
-        MainViewModelFactory((requireActivity() as MainActivity).repository)
-    }
+    private lateinit var viewModel: MainViewModel
 
     // Timelog list UI
     private lateinit var adapter: UILogListAdapter
@@ -65,14 +62,24 @@ class MainFragment : Fragment() {
     private lateinit var activities: List<Activity>
     private val uiLogs: MutableMap<Long, UILog> = mutableMapOf()
 
-    private var currentActivityIndex: Int = -1
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = (requireActivity() as MainActivity).viewModel
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "MainFragment",
+            "MainFragment Created"
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,7 +87,7 @@ class MainFragment : Fragment() {
 
         Log.d(
             "MainFragment",
-            "MainFragment Created"
+            "MainFragment VIEW Created"
         )
 
         initViews(view)
@@ -95,7 +102,7 @@ class MainFragment : Fragment() {
 
         // Update stopwatch
         viewModel.elapsedTime.observe(viewLifecycleOwner) { duration: Duration ->
-            if (currentActivityIndex > -1) {
+            if (viewModel.currentActivityIndex > -1) {
                 timerText.text = formatStopwatchDuration(duration)
             }
         }
@@ -120,10 +127,10 @@ class MainFragment : Fragment() {
 
                     // If activity has timelogs for today, add to map
                     if (t.isNotEmpty()) {
-                        Log.d(
-                            "MainFragment",
-                            "Processing activity $i: ${a.activityName} with ${t.size} time logs: $t\n..."
-                        )
+//                        Log.d(
+//                            "MainFragment",
+//                            "Processing activity $i: ${a.activityName} with ${t.size} time logs: $t\n..."
+//                        )
 
                         val timeElapsed: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
                         val totalTimeElapsed: Duration = timeElapsed.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
@@ -214,8 +221,9 @@ class MainFragment : Fragment() {
 
     private fun initUI(view: View) {
         // Config fix: Set icon back to pause if stopwatch is running
-        if (viewModel.stopwatchIsRunning()) {
+        if (viewModel.stopwatchIsRunning() && viewModel.buttonIsSelected()) {
             circularButton.changeToPauseButton()
+            circularButton.rollbackTouch(viewModel.currentActivityIndex)
         }
 
         // Reveal arrow if timelog list overflows
@@ -237,7 +245,7 @@ class MainFragment : Fragment() {
         currentActivityText.setTextColor(requireContext().getColorResCompat(android.R.attr.textColorPrimary))
         currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.NORMAL))
         circularButton.turnOffGlowing()
-        currentActivityIndex = -1
+        viewModel.currentActivityIndex = -1
     }
 
 //    private fun rollbackTime() {
@@ -333,10 +341,10 @@ class MainFragment : Fragment() {
 //            }
 //
     private val onClickPlayPause = {
-        Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $currentActivityIndex")
+        Log.d("MainFragment", "(onClickPlayPause) currentActivityIndex: $viewModel.currentActivityIndex")
 
         // Start/Resume/Pause the time for the current activity
-        if(currentActivityIndex > -1) {
+        if(viewModel.buttonIsSelected()) {
             if (circularButton.isPlaying()) {
                 Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
                 viewModel.pauseStopwatch()
@@ -357,7 +365,7 @@ class MainFragment : Fragment() {
      */
     private fun startActivity(i: Int) {
         // Update current activity
-        currentActivityIndex = i
+        viewModel.currentActivityIndex = i
         timerText.text = formatStopwatchDuration(Duration.ZERO)
         if (viewModel.timeHasElapsed()) {
             viewModel.resetStopwatch()
@@ -443,14 +451,16 @@ class MainFragment : Fragment() {
 //
     // Click an Activity Button
     private val onClickActivity = { selectedIndex: Int ->
+
+        val selectedDifferentButton = viewModel.buttonIsSelected()
         Log.d(
-            "MainFragment", "Previous selection: $currentActivityIndex (${if (currentActivityIndex > -1) activities[currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
+            "MainFragment", "Previous selection: $viewModel.currentActivityIndex (${if (selectedDifferentButton) activities[viewModel.currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
         )
 
         // A different button was selected
-        if (selectedIndex != currentActivityIndex) {
+        if (selectedIndex != viewModel.currentActivityIndex) {
             // Switching when stopwatch has time
-            if (currentActivityIndex > -1 && viewModel.timeHasElapsed()) {
+            if (selectedDifferentButton && viewModel.timeHasElapsed()) {
                 // Switching while stopwatch is running
                 if (viewModel.stopwatchIsRunning()) {
                     switchingWhileRunning(selectedIndex)
@@ -465,7 +475,7 @@ class MainFragment : Fragment() {
                 startActivity(selectedIndex)
 
                 // Case 3
-                if (currentActivityIndex > -1) {
+                if (selectedDifferentButton) {
                     Toast.makeText(
                         requireContext(),
                         "Switched to Activity \"${activities[selectedIndex].activityName}\"",
@@ -517,7 +527,7 @@ private fun switchingWhileRunning(i: Int) {
         }
         builder.setNegativeButton("No") { _, _ ->
             viewModel.startStopwatch()
-            circularButton.rollbackTouch(currentActivityIndex)
+            circularButton.rollbackTouch(viewModel.currentActivityIndex)
         }
         val dialog: AlertDialog = builder.create()
         dialog.show()

@@ -1,5 +1,6 @@
 package com.example.timesaver
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -26,6 +27,9 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private val stopwatch = Stopwatch()
     private val _elapsedTime = MutableLiveData<Duration>() // only ViewModel modifies this
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
+
+    var currentActivityIndex = -1
+    var warningSuppressed: Boolean = true
     
     init {
         getActivities()
@@ -102,5 +106,17 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         viewModelScope.launch {
             repository.updateTimeLog(timeLog)
         }
+    }
+
+    fun buttonIsSelected(): Boolean {
+        return currentActivityIndex > -1
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(
+            "MainViewModel",
+            "Clearing MainViewModel..."
+        )
     }
 }

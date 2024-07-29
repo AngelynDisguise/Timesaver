@@ -39,9 +39,7 @@
         android:label="Activities">
         <action
             android:id="@+id/action_activity_menu_fragment_to_main_fragment"
-            app:destination="@id/main_fragment"
-            app:popUpTo="@id/main_fragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/main_fragment" />
         <action
             android:id="@+id/action_activity_menu_fragment_to_settings_fragment"
             app:destination="@id/settings_fragment" />
@@ -57,11 +55,9 @@
         android:label="Settings">
         <action
             android:id="@+id/action_settingsFragment_to_mainFragment"
-            app:destination="@id/main_fragment"
-            app:popUpTo="@id/main_fragment"
-            app:popUpToInclusive="true"/>
+            app:destination="@id/main_fragment"/>
         <action
-            android:id="@+id/action_settings_fragment_to_activity_menu_fragment2"
+            android:id="@+id/action_settings_fragment_to_activity_menu_fragment"
             app:destination="@id/activity_menu_fragment" />
     </fragment>
 

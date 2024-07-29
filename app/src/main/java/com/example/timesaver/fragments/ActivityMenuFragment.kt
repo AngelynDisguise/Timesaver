@@ -10,6 +10,14 @@ import com.example.timesaver.R
 
 class ActivityMenuFragment : Fragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "ActivityMenuFragment",
+            "ActivityMenuFragment Created"
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,7 +31,7 @@ class ActivityMenuFragment : Fragment() {
 
         Log.d(
             "ActivityMenuFragment",
-            "ActivityMenuFragment Created"
+            "ActivityMenuFragment VIEW Created"
         )
     }
 

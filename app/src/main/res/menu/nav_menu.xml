@@ -4,9 +4,9 @@
         android:id="@+id/main_fragment"
         android:title="Home" />
     <item
-        android:id="@+id/settings_fragment"
-        android:title="Settings" />
-    <item
         android:id="@+id/activity_menu_fragment"
         android:title="Activities" />
+    <item
+        android:id="@+id/settings_fragment"
+        android:title="Settings" />
 </menu>

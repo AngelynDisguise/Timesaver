@@ -1,5 +1,6 @@
 package com.example.timesaver
 
+import android.util.Log
 import kotlinx.coroutines.*
 import java.time.Duration
 
@@ -10,6 +11,10 @@ class Stopwatch {
 
     fun start(scope: CoroutineScope) {
         if (job == null) {
+            Log.d(
+                "Stopwatch",
+                "Stopwatch Running"
+            )
             lastStartTime = System.currentTimeMillis()
             job = scope.launch {
                 while (isActive) {
@@ -17,6 +22,10 @@ class Stopwatch {
                     elapsedTime = elapsedTime.plusMillis(currentTime - lastStartTime)
                     lastStartTime = currentTime
                     delay(1000) // delay by 1 second
+//                    Log.d(
+//                        "Stopwatch",
+//                        "."
+//                    )
                 }
             }
         }
@@ -25,6 +34,11 @@ class Stopwatch {
     fun pause() {
         job?.cancel()
         job = null
+
+        Log.d(
+            "Stopwatch",
+            "Stopwatch Paused"
+        )
     }
 
     fun isRunning(): Boolean {
@@ -34,6 +48,10 @@ class Stopwatch {
     fun reset() {
         pause()
         elapsedTime = Duration.ZERO
+        Log.d(
+            "Stopwatch",
+            "Stopwatch Reset"
+        )
     }
 
     fun getElapsedTime(): Duration {

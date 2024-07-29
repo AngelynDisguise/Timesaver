@@ -1,5 +1,6 @@
 package com.example.timesaver.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,9 +17,19 @@ import com.example.timesaver.R
 
 class SettingsFragment : Fragment() {
 
-    // Shared view model with MainActivity
-    private val viewModel: MainViewModel by activityViewModels {
-        MainViewModelFactory((requireActivity() as MainActivity).repository)
+    private lateinit var viewModel: MainViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = (requireActivity() as MainActivity).viewModel
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "SettingsFragment",
+            "SettingsFragment Created"
+        )
     }
 
     override fun onCreateView(
@@ -34,7 +45,7 @@ class SettingsFragment : Fragment() {
 
         Log.d(
             "SettingsFragment",
-            "SettingsFragment Created"
+            "SettingsFragment VIEW Created"
         )
 
     }
