@@ -48,6 +48,9 @@ class SettingsFragment : Fragment() {
             "SettingsFragment VIEW Created"
         )
 
+        initViews(view)
+        setWarningSupressedListeners(view)
+
     }
 
     override fun onPause() {
@@ -74,6 +77,33 @@ class SettingsFragment : Fragment() {
         )
     }
 
+    private fun initViews(view: View) {
+        if (viewModel.warningSuppressed) {
+            view.findViewById<RadioButton>(R.id.settings_warn_switch_no_button).isChecked = true
+        } else {
+            view.findViewById<RadioButton>(R.id.settings_warn_switch_yes_button).isChecked = true
+        }
+    }
 
+    private fun setWarningSupressedListeners(view: View) {
+        view.findViewById<RadioButton>(R.id.settings_warn_switch_yes_button).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.warningSuppressed = false
+                Log.d(
+                    "SettingsFragment",
+                    "Warning Supressed set to false"
+                )
+            }
+        }
+        view.findViewById<RadioButton>(R.id.settings_warn_switch_no_button).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.warningSuppressed = true
+                Log.d(
+                    "SettingsFragment",
+                    "Warning Supressed set to true"
+                )
+            }
+        }
+    }
 
 }

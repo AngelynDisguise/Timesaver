@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.replace
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
@@ -30,7 +31,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     private val dao by lazy { TimesaverDatabase.getDatabase(applicationContext).timesaverDao() }
-    val repository by lazy { TimesaverRepository(dao) }
+    val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            MainViewModelFactory(TimesaverRepository(dao))
+        ) [MainViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +55,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Connect the drawer UI (the navigation view) to NavController
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        navView.setupWithNavController(navController)
-
         // Set up app bar with drawer layout, connect to NavController
         drawerLayout = findViewById(R.id.drawer_layout)
         appBarConfiguration = AppBarConfiguration(
@@ -62,6 +64,10 @@ class MainActivity : AppCompatActivity() {
             R.id.activity_menu_fragment
         ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // Connect the drawer UI (the navigation view) to NavController
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView.setupWithNavController(navController)
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
