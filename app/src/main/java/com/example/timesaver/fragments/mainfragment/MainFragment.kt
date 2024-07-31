@@ -215,7 +215,7 @@ class MainFragment : Fragment() {
 
     private fun initListAdapter(view: View) {
         adapter = UILogListAdapter()
-        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.activity_timelog_recycler_view)
+        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
         activityTimeLogRecyclerView.adapter = adapter
     }
 
@@ -427,7 +427,7 @@ class MainFragment : Fragment() {
                 viewModel.saveNewTimelog(newTimelog)
             }
 
-            val timeElapsed: Duration = viewModel.stopStopwatch() + uiLogs[id]?.totalTime
+            val timeElapsed: Duration = viewModel.stopStopwatch() + (uiLogs[id]?.totalTime ?: Duration.ZERO)
 
             // Add or update timelog UI in map
             uiLogs[id] = UILog(

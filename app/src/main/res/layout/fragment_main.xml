@@ -100,7 +100,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_timelog_recycler_view"
+        android:id="@+id/ui_log_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:paddingHorizontal="15dp"
@@ -119,11 +119,12 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/arrow_down"
+        android:contentDescription="arrow down icon"
         app:tint="?android:attr/textColorPrimary"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_timelog_recycler_view"
+        app:layout_constraintTop_toBottomOf="@id/ui_log_recycler_view"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,7 @@
         android:textSize="12sp"
         android:textStyle="italic"
         android:text=""
-        android:gravity="right"
+        android:gravity="end"
         android:layout_marginStart="12dp" />
 
 </LinearLayout>

@@ -24,7 +24,7 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.activity_timelog_item, viewGroup, false)
+            .inflate(R.layout.ui_log_item, viewGroup, false)
         return ViewHolder(view)
     }
 

@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/activity_menu_fragment"
-        android:name="com.example.timesaver.fragments.ActivityMenuFragment"
+        android:name="com.example.timesaver.fragments.activitymenufragment.ActivityMenuFragment"
         tools:layout="@layout/fragment_activity_menu"
         android:label="Activities">
         <action
