@@ -16,10 +16,10 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
     private var maxDuration = Duration.ofMinutes(30)
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val activityTextView: TextView = view.findViewById(R.id.activity_text_view)
-        val timeLogTextView: TextView = view.findViewById(R.id.timelog_text_view)
-        val timeLogBar: View = view.findViewById(R.id.timelog_bar)
-        val barContainer: FrameLayout = view.findViewById(R.id.bar_container)
+        val activityTextView: TextView = view.findViewById(R.id.ui_log_activity_text_view)
+        val timeLogTextView: TextView = view.findViewById(R.id.ui_log_timelog_text_view)
+        val timeLogBar: View = view.findViewById(R.id.ui_log_timelog_bar)
+        val barContainer: FrameLayout = view.findViewById(R.id.ui_log_bar_container)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
