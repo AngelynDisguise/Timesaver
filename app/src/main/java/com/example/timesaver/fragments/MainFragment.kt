@@ -26,6 +26,8 @@ import com.example.timesaver.UILogListAdapter
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.Timelog
 import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalTime
 
 data class UILog (
     val id: Long,
@@ -44,6 +46,7 @@ class MainFragment : Fragment() {
     // UI things
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
     private lateinit var refreshButton: ImageView
+    private lateinit var arrowImageView: ImageView
     private lateinit var currentActivityText: TextView
     private lateinit var timerText: TextView
 
@@ -104,7 +107,7 @@ class MainFragment : Fragment() {
                 circularButton.outerCircleSections = acts.size
                 circularButton.setLabels(acts.map { it.activityName })
 
-                Log.d(
+                Log.i(
                     "MainFragment",
                     "Received ${acts.size} activities from LiveData: $acts\nReceived ${logs.size} timelogs from LiveData: $logs\n..."
                 )
@@ -139,14 +142,14 @@ class MainFragment : Fragment() {
                 }
 
                 if (uiLogs.isNotEmpty()) {
-                    Log.d(
+                    Log.i(
                         "MainFragment",
-                        "SUCCESS: Updated UI time logs of size ${uiLogs.size}: $uiLogs\n..."
+                        "Updated UI time logs of size ${uiLogs.size}: $uiLogs\n..."
                     )
                 } else {
-                    Log.d(
+                    Log.w(
                         "MainFragment",
-                        "WARNING: uiLogs is empty - no activities have timelogs for today\n..."
+                        "uiLogs is empty - no activities have timelogs for today\n..."
                     )
                 }
 
@@ -193,6 +196,7 @@ class MainFragment : Fragment() {
 
     private fun initViews(view: View) {
         refreshButton = view.findViewById(R.id.refresh_button_image_view)
+        arrowImageView = view.findViewById(R.id.arrow_down_image_view)
         currentActivityText = view.findViewById(R.id.current_activity_text_view)
         timerText = view.findViewById(R.id.timer_text_view)
     }
@@ -214,11 +218,13 @@ class MainFragment : Fragment() {
             circularButton.changeToPauseButton()
             circularButton.rollbackTouch(viewModel.currentActivityIndex)
         }
+        checkListOverflow()
+    }
 
-        // Reveal arrow if timelog list overflows
-        if (uiLogs.size > 5) {
-            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-            arrow.visibility = VISIBLE
+    private fun checkListOverflow() {
+        // Reveal arrow if timelog list overflows (seems like max is 4 for now)
+        if (uiLogs.size > 4) {
+            arrowImageView.visibility = VISIBLE
         }
     }
 
@@ -258,9 +264,10 @@ class MainFragment : Fragment() {
 
     private val onClickActivity = { selectedIndex: Int ->
         val selectedDifferentButton = viewModel.buttonIsSelected()
-        Log.d(
-            "MainFragment", "Previous selection: $viewModel.currentActivityIndex (${if (selectedDifferentButton) activities[viewModel.currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
-        )
+//        Log.d(
+//            "MainFragment",
+//            "Previous selection: $viewModel.currentActivityIndex (${if (selectedDifferentButton) activities[viewModel.currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
+//        )
 
         // A different button was selected
         if (selectedIndex != viewModel.currentActivityIndex) {
@@ -298,26 +305,24 @@ class MainFragment : Fragment() {
                     ).show()
                 }
             }
-        } else { // Same button was selected
+        } else { // Same button was selected - unselecting button
             Toast.makeText(
                 requireContext(),
                 "Activity \"${activities[selectedIndex].activityName}\" unselected",
                 Toast.LENGTH_SHORT
             ).show()
 
-            // Button no longer glowing - button unselected
-            if (!circularButton.isGlowing()) {
-                // Unselected and time has elapsed
-                if (viewModel.timeHasElapsed()) {
-                    // TODO() Save activity progress (only other case that saves without switching)
-                }
-                clearUI()
+            // Unselected and time has elapsed
+            if (viewModel.timeHasElapsed()) {
+                // This is the only other case that saves without switching
+                saveActivityTimelog(selectedIndex)
             }
-            // else do nothing
+            clearUI()
         }
     }
 
     /**
+     * Helper function for onClickActivity().
      * @param i the index of the activity to switch to
      */
     private fun switchingWhileRunning(i: Int) {
@@ -354,7 +359,7 @@ class MainFragment : Fragment() {
         viewModel.currentActivityIndex = i
         timerText.text = formatStopwatchDuration(Duration.ZERO)
         if (viewModel.timeHasElapsed()) {
-            // TODO() Save activity progress
+            saveActivityTimelog(i)
             viewModel.resetStopwatch()
         }
 
@@ -375,72 +380,72 @@ class MainFragment : Fragment() {
         currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.BOLD))
     }
 
-    // TODO() Fix garbage below - reimplement saveActivity()
-//
-//            private fun saveActivityTimeLog(activityIndex: Int) {
-//                if (viewModel.timeHasElapsed()) {
-//                    // Stop stopwatch, record time elapsed
-//                    val oldElapsedTime: Duration = timelogs[activityIndex].timeLog.timeElapsed // 0 if new log
-//                    val timeElapsed: Duration = viewModel.stopStopwatch()
-//
-//                    val newTimeLog = TimeLog(
-//                        timeLogId = timelogs[activityIndex].timeLog.timeLogId,
-//                        activityId = activities[activityIndex].activityId,
-//                        date = LocalDate.now(),
-//                        timeElapsed = timeElapsed + oldElapsedTime
-//                    )
-//
-//                    val newActivityTimeLog = ActivityTimeLog(activities[activityIndex], newTimeLog)
-//                    val newColor = circularButton.getSectionColor(activityIndex)
-//
-//                    Log.d(
-//                        "MainFragment",
-//                        "Attempting to save: $newTimeLog with color $newColor"
-//                    )
-//
-//                    // Save or update new time
-//                    if (oldElapsedTime == Duration.ZERO) {
-//                        Log.d(
-//                            "MainFragment",
-//                            "1\nlogs = $adapterLogs\ncolors = $colors"
-//                        )
-//                        colors.add(newColor)
-//                        Log.d(
-//                            "MainFragment",
-//                            "2:\nlogs = $adapterLogs\ncolors = $colors"
-//                        )
-//                        viewModel.saveNewTimeLog(newTimeLog)
-//
-//                        adapterLogs.add(newActivityTimeLog)
-//                        activityTimeLogListAdapter.notifyItemInserted(adapterLogs.size-1)
-//
-//                        Log.d(
-//                            "MainFragment",
-//                            "Insert successful!"
-//                        )
-//                    } else {
-//                        viewModel.updateTimeLog(newTimeLog)
-//
-//                        // Update timelogs list
-//                        val i = adapterLogs.indexOfFirst { it.activity.activityId == newTimeLog.activityId }
-//                        if (i != -1) adapterLogs[i] = newActivityTimeLog // color won't change, so no need to update colors
-//                        activityTimeLogListAdapter.notifyItemChanged(i)
-//
-//                        Log.d(
-//                            "MainFragment",
-//                            "Update successful!"
-//                        )
-//                    }
-//
-//                    Log.d(
-//                        "MainFragment",
-//                        "Adapter after save:\nlogs = $adapterLogs\ncolors = $colors"
-//                    )
-//                } else {
-//                    Log.d(
-//                        "MainFragment",
-//                        "WARNING: Tried to save but no time elapsed."
-//                 //
+    /**
+     * Saves
+     * @param i the index of the activity to save
+     * Note: the reason the param isn't an Activity itself is
+     * because I also need the color, whose index matches to the activity.
+     */
+    private fun saveActivityTimelog(i: Int) {
+        if (viewModel.timeHasElapsed()) { // Double-check
+            Log.d(
+                "MainFragment",
+                "...\nSaving new Timelog for Activity \"${activities[i].activityName}\"..."
+            )
+
+            val id = activities[i].activityId
+            val endTime: LocalTime = LocalTime.now()
+
+
+            val newTimelog = Timelog(
+                timelogId = 0, // auto-generated
+                activityId = id,
+                date = LocalDate.now(),
+                startTime = viewModel.getStartTime(),
+                endTime = endTime
+            )
+
+            // Save to database
+            if (id in uiLogs) {
+                Log.d(
+                    "MainFragment",
+                    "Updating existing time log..."
+                )
+                viewModel.updateTimelog(newTimelog)
+            } else {
+                Log.d(
+                    "MainFragment",
+                    "Inserting new time log..."
+                )
+                viewModel.saveNewTimelog(newTimelog)
+            }
+
+            val timeElapsed: Duration = viewModel.stopStopwatch() + uiLogs[id]?.totalTime
+
+            // Add or update timelog UI in map
+            uiLogs[id] = UILog(
+                id = id,
+                activityName = activities[i].activityName,
+                color = circularButton.getSectionColor(i),
+                totalTime = timeElapsed
+            )
+
+            // Update list UI
+            adapter.submitList(uiLogs.values.toList())
+            checkListOverflow()
+
+            Log.i(
+                "MainFragment",
+                "Successfully saved Timelog for Activity \"${activities[i].activityName}\" to database! \nUpdated UI Logs (size: ${uiLogs.size}: $uiLogs\n..."
+            )
+        } else {
+            Log.e(
+                "MainFragment",
+                "ERROR: Tried to save activity but no time elapsed.\n"
+            )
+        }
+    }
+
 //    private fun rollbackTime() {
 //        if (viewModel.timeHasElapsed()) {
 //            private fun finishActivity(activityIndex: Int) {
@@ -449,63 +454,6 @@ class MainFragment : Fragment() {
 //                clearUI()
 //            }
 
-//            private fun saveActivityTimeLog(activityIndex: Int) {
-//                if (viewModel.timeHasElapsed()) {
-//                    // Stop stopwatch, record time elapsed
-//                    val oldElapsedTime: Duration = timelogs[activityIndex].timeLog.timeElapsed // 0 if new log
-//                    val timeElapsed: Duration = viewModel.stopStopwatch()
-//
-//                    val newTimeLog = TimeLog(
-//                        timeLogId = timelogs[activityIndex].timeLog.timeLogId,
-//                        activityId = activities[activityIndex].activityId,
-//                        date = LocalDate.now(),
-//                        timeElapsed = timeElapsed + oldElapsedTime
-//                    )
-//
-//                    val newActivityTimeLog = ActivityTimeLog(activities[activityIndex], newTimeLog)
-//                    val newColor = circularButton.getSectionColor(activityIndex)
-//
-//                    Log.d(
-//                        "MainFragment",
-//                        "Attempting to save: $newTimeLog with color $newColor"
-//                    )
-//
-//                    // Save or update new time
-//                    if (oldElapsedTime == Duration.ZERO) {
-//                        Log.d(
-//                            "MainFragment",
-//                            "1\nlogs = $adapterLogs\ncolors = $colors"
-//                        )
-//                        colors.add(newColor)
-//                        Log.d(
-//                            "MainFragment",
-//                            "2:\nlogs = $adapterLogs\ncolors = $colors"
-//                        )
-//                        viewModel.saveNewTimeLog(newTimeLog)
-//
-//                        adapterLogs.add(newActivityTimeLog)
-//                        activityTimeLogListAdapter.notifyItemInserted(adapterLogs.size-1)
-//
-//                        Log.d(
-//                            "MainFragment",
-//                            "Insert successful!"
-//                        )
-//                    } else {
-//                        viewModel.updateTimeLog(newTimeLog)
-//
-//                        // Update timelogs list
-//                        val i = adapterLogs.indexOfFirst { it.activity.activityId == newTimeLog.activityId }
-//                        if (i != -1) adapterLogs[i] = newActivityTimeLog // color won't change, so no need to update colors
-//                        activityTimeLogListAdapter.notifyItemChanged(i)
-//
-//                        Log.d(
-//                            "MainFragment",
-//                            "Update successful!"
-//                        )
-//                    )
-//                }
-//            }
-//
     private fun formatStopwatchDuration(duration: Duration): String {
         val hours = duration.toHours()
         val minutes = duration.toMinutes() % 60

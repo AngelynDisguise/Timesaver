@@ -32,7 +32,7 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
         val log: UILog = getItem(position)
         val timeElapsed: Duration = log.totalTime
 
-        if (timeElapsed != Duration.ZERO) { // should never be 0 but just a check
+        if (timeElapsed >= Duration.ofSeconds(1)) { // should never be 0 but just a check
             viewHolder.activityTextView.text = log.activityName
             viewHolder.timeLogTextView.text = formatDuration(timeElapsed)
 
@@ -62,7 +62,7 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
         if (hours.toInt() == 1) parts.add("$hours hour")
         if (minutes > 0) parts.add("$minutes min")
         if (seconds > 0) parts.add("$seconds sec")
-        if (duration.seconds.toInt() == 0) parts.add("---")
+        //if (duration == Duration.ZERO) parts.add("---") // should not save if no time elapsed
 
         return parts.joinToString(", ")
     }

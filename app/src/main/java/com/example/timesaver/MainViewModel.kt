@@ -12,6 +12,7 @@ import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalTime
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private var activities: LiveData<List<Activity>> = MutableLiveData()
@@ -77,7 +78,14 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     }
 
     fun timeHasElapsed(): Boolean {
-        return stopwatch.getElapsedTime() != Duration.ZERO
+        return stopwatch.getElapsedTime() >= Duration.ofSeconds(1)
+    }
+
+    fun getStartTime(): LocalTime {
+        val startTime = stopwatch.getStartTime()
+        return checkNotNull(startTime) {
+            "Requested for start time when stopwatch has not started yet."
+        }
     }
 
     // Returns time at which stopwatch stopped
