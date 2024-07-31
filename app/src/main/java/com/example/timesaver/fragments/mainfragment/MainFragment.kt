@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments
+package com.example.timesaver.fragments.mainfragment
 
 import android.content.Context
 import android.graphics.Typeface
@@ -22,7 +22,6 @@ import com.example.timesaver.CircularButtonView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
-import com.example.timesaver.UILogListAdapter
 import com.example.timesaver.database.Activity
 import com.example.timesaver.database.Timelog
 import java.time.Duration
@@ -183,6 +182,14 @@ class MainFragment : Fragment() {
         Log.d(
             "MainFragment",
             "MainFragment Resumed"
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(
+            "MainFragment",
+            "MainFragment Stopped"
         )
     }
 

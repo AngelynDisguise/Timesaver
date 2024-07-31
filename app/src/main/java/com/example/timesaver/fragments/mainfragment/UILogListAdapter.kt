@@ -1,4 +1,4 @@
-package com.example.timesaver
+package com.example.timesaver.fragments.mainfragment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,13 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timesaver.fragments.UILog
+import com.example.timesaver.R
 import java.time.Duration
 
 
 class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDiffCallback()) {
 
-    private var maxDuration = Duration.ofHours(1)
+    private var maxDuration = Duration.ofMinutes(30)
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val activityTextView: TextView = view.findViewById(R.id.activity_text_view)
@@ -69,8 +69,8 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
 
 
     private fun updateMaxDuration(logs: List<UILog>) {
-        maxDuration = logs.maxOfOrNull { it.totalTime } ?: Duration.ofHours(1)
-        maxDuration = maxDuration.coerceAtLeast(Duration.ofHours(1))
+        maxDuration = logs.maxOfOrNull { it.totalTime } ?: Duration.ofMinutes(30)
+        maxDuration = maxDuration.coerceAtLeast(Duration.ofMinutes(30))
     }
 
     private fun calculateBarWidthRatio(duration: Duration): Float {

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.timesaver.fragments.MainFragment"
+        android:name="com.example.timesaver.fragments.mainfragment.MainFragment"
         tools:layout="@layout/fragment_main"
         android:label="Timesaver">
 

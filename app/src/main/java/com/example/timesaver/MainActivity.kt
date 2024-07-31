@@ -2,27 +2,20 @@ package com.example.timesaver
 
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.timesaver.database.TimesaverDatabase
 import com.example.timesaver.database.TimesaverRepository
-import com.example.timesaver.fragments.MainFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {

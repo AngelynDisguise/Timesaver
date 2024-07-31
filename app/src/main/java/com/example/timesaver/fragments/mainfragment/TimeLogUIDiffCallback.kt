@@ -1,7 +1,6 @@
-package com.example.timesaver
+package com.example.timesaver.fragments.mainfragment
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.timesaver.fragments.UILog
 
 class UILogDiffCallback : DiffUtil.ItemCallback<UILog>() {
     override fun areItemsTheSame(oldItem: UILog, newItem: UILog): Boolean {
