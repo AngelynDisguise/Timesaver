@@ -7,12 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
-import com.example.timesaver.MainViewModelFactory
 import com.example.timesaver.R
 
 class SettingsFragment : Fragment() {
@@ -48,8 +45,9 @@ class SettingsFragment : Fragment() {
             "SettingsFragment VIEW Created"
         )
 
-        initViews(view)
-        setWarningSupressedListeners(view)
+        checkButtons(view)
+        setSwitchWarningSettingListeners(view)
+        setPauseWhenSwitchSettingsListeners(view)
 
     }
 
@@ -77,30 +75,58 @@ class SettingsFragment : Fragment() {
         )
     }
 
-    private fun initViews(view: View) {
-        if (viewModel.warningSuppressed) {
-            view.findViewById<RadioButton>(R.id.settings_warn_switch_no_button).isChecked = true
+    private fun checkButtons(view: View) {
+        if (viewModel.warnBeforeSwitch) {
+            view.findViewById<RadioButton>(R.id.settings_warn_before_switch_yes_button).isChecked = true
         } else {
-            view.findViewById<RadioButton>(R.id.settings_warn_switch_yes_button).isChecked = true
+            view.findViewById<RadioButton>(R.id.settings_warn_before_switch_no_button).isChecked = true
         }
+
+        if (viewModel.pauseBeforeStart) {
+            view.findViewById<RadioButton>(R.id.settings_pause_before_start_yes_button).isChecked = true
+        } else {
+            view.findViewById<RadioButton>(R.id.settings_pause_before_start_no_button).isChecked = true
+        }
+
     }
 
-    private fun setWarningSupressedListeners(view: View) {
-        view.findViewById<RadioButton>(R.id.settings_warn_switch_yes_button).setOnCheckedChangeListener { _, isChecked ->
+    private fun setSwitchWarningSettingListeners(view: View) {
+        view.findViewById<RadioButton>(R.id.settings_warn_before_switch_yes_button).setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.warningSuppressed = false
+                viewModel.warnBeforeSwitch = true
                 Log.d(
                     "SettingsFragment",
-                    "Warning Supressed set to false"
+                    "WarningBeforeSwitch setting set to false"
                 )
             }
         }
-        view.findViewById<RadioButton>(R.id.settings_warn_switch_no_button).setOnCheckedChangeListener { _, isChecked ->
+        view.findViewById<RadioButton>(R.id.settings_warn_before_switch_no_button).setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                viewModel.warningSuppressed = true
+                viewModel.warnBeforeSwitch = false
                 Log.d(
                     "SettingsFragment",
-                    "Warning Supressed set to true"
+                    "WarnBeforeSwitch setting set to true"
+                )
+            }
+        }
+    }
+
+    private fun setPauseWhenSwitchSettingsListeners(view: View) {
+        view.findViewById<RadioButton>(R.id.settings_pause_before_start_yes_button).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.pauseBeforeStart = true
+                Log.d(
+                    "SettingsFragment",
+                    "PauseBeforeStart setting set to false"
+                )
+            }
+        }
+        view.findViewById<RadioButton>(R.id.settings_pause_before_start_no_button).setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                viewModel.pauseBeforeStart = false
+                Log.d(
+                    "SettingsFragment",
+                    "PauseBeforeStart setting set to false"
                 )
             }
         }

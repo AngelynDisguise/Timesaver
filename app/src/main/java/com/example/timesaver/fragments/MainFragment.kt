@@ -10,32 +10,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.CircularButtonView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
-import com.example.timesaver.MainViewModelFactory
 import com.example.timesaver.R
 import com.example.timesaver.UILogListAdapter
 import com.example.timesaver.database.Activity
-import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
-//import com.example.timesaver.database.ActivityTimeLog
-//import com.example.timesaver.database.TimeLog
 import java.time.Duration
-import java.time.LocalDate
-import kotlin.time.toKotlinDuration
 
 data class UILog (
     val id: Long,
@@ -53,7 +43,6 @@ class MainFragment : Fragment() {
 
     // UI things
     private lateinit var circularButton: CircularButtonView // outer: activity wheel, inner: play/pause button
-    private lateinit var doneButton: Button
     private lateinit var refreshButton: ImageView
     private lateinit var currentActivityText: TextView
     private lateinit var timerText: TextView
@@ -239,7 +228,6 @@ class MainFragment : Fragment() {
 
         timerText.text = formatStopwatchDuration(Duration.ZERO)
 
-        doneButton.visibility = GONE
         val text = "Select an Activity"
         currentActivityText.text = text
         currentActivityText.setTextColor(requireContext().getColorResCompat(android.R.attr.textColorPrimary))
@@ -281,6 +269,9 @@ class MainFragment : Fragment() {
                 // Switching while stopwatch is running
                 if (viewModel.stopwatchIsRunning()) {
                     switchingWhileRunning(selectedIndex)
+                } else {
+                    // Switching while stopwatch is paused and has time
+                    startActivity(selectedIndex)
                 }
             } else {
                 /*
@@ -318,8 +309,7 @@ class MainFragment : Fragment() {
             if (!circularButton.isGlowing()) {
                 // Unselected and time has elapsed
                 if (viewModel.timeHasElapsed()) {
-                    // TODO()
-                    //finishActivity(currentActivityIndex)
+                    // TODO() Save activity progress (only other case that saves without switching)
                 }
                 clearUI()
             }
@@ -333,9 +323,9 @@ class MainFragment : Fragment() {
     private fun switchingWhileRunning(i: Int) {
         Log.d(
             "MainFragment",
-            "User chose a different activity while current is running. Warning supressed = ${viewModel.warningSuppressed}"
+            "User chose a different activity while current is running. WarnWhenSwitch = ${viewModel.warnBeforeSwitch}"
         )
-        if (!viewModel.warningSuppressed) {
+        if (viewModel.warnBeforeSwitch) {
             viewModel.stopStopwatch()
 
             val builder = AlertDialog.Builder(requireContext())
@@ -364,16 +354,28 @@ class MainFragment : Fragment() {
         viewModel.currentActivityIndex = i
         timerText.text = formatStopwatchDuration(Duration.ZERO)
         if (viewModel.timeHasElapsed()) {
+            // TODO() Save activity progress
             viewModel.resetStopwatch()
         }
-        viewModel.startStopwatch()
-        circularButton.changeToPauseButton()
+
+        Log.d(
+            "MainFragment",
+            "Starting new activity \"${activities[i]}\". PauseBeforeStart = ${viewModel.pauseBeforeStart}"
+        )
+
+        if (viewModel.pauseBeforeStart){
+            circularButton.changeToPlayButton()
+        } else{
+            viewModel.startStopwatch()
+            circularButton.changeToPauseButton()
+        }
 
         currentActivityText.text = activities[i].activityName
         currentActivityText.setTextColor(circularButton.getSectionColor(i))
         currentActivityText.setTypeface(Typeface.create(currentActivityText.typeface, Typeface.BOLD))
     }
 
+    // TODO() Fix garbage below - reimplement saveActivity()
 //
 //            private fun saveActivityTimeLog(activityIndex: Int) {
 //                if (viewModel.timeHasElapsed()) {

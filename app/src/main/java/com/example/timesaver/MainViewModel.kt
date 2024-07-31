@@ -7,15 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.timesaver.database.Activity
-import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
-//import com.example.timesaver.database.ActivityTimeLog
-//import com.example.timesaver.database.TimeLog
 import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private var activities: LiveData<List<Activity>> = MutableLiveData()
@@ -29,7 +25,10 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
 
     var currentActivityIndex = -1
-    var warningSuppressed: Boolean = true
+
+    // Settings
+    var warnBeforeSwitch: Boolean = false
+    var pauseBeforeStart: Boolean = false
     
     init {
         getActivities()
