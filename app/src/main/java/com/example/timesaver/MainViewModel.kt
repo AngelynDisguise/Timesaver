@@ -15,7 +15,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
-    private var activities: LiveData<List<Activity>> = MutableLiveData()
+    var activities: LiveData<List<Activity>> = MutableLiveData()
     private var todaysLogs: LiveData<List<Timelog>> = MutableLiveData()
 
     private val _combinedData = MediatorLiveData<Pair<List<Activity>, List<Timelog>>>()

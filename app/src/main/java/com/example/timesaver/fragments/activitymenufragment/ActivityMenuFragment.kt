@@ -1,14 +1,27 @@
-package com.example.timesaver.fragments
+package com.example.timesaver.fragments.activitymenufragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.example.timesaver.MainActivity
+import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
 
 class ActivityMenuFragment : Fragment() {
+
+    private lateinit var adapter: ActivityListAdapter
+
+    private lateinit var viewModel: MainViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel = (requireActivity() as MainActivity).viewModel
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +46,19 @@ class ActivityMenuFragment : Fragment() {
             "ActivityMenuFragment",
             "ActivityMenuFragment VIEW Created"
         )
+
+        adapter = ActivityListAdapter()
+        val activityRecyclerView: RecyclerView = view.findViewById(R.id.activity_recycler_view)
+        activityRecyclerView.adapter = adapter
+
+        viewModel.activities.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+            Log.i(
+                "ActivityMenuFragment",
+                "Recieved ${it.size} activities: $it"
+            )
+        }
+
     }
 
     override fun onPause() {

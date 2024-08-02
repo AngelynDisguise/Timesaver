@@ -215,8 +215,8 @@ class MainFragment : Fragment() {
 
     private fun initListAdapter(view: View) {
         adapter = UILogListAdapter()
-        val activityTimeLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
-        activityTimeLogRecyclerView.adapter = adapter
+        val uiLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
+        uiLogRecyclerView.adapter = adapter
     }
 
     private fun initUI(view: View) {
