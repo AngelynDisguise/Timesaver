@@ -123,15 +123,27 @@ class ActivityMenuFragment : Fragment() {
         container.addView(input)
         builder.setView(container)
 
-        builder.setPositiveButton("OK") { _, _ ->
-            val newActivity = input.text.toString()
-            if (newActivity.isNotEmpty()) {
-                addActivityToList(newActivity)
-            }
-        }
+        builder.setPositiveButton("OK", null)
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
 
-        builder.show()
+        val dialog = builder.create()
+
+        dialog.setOnShowListener { dialogInterface ->
+            val positiveButton = (dialogInterface as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
+                val newActivity = input.text.toString()
+                val notDuplicate: Boolean = adapter.currentList.none { it.activityName == newActivity }
+                if (newActivity.isNotEmpty() && notDuplicate) {
+                    addActivityToList(newActivity)
+                    dialog.dismiss()
+                } else {
+                    Toast.makeText(requireContext(), "\'$newActivity\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
+                    //input.text.clear()
+                }
+            }
+        }
+
+        dialog.show()
     }
 
     private fun setDialogViews(): Pair<EditText, FrameLayout> {
@@ -197,7 +209,7 @@ class ActivityMenuFragment : Fragment() {
                             }
                             .show()
                     } else {
-                        Toast.makeText(requireContext(), "Must have at least one activity", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Must have at least one activity.", Toast.LENGTH_SHORT).show()
                     }
                     true
                 }
