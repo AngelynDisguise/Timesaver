@@ -103,15 +103,21 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         }
     }
 
-    fun saveNewTimelog(timeLog: Timelog) {
+    fun addActivity(activity: Activity) {
         viewModelScope.launch {
-            repository.insertTimeLog(timeLog)
+            repository.insertActivity(activity)
         }
     }
 
-    fun addNewActivity(activity: Activity){
+    fun deleteActivity(activity: Activity) {
         viewModelScope.launch {
-            repository.insertActivity(activity)
+            repository.deleteActivity(activity)
+        }
+    }
+
+    fun saveNewTimelog(timeLog: Timelog) {
+        viewModelScope.launch {
+            repository.insertTimeLog(timeLog)
         }
     }
 

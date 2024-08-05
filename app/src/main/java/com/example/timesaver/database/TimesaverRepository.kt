@@ -2,7 +2,6 @@ package com.example.timesaver.database
 
 import androidx.lifecycle.LiveData
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 class TimesaverRepository(private val dao: TimesaverDao) {
     suspend fun insertActivity(activity: Activity) {
@@ -19,6 +18,10 @@ class TimesaverRepository(private val dao: TimesaverDao) {
 
     suspend fun updateTimeLog(log: Timelog) {
         dao.updateTimelog(log)
+    }
+
+    suspend fun deleteActivity(activity: Activity) {
+        dao.deleteActivity(activity)
     }
 
     fun getActivities(): LiveData<List<Activity>> {

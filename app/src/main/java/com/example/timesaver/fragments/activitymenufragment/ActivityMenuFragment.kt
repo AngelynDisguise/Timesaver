@@ -12,12 +12,14 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
 import com.example.timesaver.database.Activity
+import com.google.android.material.snackbar.Snackbar
 
 class ActivityMenuFragment : Fragment() {
 
@@ -76,6 +78,14 @@ class ActivityMenuFragment : Fragment() {
             }
         }
 
+        // Delete activity
+        adapter.setOnClickListener { v, p, a ->
+            showPopupMenu(
+                view = v,
+                position = p,
+                activity = a
+            )
+        }
     }
 
     override fun onPause() {
@@ -155,12 +165,49 @@ class ActivityMenuFragment : Fragment() {
         )
 
         adapter.submitList(adapter.currentList + newActivity)
-        viewModel.addNewActivity(newActivity)
+        viewModel.addActivity(newActivity)
 
         Log.i(
             "ActivityMenuFragment",
             "Added Activity: ${newActivity.activityName}"
         )
+    }
+
+    private fun showPopupMenu(view: View, position: Int, activity: Activity) {
+        val popupMenu = PopupMenu(view.context, view)
+        popupMenu.inflate(R.menu.activity_options_menu)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.rename -> {
+                    true
+                }
+                R.id.delete -> {
+                    if (adapter.currentList.size > 1) { // at least 1 activity must exist
+                        val oldList = adapter.currentList.toList() // copy
+                        val newList = oldList.filter { it != activity }
+                        adapter.submitList(newList)
+                        viewModel.deleteActivity(activity)
+
+                        // Confirm and provide Undo option
+                        Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
+                            .setAction("UNDO") {
+                                adapter.submitList(oldList)
+                                viewModel.addActivity(activity)
+                            }
+                            .show()
+                    } else {
+                        Toast.makeText(requireContext(), "Must have at least one activity", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                R.id.open -> {
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
     }
 
 }
