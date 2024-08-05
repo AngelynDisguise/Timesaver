@@ -9,15 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingVertical="15dp"
-        android:paddingStart="50dp"
+        android:paddingHorizontal="50dp"
         android:text="Activity"
         android:textSize="25sp"
         android:textStyle="bold"/>
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/bottom_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/textColorPrimary" />
+        android:background="?android:attr/textColorPrimary"/>
 
 </LinearLayout>

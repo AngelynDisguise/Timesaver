@@ -9,11 +9,24 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+        android:id="@+id/add_activity_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Add Activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="100dp"
+        android:scaleX="1.2"
+        android:scaleY="1.2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
