@@ -109,6 +109,12 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         }
     }
 
+    fun updateActivity(activity: Activity) {
+        viewModelScope.launch {
+            repository.updateActivity(activity)
+        }
+    }
+
     fun deleteActivity(activity: Activity) {
         viewModelScope.launch {
             repository.deleteActivity(activity)

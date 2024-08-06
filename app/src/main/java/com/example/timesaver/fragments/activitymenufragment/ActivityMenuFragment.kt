@@ -112,9 +112,36 @@ class ActivityMenuFragment : Fragment() {
         )
     }
 
+    private fun showPopupMenu(view: View, position: Int, activity: Activity) {
+        val popupMenu = PopupMenu(view.context, view)
+        popupMenu.inflate(R.menu.activity_options_menu)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.rename -> {
+                    showRenameActivityDialog(position, activity)
+                    true
+                }
+                R.id.delete -> {
+                    if (adapter.currentList.size > 1) { // at least 1 activity must exist
+                        deleteActivity(view, activity)
+                    } else {
+                        Toast.makeText(requireContext(), "Must have at least one activity.", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+                R.id.open -> {
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
+
     private fun showAddActivityDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Enter new Activity name:")
+        builder.setTitle("Enter a new activity name:")
 
         val views = setDialogViews()
         val input = views.first
@@ -131,14 +158,50 @@ class ActivityMenuFragment : Fragment() {
         dialog.setOnShowListener { dialogInterface ->
             val positiveButton = (dialogInterface as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {
-                val newActivity = input.text.toString()
-                val notDuplicate: Boolean = adapter.currentList.none { it.activityName == newActivity }
-                if (newActivity.isNotEmpty() && notDuplicate) {
-                    addActivityToList(newActivity)
+                val newActivityName = input.text.toString()
+                val notDuplicate: Boolean = adapter.currentList.none { it.activityName == newActivityName }
+                if (newActivityName.isNotEmpty() && notDuplicate) {
+                    addActivity(newActivityName)
                     dialog.dismiss()
                 } else {
-                    Toast.makeText(requireContext(), "\'$newActivity\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "\'$newActivityName\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
                     //input.text.clear()
+                }
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun showRenameActivityDialog(position: Int, oldActivity: Activity) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Enter a new activity name:")
+
+        val views = setDialogViews()
+        val input = views.first
+        val container = views.second
+
+        input.hint = oldActivity.activityName
+
+        container.addView(input)
+        builder.setView(container)
+
+        builder.setPositiveButton("OK", null)
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
+
+        val dialog = builder.create()
+
+        dialog.setOnShowListener { dialogInterface ->
+            val positiveButton = (dialogInterface as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
+                val newActivityName = input.text.toString()
+                val notDuplicate: Boolean = adapter.currentList.none { it.activityName == newActivityName }
+                if (newActivityName.isNotEmpty() && notDuplicate) {
+                    updateActivity(newActivityName, position, oldActivity)
+                    dialog.dismiss()
+                } else {
+                    Toast.makeText(requireContext(), "\'$newActivityName\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
+                    input.text.clear()
                 }
             }
         }
@@ -165,7 +228,7 @@ class ActivityMenuFragment : Fragment() {
         return Pair(input, container)
     }
 
-    private fun addActivityToList(activityName: String) {
+    private fun addActivity(activityName: String) {
         val newActivity = Activity(
             activityId = 0,
             activityName = activityName
@@ -181,45 +244,46 @@ class ActivityMenuFragment : Fragment() {
 
         Log.i(
             "ActivityMenuFragment",
-            "Added Activity: ${newActivity.activityName}"
+            "Added Activity: $newActivity"
         )
     }
 
-    private fun showPopupMenu(view: View, position: Int, activity: Activity) {
-        val popupMenu = PopupMenu(view.context, view)
-        popupMenu.inflate(R.menu.activity_options_menu)
+    private fun updateActivity(newActivityName: String, position: Int, oldActivity: Activity) {
+        val updatedActivity = Activity(
+            activityId = oldActivity.activityId,
+            activityName = newActivityName
+        )
 
-        popupMenu.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.rename -> {
-                    true
-                }
-                R.id.delete -> {
-                    if (adapter.currentList.size > 1) { // at least 1 activity must exist
-                        val oldList = adapter.currentList.toList() // copy
-                        val newList = oldList.filter { it != activity }
-                        adapter.submitList(newList)
-                        viewModel.deleteActivity(activity)
+        Log.i(
+            "ActivityMenuFragment",
+            "Updating Activity..."
+        )
 
-                        // Confirm and provide Undo option
-                        Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
-                            .setAction("UNDO") {
-                                adapter.submitList(oldList)
-                                viewModel.addActivity(activity)
-                            }
-                            .show()
-                    } else {
-                        Toast.makeText(requireContext(), "Must have at least one activity.", Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                }
-                R.id.open -> {
-                    true
-                }
-                else -> false
+        val updatedList = adapter.currentList.toMutableList()
+        updatedList[position] = updatedActivity
+
+        adapter.submitList(updatedList)
+        viewModel.updateActivity(updatedActivity)
+
+        Log.i(
+            "ActivityMenuFragment",
+            "Updated Activity: $updatedActivity"
+        )
+    }
+
+    private fun deleteActivity(view: View, activity: Activity) {
+        val oldList = adapter.currentList.toList() // copy
+        val newList = oldList.filter { it != activity }
+        adapter.submitList(newList)
+        viewModel.deleteActivity(activity)
+
+        // Confirm and provide Undo option
+        Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
+            .setAction("UNDO") {
+                adapter.submitList(oldList)
+                viewModel.addActivity(activity)
             }
-        }
-        popupMenu.show()
+            .show()
     }
 
 }
