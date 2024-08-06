@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var toolbar: Toolbar
 
     private val dao by lazy { TimesaverDatabase.getDatabase(applicationContext).timesaverDao() }
     val viewModel by lazy {
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         // Set up toolbar with the hamburger icon
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         /** Set up Nav Controller to host the fragments */
@@ -52,10 +53,10 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         appBarConfiguration = AppBarConfiguration(
             setOf( // the top destinations in the drawer
-            R.id.main_fragment,
-            R.id.settings_fragment,
-            R.id.activity_menu_fragment
-        ), drawerLayout)
+                R.id.main_fragment,
+                R.id.settings_fragment,
+                R.id.activity_menu_fragment
+            ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         // Connect the drawer UI (the navigation view) to NavController
@@ -79,6 +80,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun setActionBarTitle(title: String) {
+        toolbar.title = title
     }
 
 }

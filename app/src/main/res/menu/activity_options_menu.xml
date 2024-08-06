@@ -8,5 +8,5 @@
         android:title="Delete" />
     <item
         android:id="@+id/open"
-        android:title="Open" />
+        android:title="View Insights" />
 </menu>

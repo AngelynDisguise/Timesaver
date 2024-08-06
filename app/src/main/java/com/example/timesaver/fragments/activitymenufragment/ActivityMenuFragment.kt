@@ -13,7 +13,9 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
@@ -22,6 +24,8 @@ import com.example.timesaver.database.Activity
 import com.google.android.material.snackbar.Snackbar
 
 class ActivityMenuFragment : Fragment() {
+
+    private val navController by lazy { findNavController() }
 
     private lateinit var adapter: ActivityListAdapter
     private lateinit var viewModel: MainViewModel
@@ -131,6 +135,8 @@ class ActivityMenuFragment : Fragment() {
                     true
                 }
                 R.id.open -> {
+                    val bundle = bundleOf("activityIndex" to position)
+                    navController.navigate(R.id.action_activity_menu_fragment_to_activity_fragment, bundle)
                     true
                 }
                 else -> false
