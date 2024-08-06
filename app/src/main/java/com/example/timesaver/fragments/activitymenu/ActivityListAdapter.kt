@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.activitymenufragment
+package com.example.timesaver.fragments.activitymenu
 
 import android.view.LayoutInflater
 import android.view.View

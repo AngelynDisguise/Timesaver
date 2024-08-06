@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.mainfragment
+package com.example.timesaver.fragments.home
 
 import android.content.Context
 import android.graphics.Typeface

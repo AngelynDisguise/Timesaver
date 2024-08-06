@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments
+package com.example.timesaver.fragments.activity
 
 import android.content.Context
 import android.os.Bundle

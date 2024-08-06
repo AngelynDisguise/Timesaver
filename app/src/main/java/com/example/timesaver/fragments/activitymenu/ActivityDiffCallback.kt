@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.activitymenufragment
+package com.example.timesaver.fragments.activitymenu
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.timesaver.database.Activity

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="com.example.timesaver.fragments.mainfragment.MainFragment"
+        android:name="com.example.timesaver.fragments.home.MainFragment"
         tools:layout="@layout/fragment_main"
         android:label="Timesaver">
 
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/activity_fragment"
-        android:name="com.example.timesaver.fragments.ActivityFragment"
+        android:name="com.example.timesaver.fragments.activity.ActivityFragment"
         tools:layout="@layout/fragment_activity" >
         <action
             android:id="@+id/action_activity_fragment_to_main_fragment"
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/activity_menu_fragment"
-        android:name="com.example.timesaver.fragments.activitymenufragment.ActivityMenuFragment"
+        android:name="com.example.timesaver.fragments.activitymenu.ActivityMenuFragment"
         tools:layout="@layout/fragment_activity_menu"
         android:label="Activities">
         <action
