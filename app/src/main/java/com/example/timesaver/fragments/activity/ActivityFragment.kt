@@ -10,10 +10,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
 import com.example.timesaver.database.Activity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ActivityFragment : Fragment() {
 
@@ -45,8 +48,23 @@ class ActivityFragment : Fragment() {
                 "ActivityFragment",
                 "Recieved activity: $it"
             )
+
+            // Setup horizontal paging for Logs and Insights fragments
+            val pagerAdapter = ActivityPagerAdapter(requireActivity(), it[i].activityId)
+            val viewPager: ViewPager2 = view.findViewById(R.id.activity_view_pager)
+            val tabLayout: TabLayout = view.findViewById(R.id.activity_tab_layout)
+
+            viewPager.adapter = pagerAdapter
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = when (position) {
+                    0 -> "Logs"
+                    1 -> "Insights"
+                    else -> null
+                }
+            }.attach()
         }
 
+        // Go back to ActivityMenu when pressing up
         navController = findNavController()
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

@@ -32,8 +32,12 @@ class TimesaverRepository(private val dao: TimesaverDao) {
         return dao.getTimelogsOnDate(date)
     }
 
-    fun getActivityTimeLogs(): LiveData<List<ActivityTimelog>> {
-        return dao.getActivityTimelogs()
+    fun getActivityTimelog(activityId: Long): LiveData<ActivityTimelog> {
+        return dao.getActivityTimelog(activityId)
+    }
+
+    fun getAllActivityTimeLogs(): LiveData<List<ActivityTimelog>> {
+        return dao.getAllActivityTimelogs()
     }
 
     fun getTotalActivityTime(activityId: Long): Long {

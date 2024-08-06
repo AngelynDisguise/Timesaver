@@ -34,7 +34,7 @@ interface TimesaverDao {
     @Query("SELECT * FROM activities")
     fun getActivities(): LiveData<List<Activity>>
 
-    /** Get all activities */
+    /** Get all timelogs */
     @Query("SELECT * FROM timelogs")
     fun getTimelogs(): LiveData<List<Timelog>>
 
@@ -49,10 +49,15 @@ interface TimesaverDao {
         """)
     fun getTimelogsOnDate(date: LocalDate): LiveData<List<Timelog>>
 
+    /** Get an activity with their list of timelogs */
+    @Transaction
+    @Query("SELECT * FROM activities WHERE activityId = :activityId")
+    fun getActivityTimelog(activityId: Long): LiveData<ActivityTimelog>
+
     /** Get all activities with their list of timelogs */
     @Transaction
     @Query("SELECT * FROM activities")
-    fun getActivityTimelogs(): LiveData<List<ActivityTimelog>>
+    fun getAllActivityTimelogs(): LiveData<List<ActivityTimelog>>
 
     /** Get total time elapsed for an activity in all history */
     @Transaction

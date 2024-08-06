@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.timesaver.database.Activity
+import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
 import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.launch
@@ -26,6 +27,8 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
 
     var currentActivityIndex = -1
+
+    var currentActivityTimelog: LiveData<ActivityTimelog> = MutableLiveData()
 
     // Settings
     var warnBeforeSwitch: Boolean = false
@@ -56,6 +59,12 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private fun getTodaysLogs() {
         viewModelScope.launch {
             todaysLogs = repository.getTimelogsOnDate(LocalDate.now())
+        }
+    }
+
+    fun getActivityTimelog(activityId: Long) {
+        viewModelScope.launch {
+            currentActivityTimelog = repository.getActivityTimelog(activityId)
         }
     }
 
