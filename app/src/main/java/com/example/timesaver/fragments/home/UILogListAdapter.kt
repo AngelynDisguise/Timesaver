@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,10 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
 
     private var maxDuration = Duration.ofMinutes(30)
 
+    private var onLongClickListener: ((View, Long) -> Unit)? = null
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val itemLayout: LinearLayout = view.findViewById(R.id.ui_log_item_layout)
         val activityTextView: TextView = view.findViewById(R.id.ui_log_activity_text_view)
         val timeLogTextView: TextView = view.findViewById(R.id.ui_log_timelog_text_view)
         val timeLogBar: View = view.findViewById(R.id.ui_log_timelog_bar)
@@ -52,6 +56,11 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
 
             val rippleDrawable = createRippleDrawable(log.color)
             viewHolder.itemView.background = rippleDrawable
+
+            viewHolder.itemLayout.setOnLongClickListener {
+                onLongClickListener?.invoke(it, log.id)
+                true
+            }
         }
     }
 
@@ -102,5 +111,9 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
             null,
             mask
         )
+    }
+
+    fun setOnLongClickListener(listener: (View, Long) -> Unit) {
+        onLongClickListener = listener
     }
 }

@@ -17,6 +17,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.CircularButtonView
@@ -85,7 +86,7 @@ class MainFragment : Fragment() {
         initViews(view)
         initCircularButton(view) // Draw the "timesaver" :P
         initListAdapter(view)
-        initUI(view)
+        initUI()
 
         // Listeners
         //refreshButton.setOnClickListener { rollbackTime() }
@@ -230,9 +231,23 @@ class MainFragment : Fragment() {
         adapter = UILogListAdapter()
         val uiLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
         uiLogRecyclerView.adapter = adapter
+
+        // Navigate to Activity screen if long clicked
+        adapter.setOnLongClickListener { _, id ->
+            val bundle = Bundle().apply {
+                putParcelable("activity", activities.find { it.activityId == id })
+            }
+
+            Log.d(
+                "MainFragment",
+                "Sending bundle to ActivityFragment: $bundle"
+            )
+
+            findNavController().navigate(R.id.action_main_to_activity_fragment, bundle)
+        }
     }
 
-    private fun initUI(view: View) {
+    private fun initUI() {
         // Config fix: Set icon back to pause if stopwatch is running
         if (viewModel.stopwatchIsRunning() && viewModel.buttonIsSelected()) {
             circularButton.changeToPauseButton()
