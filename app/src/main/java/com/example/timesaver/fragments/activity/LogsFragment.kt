@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
@@ -34,29 +33,44 @@ class LogsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val i: Long? = arguments?.getLong("activityId")
-        i?.let {
-            Log.d(
+        // Get activity id from bundle sent by ActivityFragment
+        val activityId: Long? = arguments?.getLong("activityId")
+
+        activityId?.let {
+            Log.i(
                 "LogsFragment",
-                "got id = $i"
+                "Received Activity: $activity"
             )
+
+            // Set up adapter
             adapter = TimelogListAdapter()
             val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
             recyclerView.adapter = adapter
 
-            viewModel.getActivityTimelog(i)
+            // Get ActivityTimelog (activity with all timelogs in history) from database
+            viewModel.getActivityTimelog(activityId)
 
-            viewModel.currentActivityTimelog.observe(viewLifecycleOwner) { act ->
-                Log.d(
-                    "LogsFragment",
-                    "got activity = $act"
-                )
+            viewModel.currentActivityTimelog.observe(viewLifecycleOwner) { activityTimelog ->
+                activityTimelog?.let {
+                    Log.i(
+                        "LogsFragment",
+                        "Received ActivityTimelog: $activityTimelog"
+                    )
 
-                val sortedTimelogs = act.timelogs
-                    .sortedWith(compareByDescending<Timelog> { it.date }
-                    .thenByDescending { it.startTime })
-                    .toList()
-                adapter.submitList(sortedTimelogs)
+                    // Sort timelogs by date and start time, newest to oldest
+                    val sortedTimelogs = activityTimelog.timelogs
+                        .sortedWith(compareByDescending<Timelog> { it.date }
+                            .thenByDescending { it.startTime })
+                        .toList()
+
+                    // Update adapter
+                    adapter.submitList(sortedTimelogs)
+                } ?: let {
+                    Log.e(
+                        "LogsFragment",
+                        "Got nothing :("
+                    )
+                }
             }
         } ?: let {
             Log.d(

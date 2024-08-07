@@ -13,7 +13,6 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -33,14 +32,6 @@ class ActivityMenuFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         viewModel = (requireActivity() as MainActivity).viewModel
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(
-            "ActivityMenuFragment",
-            "ActivityMenuFragment Created"
-        )
     }
 
     override fun onCreateView(
@@ -83,47 +74,22 @@ class ActivityMenuFragment : Fragment() {
         }
 
         // Delete activity
-        adapter.setOnClickListener { v, p, a ->
+        adapter.setOnClickListener { v, a ->
             showPopupMenu(
                 view = v,
-                position = p,
                 activity = a
             )
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(
-            "ActivityMenuFragment",
-            "ActivityMenuFragment Paused"
-        )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(
-            "ActivityMenuFragment",
-            "ActivityMenuFragment Resumed"
-        )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(
-            "ActivityMenuFragment",
-            "ActivityMenuFragment Destroyed"
-        )
-    }
-
-    private fun showPopupMenu(view: View, position: Int, activity: Activity) {
+    private fun showPopupMenu(view: View, activity: Activity) {
         val popupMenu = PopupMenu(view.context, view)
         popupMenu.inflate(R.menu.activity_options_menu)
 
         popupMenu.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.rename -> {
-                    showRenameActivityDialog(position, activity)
+                    showRenameActivityDialog(activity)
                     true
                 }
                 R.id.delete -> {
@@ -135,7 +101,16 @@ class ActivityMenuFragment : Fragment() {
                     true
                 }
                 R.id.open -> {
-                    val bundle = bundleOf("activityIndex" to position)
+                    //val bundle = bundleOf("activityIndex" to position)
+                    val bundle = Bundle().apply {
+                        putParcelable("activity", activity)
+                    }
+
+                    Log.d(
+                        "ActivityMenuFragment",
+                        "Sending bundle: $bundle"
+                    )
+
                     navController.navigate(R.id.action_activity_menu_fragment_to_activity_fragment, bundle)
                     true
                 }
@@ -179,7 +154,7 @@ class ActivityMenuFragment : Fragment() {
         dialog.show()
     }
 
-    private fun showRenameActivityDialog(position: Int, oldActivity: Activity) {
+    private fun showRenameActivityDialog(oldActivity: Activity) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Enter a new activity name:")
 
@@ -203,7 +178,7 @@ class ActivityMenuFragment : Fragment() {
                 val newActivityName = input.text.toString()
                 val notDuplicate: Boolean = adapter.currentList.none { it.activityName == newActivityName }
                 if (newActivityName.isNotEmpty() && notDuplicate) {
-                    updateActivity(newActivityName, position, oldActivity)
+                    updateActivity(newActivityName, oldActivity)
                     dialog.dismiss()
                 } else {
                     Toast.makeText(requireContext(), "\'$newActivityName\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
@@ -240,7 +215,7 @@ class ActivityMenuFragment : Fragment() {
             activityName = activityName
         )
 
-        Log.i(
+        Log.d(
             "ActivityMenuFragment",
             "Adding new Activity..."
         )
@@ -254,19 +229,22 @@ class ActivityMenuFragment : Fragment() {
         )
     }
 
-    private fun updateActivity(newActivityName: String, position: Int, oldActivity: Activity) {
+    private fun updateActivity(newActivityName: String, oldActivity: Activity) {
         val updatedActivity = Activity(
             activityId = oldActivity.activityId,
             activityName = newActivityName
         )
 
-        Log.i(
+        Log.d(
             "ActivityMenuFragment",
             "Updating Activity..."
         )
 
         val updatedList = adapter.currentList.toMutableList()
-        updatedList[position] = updatedActivity
+        val i = updatedList.indexOfFirst { it.activityId == oldActivity.activityId }
+        require(i > -1 && i < updatedList.size) { "Out of bounds: Tried to update an activity that doesn't exist in the list. "} // just wanted to try this :D
+        updatedList[i] = oldActivity
+
 
         adapter.submitList(updatedList)
         viewModel.updateActivity(updatedActivity)
@@ -283,13 +261,56 @@ class ActivityMenuFragment : Fragment() {
         adapter.submitList(newList)
         viewModel.deleteActivity(activity)
 
+        Log.i(
+            "ActivityMenuFragment",
+            "Deleted Activity: ${activity.activityName}"
+        )
+
         // Confirm and provide Undo option
         Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
             .setAction("UNDO") {
                 adapter.submitList(oldList)
                 viewModel.addActivity(activity)
+                Log.i(
+                    "ActivityMenuFragment",
+                    "Delete undone"
+                )
             }
             .show()
+    }
+
+    /* Debug stuff */
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "ActivityMenuFragment",
+            "ActivityMenuFragment Created"
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(
+            "ActivityMenuFragment",
+            "ActivityMenuFragment Paused"
+        )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(
+            "ActivityMenuFragment",
+            "ActivityMenuFragment Resumed"
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(
+            "ActivityMenuFragment",
+            "ActivityMenuFragment Destroyed"
+        )
     }
 
 }

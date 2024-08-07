@@ -13,7 +13,7 @@ import com.example.timesaver.database.Activity
 
 class ActivityListAdapter: ListAdapter<Activity, ActivityListAdapter.ViewHolder>(ActivityDiffCallback()) {
 
-    private var onClickListener: ((View, Int, Activity) -> Unit)? = null
+    private var onClickListener: ((View, Activity) -> Unit)? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val activityTextView: TextView = view.findViewById(R.id.activity_menu_activity_text_view)
@@ -30,11 +30,11 @@ class ActivityListAdapter: ListAdapter<Activity, ActivityListAdapter.ViewHolder>
         val activity: Activity = getItem(position)
         viewHolder.activityTextView.text = activity.activityName
         viewHolder.optionsIcon.setOnClickListener {
-            onClickListener?.invoke(it, position, activity)
+            onClickListener?.invoke(it, activity)
         }
     }
 
-    fun setOnClickListener(listener: (View, Int, Activity) -> Unit) {
+    fun setOnClickListener(listener: (View, Activity) -> Unit) {
         this.onClickListener = listener
     }
 

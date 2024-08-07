@@ -1,6 +1,7 @@
 package com.example.timesaver.fragments.activity
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.timesaver.MainActivity
@@ -20,9 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class ActivityFragment : Fragment() {
 
-    private lateinit var navController: NavController
     private lateinit var viewModel: MainViewModel
-    private lateinit var currentActivity: Activity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,19 +36,30 @@ class ActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val i = arguments?.getInt("activityIndex") ?: 0
+        Log.d(
+            "ActivityFragment",
+            "ActivityFragment VIEW Created"
+        )
 
-        // Recieve Activity list from database
-        viewModel.activities.observe(viewLifecycleOwner) {
-            currentActivity = it[i]
-            (requireActivity() as MainActivity).setActionBarTitle(currentActivity.activityName)
+        // Get Activity from bundle sent by ActivityMenu
+        @Suppress("DEPRECATION")
+        val activity: Activity? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable("activity", Activity::class.java)
+        } else {
+            arguments?.getParcelable("activity")
+        }
+
+        activity?.let {
             Log.i(
                 "ActivityFragment",
-                "Recieved activity: $it"
+                "Received activity: $activity"
             )
 
-            // Setup horizontal paging for Logs and Insights fragments
-            val pagerAdapter = ActivityPagerAdapter(requireActivity(), it[i].activityId)
+            // Change toolbar title to the selected activity name
+            (requireActivity() as MainActivity).setActionBarTitle(activity.activityName)
+
+            // Setup tabs and horizontal paging for Logs and Insights fragments
+            val pagerAdapter = ActivityPagerAdapter(requireActivity(), activity.activityId) // Send activity data to fragments
             val viewPager: ViewPager2 = view.findViewById(R.id.activity_view_pager)
             val tabLayout: TabLayout = view.findViewById(R.id.activity_tab_layout)
 
@@ -62,16 +71,54 @@ class ActivityFragment : Fragment() {
                     else -> null
                 }
             }.attach()
+
+        } ?: let {
+            Log.e(
+                "ActivityFragment",
+                "Got nothing :("
+            )
         }
 
         // Go back to ActivityMenu when pressing up
-        navController = findNavController()
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                navController.navigateUp()
+                findNavController().navigateUp()
             }
         })
+    }
 
+    /* Debug stuff */
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "ActivityFragment",
+            "ActivityFragment Created"
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(
+            "ActivityFragment",
+            "ActivityFragment Paused"
+        )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(
+            "ActivityFragment",
+            "ActivityFragment Resumed"
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(
+            "ActivityFragment",
+            "ActivityFragment Destroyed"
+        )
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.timesaver.database
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -7,16 +8,17 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import androidx.room.TypeConverters
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 
+@Parcelize
 @Entity(tableName = "activities")
 @TypeConverters(Converters::class)
 data class Activity(
     @PrimaryKey(autoGenerate = true) val activityId: Long = 0,
     val activityName: String
-)
+): Parcelable
 
 @Entity(tableName = "timelogs",
     foreignKeys = [
