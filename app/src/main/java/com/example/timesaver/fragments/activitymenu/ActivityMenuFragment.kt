@@ -71,8 +71,23 @@ class ActivityMenuFragment : Fragment() {
             }
         }
 
-        // Delete activity
-        adapter.setOnClickListener { v, a ->
+        // Click on Activity goes to ActivityFragment
+        // Navigate to Activity screen if long clicked
+        adapter.setOnClickActivityListener { _, id ->
+            val bundle = Bundle().apply {
+                putParcelable("activity", adapter.currentList.find { it.activityId == id })
+            }
+
+            Log.d(
+                "MainFragment",
+                "Sending bundle to ActivityFragment: $bundle"
+            )
+
+            findNavController().navigate(R.id.action_activity_menu_fragment_to_activity_fragment, bundle)
+        }
+
+        // Click More Options opens menu
+        adapter.setOnClickOptionsListener { v, a ->
             showPopupMenu(
                 view = v,
                 activity = a
@@ -91,7 +106,7 @@ class ActivityMenuFragment : Fragment() {
                     true
                 }
                 R.id.delete -> {
-                    if (adapter.currentList.size > 1) { // at least 1 activity must exist
+                    if (adapter.itemCount > 1) { // at least 1 activity must exist
                         deleteActivity(view, activity)
                     } else {
                         Toast.makeText(requireContext(), "Must have at least one activity.", Toast.LENGTH_SHORT).show()

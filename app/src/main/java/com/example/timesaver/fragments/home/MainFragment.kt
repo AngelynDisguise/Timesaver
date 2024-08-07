@@ -60,14 +60,6 @@ class MainFragment : Fragment() {
         viewModel = (requireActivity() as MainActivity).viewModel
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(
-            "MainFragment",
-            "MainFragment Created"
-        )
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -181,38 +173,6 @@ class MainFragment : Fragment() {
                 return flag
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(
-            "MainFragment",
-            "MainFragment Paused"
-        )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(
-            "MainFragment",
-            "MainFragment Resumed"
-        )
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(
-            "MainFragment",
-            "MainFragment Stopped"
-        )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(
-            "MainFragment",
-            "MainFragment Destroyed"
-        )
     }
 
     private fun initViews(view: View) {
@@ -504,5 +464,46 @@ class MainFragment : Fragment() {
             return ContextCompat.getColor(this, colorRes)
     }
 
+    /* Debug stuff */
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(
+            "MainFragment",
+            "MainFragment Created"
+        )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(
+            "MainFragment",
+            "MainFragment Paused"
+        )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(
+            "MainFragment",
+            "MainFragment Resumed"
+        )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(
+            "MainFragment",
+            "MainFragment Stopped"
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(
+            "MainFragment",
+            "MainFragment Destroyed"
+        )
+    }
 
 }
