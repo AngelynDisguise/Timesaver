@@ -1,5 +1,10 @@
 package com.example.timesaver.fragments.home
 
+import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.RippleDrawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.RectShape
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +49,9 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
                 viewHolder.timeLogBar.layoutParams = layoutParams
                 viewHolder.timeLogBar.setBackgroundColor(log.color)
             }
+
+            val rippleDrawable = createRippleDrawable(log.color)
+            viewHolder.itemView.background = rippleDrawable
         }
     }
 
@@ -75,5 +83,24 @@ class UILogListAdapter: ListAdapter<UILog, UILogListAdapter.ViewHolder>(UILogDif
 
     private fun calculateBarWidthRatio(duration: Duration): Float {
         return (duration.seconds.toFloat() / maxDuration.seconds.toFloat()).coerceIn(0f, 1f)
+    }
+
+    private fun createRippleDrawable(color: Int): Drawable {
+        val mask = ShapeDrawable(RectShape())
+        mask.paint.color = android.graphics.Color.WHITE
+
+        // Adjust rgb to make color a bit more transparent?
+        val rippleColor = android.graphics.Color.argb(
+            (android.graphics.Color.alpha(color) * 0.3).toInt(), // 30% of alpha
+            android.graphics.Color.red(color),
+            android.graphics.Color.green(color),
+            android.graphics.Color.blue(color)
+        )
+
+        return RippleDrawable(
+            ColorStateList.valueOf(rippleColor),
+            null,
+            mask
+        )
     }
 }

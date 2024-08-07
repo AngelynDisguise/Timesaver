@@ -17,6 +17,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.CircularButtonView
 import com.example.timesaver.MainActivity
@@ -101,7 +102,7 @@ class MainFragment : Fragment() {
         // Update activity wheel UI and list UI
         viewModel.combinedData.observe(viewLifecycleOwner) { (acts, logs): Pair<List<Activity>, List<Timelog>> ->
             if (acts.isNotEmpty()) {
-                // Update list UI
+                // Update activities and populate wheel
                 activities = acts
                 circularButton.outerCircleSections = acts.size
                 circularButton.setLabels(acts.map { it.activityName })
@@ -111,17 +112,13 @@ class MainFragment : Fragment() {
                     "Received ${acts.size} activities from LiveData: $acts\nReceived ${logs.size} timelogs from LiveData: $logs\n..."
                 )
 
-                // Populate map for list UI
+                // Populate mapping for UIlogs
                 for (i in acts.indices) {
                     val a: Activity = acts[i]
                     val t: List<Timelog> = logs.filter { it.activityId == a.activityId }
 
-                    // If activity has timelogs for today, add to map
+                    // Add UIlog using timelogs dated for today
                     if (t.isNotEmpty()) {
-//                        Log.d(
-//                            "MainFragment",
-//                            "Processing activity $i: ${a.activityName} with ${t.size} time logs: $t\n..."
-//                        )
 
                         val timeElapsed: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
                         val totalTimeElapsed: Duration = timeElapsed.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
@@ -155,16 +152,32 @@ class MainFragment : Fragment() {
                 // Update list UI
                 adapter.submitList(uiLogs.values.toList())
 
-                // Reveal arrow UI if uiLog list overflows
-                if (uiLogs.size > 5) {
-                    val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-                    arrow.visibility = VISIBLE
-                }
+                handleUILogListOverflow(view)
             } else {
                 Log.d(
                     "MainFragment",
                     "ERROR: Received empty list of activities."
                 )
+            }
+        }
+    }
+
+    // Reveal arrow UI if uiLog list overflows
+    private fun handleUILogListOverflow(view: View) {
+        if (uiLogs.size > 4) {
+            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+            arrow.visibility = VISIBLE
+            setRecyclerViewScroll(view, true)
+        } else {
+            setRecyclerViewScroll(view, false)
+        }
+    }
+
+    private fun setRecyclerViewScroll(view: View, flag: Boolean) {
+        val uiLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
+        uiLogRecyclerView.layoutManager = object : LinearLayoutManager(view.context) {
+            override fun canScrollVertically(): Boolean {
+                return flag
             }
         }
     }
