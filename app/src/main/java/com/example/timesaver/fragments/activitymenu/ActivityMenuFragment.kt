@@ -101,7 +101,6 @@ class ActivityMenuFragment : Fragment() {
                     true
                 }
                 R.id.open -> {
-                    //val bundle = bundleOf("activityIndex" to position)
                     val bundle = Bundle().apply {
                         putParcelable("activity", activity)
                     }
@@ -144,9 +143,10 @@ class ActivityMenuFragment : Fragment() {
                 if (newActivityName.isNotEmpty() && notDuplicate) {
                     addActivity(newActivityName)
                     dialog.dismiss()
-                } else {
+                } else if (!notDuplicate) {
                     Toast.makeText(requireContext(), "\'$newActivityName\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
-                    //input.text.clear()
+                } else {
+                    Toast.makeText(requireContext(), "Please enter a new activity name.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -180,9 +180,11 @@ class ActivityMenuFragment : Fragment() {
                 if (newActivityName.isNotEmpty() && notDuplicate) {
                     updateActivity(newActivityName, oldActivity)
                     dialog.dismiss()
-                } else {
+                } else if (!notDuplicate) {
                     Toast.makeText(requireContext(), "\'$newActivityName\' already exists. Please try again.", Toast.LENGTH_SHORT).show()
                     input.text.clear()
+                } else {
+                    Toast.makeText(requireContext(), "Please enter a new activity name.", Toast.LENGTH_SHORT).show()
                 }
             }
         }

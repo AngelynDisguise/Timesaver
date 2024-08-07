@@ -75,7 +75,7 @@ class ActivityFragment : Fragment() {
         } ?: let {
             Log.e(
                 "ActivityFragment",
-                "Got nothing :("
+                "Expected an Activity from ActivityMenuFragment bundle but got nothing :("
             )
         }
 

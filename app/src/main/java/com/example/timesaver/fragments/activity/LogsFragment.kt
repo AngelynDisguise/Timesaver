@@ -68,14 +68,14 @@ class LogsFragment : Fragment() {
                 } ?: let {
                     Log.e(
                         "LogsFragment",
-                        "Got nothing :("
+                        "Expected the ActivityTimelog from database but got nothing :("
                     )
                 }
             }
         } ?: let {
             Log.d(
                 "LogsFragment",
-                "got nothing :("
+                "Expected an activity id from ActivityFragment bundle but got nothing :("
             )
         }
     }
