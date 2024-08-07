@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
+import com.example.timesaver.database.Timelog
 
 class LogsFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var adapter: TimelogListAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,21 +34,29 @@ class LogsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textView: TextView = view.findViewById(R.id.logs_text_view)
         val i: Long? = arguments?.getLong("activityId")
         i?.let {
             Log.d(
                 "LogsFragment",
                 "got id = $i"
             )
+            adapter = TimelogListAdapter()
+            val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
+            recyclerView.adapter = adapter
+
             viewModel.getActivityTimelog(i)
-            viewModel.currentActivityTimelog.observe(viewLifecycleOwner) {
+
+            viewModel.currentActivityTimelog.observe(viewLifecycleOwner) { act ->
                 Log.d(
                     "LogsFragment",
-                    "got activity = $it"
+                    "got activity = $act"
                 )
-                val text = "Timelog for Activity: ${it.activity.activityName}"
-                textView.text = text
+
+                val sortedTimelogs = act.timelogs
+                    .sortedWith(compareByDescending<Timelog> { it.date }
+                    .thenByDescending { it.startTime })
+                    .toList()
+                adapter.submitList(sortedTimelogs)
             }
         } ?: let {
             Log.d(

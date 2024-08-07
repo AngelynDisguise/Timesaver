@@ -11,32 +11,42 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:gravity="center">
+
         <TextView
-            android:id="@+id/activity_menu_activity_text_view"
+            android:id="@+id/timelog_date_text_view"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="15dp"
+            android:paddingStart="25dp"
+            android:text="Date"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/timelog_time_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="50dp"
-            android:layout_weight="1"
-            android:text="Activity"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:layout_weight="2"
+            android:paddingVertical="15dp"
+            android:paddingStart="25dp"
+            android:text="Time"
+            android:textSize="15sp"/>
 
         <ImageView
-            android:id="@+id/options_icon"
+            android:id="@+id/timelog_options_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
-            android:paddingEnd="25dp"
-            android:scaleX="2"
-            android:scaleY="2"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="25dp"
             android:contentDescription="more options icon"
             android:src="@drawable/more_options_horizontal"
             app:tint="?android:attr/textColorPrimary"/>
     </LinearLayout>
 
     <View
-        android:id="@+id/bottom_divider"
+        android:id="@+id/timelog_bottom_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/textColorPrimary"/>
