@@ -24,8 +24,6 @@ import com.google.android.material.snackbar.Snackbar
 
 class ActivityMenuFragment : Fragment() {
 
-    private val navController by lazy { findNavController() }
-
     private lateinit var adapter: ActivityListAdapter
     private lateinit var viewModel: MainViewModel
 
@@ -107,10 +105,10 @@ class ActivityMenuFragment : Fragment() {
 
                     Log.d(
                         "ActivityMenuFragment",
-                        "Sending bundle: $bundle"
+                        "Sending bundle to ActivityFragment: $bundle"
                     )
 
-                    navController.navigate(R.id.action_activity_menu_fragment_to_activity_fragment, bundle)
+                    findNavController().navigate(R.id.action_activity_menu_fragment_to_activity_fragment, bundle)
                     true
                 }
                 else -> false

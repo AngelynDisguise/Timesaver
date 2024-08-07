@@ -9,13 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.R
 import com.example.timesaver.database.Timelog
 import java.time.Duration
+import java.time.format.DateTimeFormatter
 
 class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(TimelogDiffCallback()) {
 
+    private var dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy") // default
+    private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm a") // default
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dateTextView: TextView = view.findViewById(R.id.timelog_date_text_view)
-        val timeTextView: TextView = view.findViewById(R.id.timelog_time_text_view)
+        val totalTimeTextView: TextView = view.findViewById(R.id.timelog_total_time_text_view)
+        val startTimeTextView: TextView = view.findViewById(R.id.timelog_start_time_text_view)
+        val endTimeTextView: TextView = view.findViewById(R.id.timelog_end_time_text_view)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -26,8 +31,10 @@ class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(Ti
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val timelog: Timelog = getItem(position)
-        viewHolder.dateTextView.text = timelog.date.toString()
-        viewHolder.timeTextView.text = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
+        viewHolder.dateTextView.text = timelog.date.format(dateFormat)
+        viewHolder.startTimeTextView.text = timelog.startTime.format(timeFormat)
+        viewHolder.endTimeTextView.text = timelog.endTime.format(timeFormat)
+        viewHolder.totalTimeTextView.text = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
     }
 
     private fun formatDuration(duration: Duration): String {
@@ -43,6 +50,14 @@ class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(Ti
         //if (duration == Duration.ZERO) parts.add("---") // should not save if no time elapsed
 
         return parts.joinToString(", ")
+    }
+
+    fun setDateFormat(pattern: String){
+        dateFormat = DateTimeFormatter.ofPattern(pattern)
+    }
+
+    fun setTimeFormat(pattern: String){
+        timeFormat = DateTimeFormatter.ofPattern(pattern)
     }
 
 }
