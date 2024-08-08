@@ -30,7 +30,7 @@
             android:id="@+id/timelog_date_header_text_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.2"
+            android:layout_weight="2.3"
             android:gravity="center"
             android:padding="12dp"
             android:text="Date"
@@ -70,9 +70,23 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
 
-        <Space
-            android:layout_width="42dp"
-            android:layout_height="match_parent"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/timelog_sort_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleX="2.3"
+                android:scaleY="2.3"
+                android:padding="12dp"
+                android:layout_marginRight="5dp"
+                android:contentDescription="sort icon"
+                android:src="@drawable/ascending_order_icon"
+                app:tint="?android:attr/textColorPrimary"/>
+        </FrameLayout>
     </LinearLayout>
 
     <View

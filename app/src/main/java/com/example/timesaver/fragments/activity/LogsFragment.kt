@@ -78,6 +78,21 @@ class LogsFragment : Fragment() {
                 "Expected an activity id from ActivityFragment bundle but got nothing :("
             )
         }
+
+        adapter.setOnClickTimelogListener { vh ->
+            // TODO(): Save input UI?
+            adapter.toggleChildRow(vh)
+        }
+
+        adapter.setOnClickDeleteListener { v, t ->
+            // TODO() Delete timelog
+        }
+
+        adapter.setOnClickConfirmListener { vh, t ->
+            // TODO() Update timelog
+            adapter.toggleChildRow(vh)
+        }
     }
+
 
 }

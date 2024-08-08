@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -17,7 +16,7 @@
             android:id="@+id/timelog_date_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.2"
+            android:layout_weight="2.3"
             android:gravity="center"
             android:padding="12dp"
             android:text="Date"
@@ -51,7 +50,7 @@
             android:gravity="center_vertical"
             android:padding="12dp"
             android:text="Total Time"
-            android:textSize="12sp" />
+            android:textSize="11sp"/>
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -65,6 +64,7 @@
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:padding="12dp"
+                android:layout_marginRight="5dp"
                 android:contentDescription="cancel icon"
                 android:src="@drawable/delete_icon"/>
         </FrameLayout>
@@ -82,9 +82,12 @@
             android:id="@+id/timelog_date_edit_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2.2"
+            android:layout_weight="2.3"
             android:gravity="center_vertical"
-            android:padding="12dp"
+            android:paddingHorizontal="12dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="2dp"
             android:hint="mm:dd:yyyy"
             android:inputType="date"
             android:textSize="12sp" />
@@ -95,7 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_vertical"
-            android:padding="12dp"
+            android:paddingHorizontal="12dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="2dp"
             android:hint="HH:MM:SS"
             android:inputType="time"
             android:textSize="12sp" />
@@ -106,7 +112,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_vertical"
-            android:padding="12dp"
+            android:paddingHorizontal="12dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="2dp"
             android:hint="HH:MM:SS"
             android:inputType="time"
             android:textSize="12sp" />
@@ -117,7 +126,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="2.5"
             android:gravity="center_vertical"
-            android:padding="12dp"
+            android:paddingHorizontal="12dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="2dp"
             android:hint="HH:MM:SS"
             android:inputType="time"
             android:textSize="12sp" />
@@ -130,9 +142,10 @@
                 android:id="@+id/timelog_confirm_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
+                android:layout_marginTop="-8dp"
+                android:layout_marginRight="5dp"
                 android:padding="12dp"
                 android:contentDescription="confirm icon"
                 android:src="@drawable/confirm_icon"/>
