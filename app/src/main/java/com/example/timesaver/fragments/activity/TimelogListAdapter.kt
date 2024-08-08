@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter
 class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(TimelogDiffCallback()) {
 
     private var dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy") // default
-    private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm a") // default
+    private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a") // default
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val dateTextView: TextView = view.findViewById(R.id.timelog_date_text_view)
