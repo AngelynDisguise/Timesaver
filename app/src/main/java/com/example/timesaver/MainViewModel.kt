@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     var activities: LiveData<List<Activity>> = MutableLiveData()
@@ -28,12 +29,17 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
 
     var currentActivityIndex = -1
-
     var currentActivityTimelog: LiveData<ActivityTimelog> = MutableLiveData()
 
-    // Settings
+    // MainFragment Settings
     var warnBeforeSwitch: Boolean = false
     var pauseBeforeStart: Boolean = false
+
+    // LogsFragment Settings
+    // TODO(): By today, daily, weekly, monthly?
+    var sortByNewest: Boolean = true
+    var dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
+    var timeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
     
     init {
         getActivities()
