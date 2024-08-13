@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.example.timesaver.CircularButtonView
+    <com.example.timesaver.util.CircularButtonView
         android:id="@+id/circular_button_view"
         android:layout_width="325dp"
         android:layout_height="325dp"

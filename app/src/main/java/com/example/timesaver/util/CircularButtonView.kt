@@ -1,4 +1,4 @@
-package com.example.timesaver
+package com.example.timesaver.util
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -16,6 +16,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
+import com.example.timesaver.R
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin

@@ -10,6 +10,7 @@ import com.example.timesaver.database.Activity
 import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
 import com.example.timesaver.database.TimesaverRepository
+import com.example.timesaver.util.Stopwatch
 import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
@@ -130,7 +131,7 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         }
     }
 
-    fun saveNewTimelog(timeLog: Timelog) {
+    fun addTimelog(timeLog: Timelog) {
         viewModelScope.launch {
             repository.insertTimeLog(timeLog)
         }

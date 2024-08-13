@@ -1,6 +1,5 @@
-package com.example.timesaver
+package com.example.timesaver.util
 
-import android.util.Log
 import kotlinx.coroutines.*
 import java.time.Duration
 import java.time.LocalTime

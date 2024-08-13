@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ui_log_item_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,19 +20,11 @@
         android:maxLines="1"
         android:layout_marginEnd="8dp" />
 
-    <FrameLayout
-        android:id="@+id/ui_log_bar_container"
+    <com.example.timesaver.util.TimelogBarView
+        android:id="@+id/ui_log_timelog_bar"
         android:layout_width="0dp"
         android:layout_height="32dp"
-        android:layout_weight="1">
-
-        <View
-            android:id="@+id/ui_log_timelog_bar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:background="@color/red" />
-
-    </FrameLayout>
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/ui_log_timelog_text_view"

@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timesaver.CircularButtonView
+import com.example.timesaver.util.CircularButtonView
 import com.example.timesaver.MainActivity
 import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
@@ -53,7 +53,6 @@ class MainFragment : Fragment() {
 
     // Note: There will always be at least 1 activity
     private lateinit var activities: List<Activity>
-    private val uiLogs: MutableMap<Long, UILog> = mutableMapOf()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -105,47 +104,9 @@ class MainFragment : Fragment() {
                     "Received ${acts.size} activities from LiveData: $acts\nReceived ${logs.size} timelogs from LiveData: $logs\n..."
                 )
 
-                // Populate mapping for UIlogs
-                for (i in acts.indices) {
-                    val a: Activity = acts[i]
-                    val t: List<Timelog> = logs.filter { it.activityId == a.activityId }
+                val uiLogs: List<UILog> = mapToUILogs(acts, logs)
+                updateListUI(uiLogs, view)
 
-                    // Add UIlog using timelogs dated for today
-                    if (t.isNotEmpty()) {
-
-                        val timeElapsed: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
-                        val totalTimeElapsed: Duration = timeElapsed.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
-
-                        uiLogs[a.activityId] = UILog(
-                            id = a.activityId,
-                            activityName = a.activityName,
-                            totalTime = totalTimeElapsed,
-                            color = circularButton.getSectionColor(i)
-                        )
-                    } else {
-                        Log.d(
-                            "MainFragment",
-                            "No timelogs for activity $i: ${a.activityName}\n..."
-                        )
-                    }
-                }
-
-                if (uiLogs.isNotEmpty()) {
-                    Log.i(
-                        "MainFragment",
-                        "Updated UI time logs of size ${uiLogs.size}: $uiLogs\n..."
-                    )
-                } else {
-                    Log.w(
-                        "MainFragment",
-                        "uiLogs is empty - no activities have timelogs for today\n..."
-                    )
-                }
-
-                // Update list UI
-                adapter.submitList(uiLogs.values.toList())
-
-                handleUILogListOverflow(view)
             } else {
                 Log.d(
                     "MainFragment",
@@ -155,20 +116,102 @@ class MainFragment : Fragment() {
         }
     }
 
-    // Reveal arrow UI if uiLog list overflows
-    private fun handleUILogListOverflow(view: View) {
-        if (uiLogs.size > 4) {
-            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
-            arrow.visibility = VISIBLE
-            setRecyclerViewScroll(view, true)
+    private fun mapToUILogs(acts: List<Activity>, logs: List<Timelog>): List<UILog> {
+        val uiLogs: MutableMap<Long, UILog> = mutableMapOf()
+
+        // Populate mapping for UIlogs
+        for (i in acts.indices) {
+            val a: Activity = acts[i]
+            val t: List<Timelog> = logs.filter { it.activityId == a.activityId }
+
+            // Add UIlog using timelogs dated for today
+            if (t.isNotEmpty()) {
+
+                val timeElapsed: List<Duration> = t.map { Duration.between(it.startTime, it.endTime) }
+                val totalTimeElapsed: Duration = timeElapsed.fold(Duration.ZERO) { acc, time -> acc.plus(time) } // sumOf doesn't work :/
+
+                uiLogs[a.activityId] = UILog(
+                    id = a.activityId,
+                    activityName = a.activityName,
+                    totalTime = totalTimeElapsed,
+                    color = circularButton.getSectionColor(i)
+                )
+            } else {
+                Log.d(
+                    "MainFragment",
+                    "No timelogs for activity $i: ${a.activityName}\n..."
+                )
+            }
+        }
+
+        if (uiLogs.isNotEmpty()) {
+            Log.i(
+                "MainFragment",
+                "Updated UI time logs of size ${uiLogs.size}: ${uiLogs.map { it.value.activityName }}\n..."
+            )
         } else {
-            setRecyclerViewScroll(view, false)
+            Log.w(
+                "MainFragment",
+                "uiLogs is empty - no activities have timelogs for today\n..."
+            )
+        }
+
+        return uiLogs.values.toList()
+    }
+
+    private fun updateListUI(logs: List<UILog>, view: View) {
+        val oldMaxDuration = adapter.maxDuration
+        adapter.maxDuration = updateMaxDuration(logs)
+
+        // Update list UI with logs
+        adapter.submitList(logs) {
+            // Adjust all UILog bar ratios if max duration changed
+            if (oldMaxDuration != adapter.maxDuration) {
+                adapter.notifyItemRangeChanged(0, adapter.itemCount)
+                Log.d(
+                    "UILogListAdapter",
+                    "Detected that the max duration changed. Updating all UILog bar ratios."
+                )
+            }
+
+            handleOverflowingList(logs.size, view)
         }
     }
 
-    private fun setRecyclerViewScroll(view: View, flag: Boolean) {
-        val uiLogRecyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
-        uiLogRecyclerView.layoutManager = object : LinearLayoutManager(view.context) {
+    private fun updateMaxDuration(logs: List<UILog>): Duration {
+        Log.d(
+            "MainFragment",
+            "Updating Max duration..."
+        )
+        val maxDuration = logs.maxOfOrNull { it.totalTime } ?: Duration.ofMinutes(30)
+            .coerceAtLeast(Duration.ofMinutes(30))
+        Log.d(
+            "UILogListAdapter",
+            "Max duration is: $maxDuration"
+        )
+        return maxDuration
+    }
+
+    private fun handleOverflowingList(size: Int, view: View) {
+        val recyclerView: RecyclerView = view.findViewById(R.id.ui_log_recycler_view)
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        recyclerView.post {
+            Log.d(
+                "MainFragment",
+                "Last visible item: ${layoutManager.findLastCompletelyVisibleItemPosition()}"
+            )
+
+            // Reveal arrow and enable scrolling if overflowing
+            val isOverflowing: Boolean = size > layoutManager.findLastCompletelyVisibleItemPosition() + 1
+            val arrow = view.findViewById<ImageView>(R.id.arrow_down_image_view)
+            setRecyclerViewScroll(recyclerView, view, isOverflowing)
+            arrow.visibility = if (isOverflowing) VISIBLE else INVISIBLE
+        }
+    }
+
+
+    private fun setRecyclerViewScroll(recyclerView: RecyclerView, view: View, flag: Boolean) {
+        recyclerView.layoutManager = object : LinearLayoutManager(view.context) {
             override fun canScrollVertically(): Boolean {
                 return flag
             }
@@ -193,7 +236,7 @@ class MainFragment : Fragment() {
         uiLogRecyclerView.adapter = adapter
 
         // Navigate to Activity screen if long clicked
-        adapter.setOnLongClickListener { _, id ->
+        adapter.setOnClickListener { _, id ->
             val bundle = Bundle().apply {
                 putParcelable("activity", activities.find { it.activityId == id })
             }
@@ -212,14 +255,6 @@ class MainFragment : Fragment() {
         if (viewModel.stopwatchIsRunning() && viewModel.buttonIsSelected()) {
             circularButton.changeToPauseButton()
             circularButton.rollbackTouch(viewModel.currentActivityIndex)
-        }
-        checkListOverflow()
-    }
-
-    private fun checkListOverflow() {
-        // Reveal arrow if timelog list overflows (seems like max is 4 for now)
-        if (uiLogs.size > 4) {
-            arrowImageView.visibility = VISIBLE
         }
     }
 
@@ -243,12 +278,9 @@ class MainFragment : Fragment() {
         // Start/Resume/Pause the time for the current activity
         if(viewModel.buttonIsSelected()) {
             if (circularButton.isPlaying()) {
-                Toast.makeText(requireContext(), "Stopwatch Paused", Toast.LENGTH_SHORT).show()
                 viewModel.pauseStopwatch()
                 circularButton.changeToPlayButton()
             } else {
-                val playState: String = if (viewModel.timeHasElapsed()) "Resumed" else "Started"
-                Toast.makeText(requireContext(), "Stopwatch $playState", Toast.LENGTH_SHORT).show()
                 viewModel.startStopwatch()
                 circularButton.changeToPauseButton()
             }
@@ -259,10 +291,6 @@ class MainFragment : Fragment() {
 
     private val onClickActivity = { selectedIndex: Int ->
         val selectedDifferentButton = viewModel.buttonIsSelected()
-//        Log.d(
-//            "MainFragment",
-//            "Previous selection: $viewModel.currentActivityIndex (${if (selectedDifferentButton) activities[viewModel.currentActivityIndex].activityName else "none"}), Current selection: $selectedIndex (${activities[selectedIndex].activityName})"
-//        )
 
         // A different button was selected
         if (selectedIndex != viewModel.currentActivityIndex) {
@@ -283,29 +311,8 @@ class MainFragment : Fragment() {
                 3) Selected and no time passed
                  */
                 startActivity(selectedIndex)
-
-                // Case 3
-                if (selectedDifferentButton) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Switched to Activity \"${activities[selectedIndex].activityName}\"",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    // Case 1 and 2
-                    Toast.makeText(
-                        requireContext(),
-                        "Selected Activity \"${activities[selectedIndex].activityName}\"",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
         } else { // Same button was selected - unselecting button
-            Toast.makeText(
-                requireContext(),
-                "Activity \"${activities[selectedIndex].activityName}\" unselected",
-                Toast.LENGTH_SHORT
-            ).show()
 
             // Unselected and time has elapsed
             if (viewModel.timeHasElapsed()) {
@@ -388,50 +395,20 @@ class MainFragment : Fragment() {
                 "...\nSaving new Timelog for Activity \"${activities[i].activityName}\"..."
             )
 
-            val id = activities[i].activityId
-            val endTime: LocalTime = LocalTime.now()
-
-
             val newTimelog = Timelog(
                 timelogId = 0, // auto-generated
-                activityId = id,
+                activityId = activities[i].activityId,
                 date = LocalDate.now(),
                 startTime = viewModel.getStartTime(),
-                endTime = endTime
+                endTime = LocalTime.now()
             )
 
             // Save to database
-            if (id in uiLogs) {
-                Log.d(
-                    "MainFragment",
-                    "Updating existing time log..."
-                )
-                viewModel.updateTimelog(newTimelog)
-            } else {
-                Log.d(
-                    "MainFragment",
-                    "Inserting new time log..."
-                )
-                viewModel.saveNewTimelog(newTimelog)
-            }
-
-            val timeElapsed: Duration = viewModel.stopStopwatch() + (uiLogs[id]?.totalTime ?: Duration.ZERO)
-
-            // Add or update timelog UI in map
-            uiLogs[id] = UILog(
-                id = id,
-                activityName = activities[i].activityName,
-                color = circularButton.getSectionColor(i),
-                totalTime = timeElapsed
-            )
-
-            // Update list UI
-            adapter.submitList(uiLogs.values.toList())
-            checkListOverflow()
+            viewModel.addTimelog(newTimelog)
 
             Log.i(
                 "MainFragment",
-                "Successfully saved Timelog for Activity \"${activities[i].activityName}\" to database! \nUpdated UI Logs (size: ${uiLogs.size}: $uiLogs\n..."
+                "Successfully saved Timelog for Activity \"${activities[i].activityName}\" to database!"
             )
         } else {
             Log.e(
