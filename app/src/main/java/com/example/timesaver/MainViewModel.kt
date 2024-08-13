@@ -69,6 +69,10 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
         }
     }
 
+    fun getTimelogsSync(activityId: Long): List<Timelog> {
+        return repository.getTimelogsForActivitySync(activityId)
+    }
+
     fun startStopwatch() {
         stopwatch.start(viewModelScope)
         updateElapsedTime()
@@ -134,6 +138,12 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     fun addTimelog(timeLog: Timelog) {
         viewModelScope.launch {
             repository.insertTimeLog(timeLog)
+        }
+    }
+
+    fun deleteTimelog(timelog: Timelog) {
+        viewModelScope.launch {
+            repository.deleteTimelog(timelog)
         }
     }
 

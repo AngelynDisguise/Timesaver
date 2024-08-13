@@ -38,7 +38,10 @@ data class Timelog(
     val date: LocalDate,
     val startTime: LocalTime,
     val endTime: LocalTime
-)
+) {
+    fun overlaps(other: Timelog): Boolean =
+        !(this.endTime <= other.startTime || this.startTime >= other.endTime)
+}
 
 // 1:N activity-timelog; An activity with all timelogs in history
 data class ActivityTimelog(

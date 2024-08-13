@@ -38,6 +38,14 @@ interface TimesaverDao {
     @Query("SELECT * FROM timelogs")
     fun getTimelogs(): LiveData<List<Timelog>>
 
+    /** Get all timelogs for a specific activity*/
+    @Query("SELECT * FROM timelogs where activityId = :activityId")
+    fun getTimelogsForActivity(activityId: Long): LiveData<List<Timelog>>
+
+    /** Get all timelogs for a specific activity*/
+    @Query("SELECT * FROM timelogs where activityId = :activityId")
+    fun getTimelogsForActivitySync(activityId: Long): List<Timelog>
+
     /** Get all timelogs on a specific date, sorted by the activityId
      */
     @Transaction

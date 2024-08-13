@@ -21,6 +21,10 @@ import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
 import com.example.timesaver.database.Activity
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class ActivityMenuFragment : Fragment() {
 
@@ -271,27 +275,31 @@ class ActivityMenuFragment : Fragment() {
     }
 
     private fun deleteActivity(view: View, activity: Activity) {
-        val oldList = adapter.currentList.toList() // copy
-        val newList = oldList.filter { it != activity }
-        adapter.submitList(newList)
-        viewModel.deleteActivity(activity)
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = async { viewModel.getTimelogsSync(activity.activityId) }
+            val timelogs = data.await()
 
-        Log.i(
-            "ActivityMenuFragment",
-            "Deleted Activity: ${activity.activityName}"
-        )
-
-        // Confirm and provide Undo option
-        Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
-            .setAction("UNDO") {
-                adapter.submitList(oldList)
-                viewModel.addActivity(activity)
-                Log.i(
-                    "ActivityMenuFragment",
-                    "Delete undone"
-                )
-            }
-            .show()
+            Log.d(
+                "ActivityMenuFragment",
+                "Got timelogs (${timelogs.size}) for activity ${activity.activityName}: ${timelogs.map { it.timelogId }}"
+            )
+            viewModel.deleteActivity(activity)
+            Log.i(
+                "ActivityMenuFragment",
+                "Deleted Activity: ${activity.activityName}"
+            )
+            // Confirm and provide Undo option
+            Snackbar.make(view, "${activity.activityName} deleted", Snackbar.LENGTH_LONG)
+                .setAction("UNDO") {
+                    viewModel.addActivity(activity)
+                    for (t in timelogs) { viewModel.addTimelog(t) }
+                    Log.i(
+                        "ActivityMenuFragment",
+                        "Delete undone. Added back timelogs (${timelogs.size}) for activity ${activity.activityName}: ${timelogs.map { it.timelogId }}"
+                    )
+                }
+                .show()
+        }
     }
 
     /* Debug stuff */
