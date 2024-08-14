@@ -4,58 +4,65 @@ import androidx.lifecycle.LiveData
 import java.time.LocalDate
 
 class TimesaverRepository(private val dao: TimesaverDao) {
+
+    /** @see [TimesaverDao.insertActivity] */
     suspend fun insertActivity(activity: Activity) {
         dao.insertActivity(activity)
     }
 
+    /** @see [TimesaverDao.insertTimelog] */
     suspend fun insertTimeLog(log: Timelog) {
         dao.insertTimelog(log)
     }
 
+    /** @see [TimesaverDao.updateActivity] */
     suspend fun updateActivity(activity: Activity) {
         dao.updateActivity(activity)
     }
 
+    /** @see [TimesaverDao.updateTimelog] */
     suspend fun updateTimeLog(log: Timelog) {
         dao.updateTimelog(log)
     }
 
-    suspend fun deleteTimelog(timelog: Timelog) {
-        dao.deleteTimelog(timelog)
-    }
-
+    /** @see [TimesaverDao.deleteActivity] */
     suspend fun deleteActivity(activity: Activity) {
         dao.deleteActivity(activity)
     }
 
-    fun getActivities(): LiveData<List<Activity>> {
-        return dao.getActivities()
+    /** @see [TimesaverDao.deleteTimelog] */
+    suspend fun deleteTimelog(timelog: Timelog) {
+        dao.deleteTimelog(timelog)
     }
 
-    fun getTimelogsForActivity(activityId: Long): LiveData<List<Timelog>> {
+    /** @see [TimesaverDao.getActivitiesLive] */
+    fun getActivitiesLive(): LiveData<List<Activity>> {
+        return dao.getActivitiesLive()
+    }
+
+    /** @see [TimesaverDao.getTimelogsOnDateLive] */
+    fun getTimelogsOnDateLive(date: LocalDate): LiveData<List<Timelog>> {
+        return dao.getTimelogsOnDateLive(date)
+    }
+
+    /** @see [TimesaverDao.getTimelogsForActivity] */
+    fun getTimelogsForActivity(activityId: Long): List<Timelog> {
         return dao.getTimelogsForActivity(activityId)
     }
-    fun getTimelogsForActivitySync(activityId: Long): List<Timelog> {
-        return dao.getTimelogsForActivitySync(activityId)
+
+    /** @see [TimesaverDao.getTimelogsNewestFirst] */
+    fun getTimelogsForActivityNewestFirst(activityId: Long): List<Timelog> {
+        return getTimelogsForActivityNewestFirst(activityId)
     }
 
-    fun getTimelogsOnDate(date: LocalDate): LiveData<List<Timelog>> {
-        return dao.getTimelogsOnDate(date)
+    /** @see [TimesaverDao.getTimelogsOldestFirst] */
+    fun getTimelogsForActivityOldestFirst(activityId: Long): List<Timelog> {
+        return dao.getTimelogsForActivityOldestFirst(activityId)
     }
 
-    fun getActivityTimelog(activityId: Long): LiveData<ActivityTimelog> {
-        return dao.getActivityTimelog(activityId)
+    /** @see [TimesaverDao.getActivityTimelogLive] */
+    fun getActivityTimelogLive(activityId: Long): LiveData<ActivityTimelog> {
+        return dao.getActivityTimelogLive(activityId)
     }
 
-    fun getAllActivityTimeLogs(): LiveData<List<ActivityTimelog>> {
-        return dao.getAllActivityTimelogs()
-    }
-
-    fun getTotalActivityTime(activityId: Long): Long {
-        return dao.getTotalActivityTime(activityId)
-    }
-
-    fun getTotalActivityTimeOnDate(activityId: Long, date: LocalDate): Long {
-        return dao.getTotalActivityTimeOnDate(activityId, date)
-    }
 }

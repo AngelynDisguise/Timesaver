@@ -43,7 +43,7 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     
     init {
         getActivities()
-        getTodaysLogs()
+        getTodaysTimelogs()
 
         _combinedData.addSource(todaysLogs) { logs ->
             activities.value?.let { acts ->
@@ -59,24 +59,24 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
 
     private fun getActivities() {
         viewModelScope.launch {
-            activities = repository.getActivities()
+            activities = repository.getActivitiesLive()
         }
     }
 
-    private fun getTodaysLogs() {
+    private fun getTodaysTimelogs() {
         viewModelScope.launch {
-            todaysLogs = repository.getTimelogsOnDate(LocalDate.now())
+            todaysLogs = repository.getTimelogsOnDateLive(LocalDate.now())
         }
     }
 
     fun getActivityTimelog(activityId: Long) {
         viewModelScope.launch {
-            currentActivityTimelog = repository.getActivityTimelog(activityId)
+            currentActivityTimelog = repository.getActivityTimelogLive(activityId)
         }
     }
 
-    fun getTimelogsSync(activityId: Long): List<Timelog> {
-        return repository.getTimelogsForActivitySync(activityId)
+    fun getTimelogsForActivity(activityId: Long): List<Timelog> {
+        return repository.getTimelogsForActivity(activityId)
     }
 
     fun startStopwatch() {

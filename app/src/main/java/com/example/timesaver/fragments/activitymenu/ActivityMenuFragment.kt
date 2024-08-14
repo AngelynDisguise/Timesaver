@@ -276,7 +276,7 @@ class ActivityMenuFragment : Fragment() {
 
     private fun deleteActivity(view: View, activity: Activity) {
         CoroutineScope(Dispatchers.IO).launch {
-            val data = async { viewModel.getTimelogsSync(activity.activityId) }
+            val data = async { viewModel.getTimelogsForActivity(activity.activityId) }
             val timelogs = data.await()
 
             Log.d(

@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.activity
+package com.example.timesaver.fragments.activity.logs
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

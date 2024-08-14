@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.activity
+package com.example.timesaver.fragments.activity.logs
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.timesaver.database.Timelog

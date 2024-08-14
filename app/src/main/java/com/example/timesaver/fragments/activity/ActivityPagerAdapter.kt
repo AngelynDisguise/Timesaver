@@ -4,6 +4,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.timesaver.fragments.activity.logs.LogsFragment
 
 class ActivityPagerAdapter(
     fragmentActivity: FragmentActivity,

@@ -12,6 +12,9 @@ import java.time.LocalDate
 
 @Dao
 interface TimesaverDao {
+
+    /* INSERT, UPDATE, DELETE **/
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertActivity(activity: Activity)
 
@@ -30,57 +33,134 @@ interface TimesaverDao {
     @Delete
     suspend fun deleteTimelog(timelog: Timelog)
 
-    /** Get all activities */
+    /* END OF INSERT, UPDATE, DELETE **/
+
+
+
+    /* QUERIES FOR ACTIVITIES **/
+
+    /** Get all activities.
+     *
+     * Used in: `MainFragment`, `ActivityMenuFragment`
+     * @return an observable `LiveData` object containing the resulting list of activities
+     * */
     @Query("SELECT * FROM activities")
-    fun getActivities(): LiveData<List<Activity>>
+    fun getActivitiesLive(): LiveData<List<Activity>>
 
-    /** Get all timelogs */
+    /* END OF QUERIES FOR ACTIVITIES */
+
+
+
+    /* QUERIES FOR TIMELOGS */
+
+    /** Get all timelogs.
+     *
+     * @return an observable `LiveData` object containing the resulting list of activities
+     * */
     @Query("SELECT * FROM timelogs")
-    fun getTimelogs(): LiveData<List<Timelog>>
+    fun getTimelogsLive(): LiveData<List<Timelog>>
 
-    /** Get all timelogs for a specific activity*/
-    @Query("SELECT * FROM timelogs where activityId = :activityId")
-    fun getTimelogsForActivity(activityId: Long): LiveData<List<Timelog>>
 
-    /** Get all timelogs for a specific activity*/
-    @Query("SELECT * FROM timelogs where activityId = :activityId")
-    fun getTimelogsForActivitySync(activityId: Long): List<Timelog>
-
-    /** Get all timelogs on a specific date, sorted by the activityId
-     */
+    /** Get all timelogs on a specific date, ordered by activityId.
+     *
+     * Used in: `MainFragment`
+     * @param date the date for a timelog
+     * @return an observable `LiveData` object containing the resulting list of timelogs
+     * */
     @Transaction
     @Query("""
         SELECT *
         FROM timelogs
         WHERE date = :date
-        ORDER BY activityId, startTime ASC
+        ORDER BY activityId
         """)
-    fun getTimelogsOnDate(date: LocalDate): LiveData<List<Timelog>>
+    fun getTimelogsOnDateLive(date: LocalDate): LiveData<List<Timelog>>
 
-    /** Get an activity with their list of timelogs */
+
+    /** Get all timelogs for a specific activity.
+     *
+     * @param activityId the activity
+     * @return an observable `LiveData` object containing the resulting list of timelogs
+     * */
+    @Query("""
+        SELECT * 
+        FROM timelogs 
+        WHERE activityId = :activityId
+        """)
+    fun getTimelogsForActivityLive(activityId: Long): LiveData<List<Timelog>>
+
+
+    /** Get all timelogs for a specific activity.
+     *
+     * Used in: `ActivityMenuFragment`
+     * @param activityId the activity
+     * @return an observable `LiveData` object containing the resulting list of timelogs
+     * */
+    @Query("""
+        SELECT * 
+        FROM timelogs 
+        WHERE activityId = :activityId
+        """)
+    fun getTimelogsForActivity(activityId: Long): List<Timelog>
+
+
+    /** Get all timelogs for a specific activity, sorted by newest-oldest dates and times.
+     *
+     * Used in: `LogsFragment`
+     * @param activityId the activity
+     * @return the resulting list of timelogs
+     * */
+    @Query("""
+        SELECT * 
+        FROM timelogs 
+        WHERE activityId = :activityId
+        ORDER BY date DESC, startTime DESC
+        """)
+    fun getTimelogsForActivityNewestFirst(activityId: Long): List<Timelog>
+
+
+    /** Get all timelogs for a specific activity, sorted by newest-oldest dates and times
+     *
+     * Used in: `LogsFragment`
+     * @param activityId the activity
+     * @return the resulting list of timelogs
+     * */
+    @Query("""
+        SELECT * 
+        FROM timelogs 
+        WHERE activityId = :activityId
+        ORDER BY date ASC, startTime ASC
+        """)
+    fun getTimelogsForActivityOldestFirst(activityId: Long): List<Timelog>
+
+    /* END OF QUERIES FOR TIMELOGS */
+
+
+
+    /* QUERIES FOR ACTIVITY-TIMELOG */
+
+    /** Get a specific activity with their list of timelogs
+     *
+     * (Deprecated) Used in: `LogsFragment`
+     * @param activityId the activity
+     * @return an observable `LiveData` object containing the ActivityTimelog
+     * */
     @Transaction
-    @Query("SELECT * FROM activities WHERE activityId = :activityId")
-    fun getActivityTimelog(activityId: Long): LiveData<ActivityTimelog>
+    @Query("""
+        SELECT * 
+        FROM activities 
+        WHERE activityId = :activityId
+        """)
+    fun getActivityTimelogLive(activityId: Long): LiveData<ActivityTimelog>
 
-    /** Get all activities with their list of timelogs */
+
+    /** Get all activities with their list of timelogs
+     *
+     * @return an observable `LiveData` object containing the ActivityTimelog
+     * */
     @Transaction
     @Query("SELECT * FROM activities")
-    fun getAllActivityTimelogs(): LiveData<List<ActivityTimelog>>
+    fun getAllActivityTimelogsLive(): LiveData<List<ActivityTimelog>>
 
-    /** Get total time elapsed for an activity in all history */
-    @Transaction
-    @Query("""SELECT SUM(strftime('%s', endTime) - strftime('%s', startTime))
-            FROM timelogs
-            WHERE activityId = :activityId
-            """)
-    fun getTotalActivityTime(activityId: Long): Long
-
-    /** Get total time elapsed for an activity on a specific date */
-    @Transaction
-    @Query("""SELECT SUM(strftime('%s', endTime) - strftime('%s', startTime))
-            FROM timelogs
-            WHERE activityId = :activityId AND date(startTime) = :date 
-            """)
-    fun getTotalActivityTimeOnDate(activityId: Long, date: LocalDate): Long
-
+    /* END OF QUERIES FOR ACTIVITY-TIMELOG */
 }
