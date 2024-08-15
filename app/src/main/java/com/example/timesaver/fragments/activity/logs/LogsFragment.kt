@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -149,46 +150,40 @@ class LogsFragment : Fragment() {
     ) {
         val startEditText: EditText = viewHolder.startTimeEditText
         val endEditText: EditText = viewHolder.endTimeEditText
-        var currStartTime: LocalTime = startTime
-        var currEndTime: LocalTime = endTime
+        val (currEditText, otherEditText) = if (isStart) (startEditText to endEditText) else (endEditText to startEditText)
+
+        fun parseTime(text: Editable): LocalTime = viewModel.timeFormatter.parse(text, LocalTime::from)
+        fun showInvalidTimeToast(message: String) {
+            Toast.makeText(requireContext(), "$message Try again.", Toast.LENGTH_LONG).show()
+            startEditText.text.clear()
+            endEditText.text.clear()
+        }
 
         // Open Time picker
         TimePickerDialog(
             requireContext(),
             { _, hourOfDay, minute ->
-                // Take new time and put it on the edit text
-                val time: LocalTime = LocalTime.of(hourOfDay, minute)
-                val currEditText: EditText = if (isStart) startEditText else endEditText
-                currEditText.setText(time.format(viewModel.timeFormatter))
+                // Take new time and put it on the selected edit text
+                val newTime: LocalTime = LocalTime.of(hourOfDay, minute)
+                currEditText.setText(newTime.format(viewModel.timeFormatter))
 
-                // Update start and time values for comparison
-                if (isStart) {
-                    currStartTime = time // start was changed
-                    if (endEditText.text.isNotEmpty()) { // both start and end are changed
-                        currEndTime = viewModel.timeFormatter.parse(endEditText.text, LocalTime::from)
-                    }
-                } else {
-                    currEndTime = time // end was changed
-                    if (startEditText.text.isNotEmpty()) { // both start and end are changed
-                        currStartTime = viewModel.timeFormatter.parse(startEditText.text, LocalTime::from)
-                    }
+                // Get both start and end times for validation
+                val (newStartTime, newEndTime) = when {
+                    isStart && otherEditText.text.isEmpty() -> newTime to endTime
+                    isStart -> newTime to parseTime(otherEditText.text)
+                    otherEditText.text.isEmpty() -> startTime to newTime
+                    else -> parseTime(otherEditText.text) to newTime
                 }
 
-                // Validate time range and reject if invalid
-                if (isStart && currStartTime.isAfter(currEndTime)) {
-                    Toast.makeText(requireContext(), "Start time cannot be later than end time. Try again.", Toast.LENGTH_LONG).show()
-                    startEditText.text.clear()
-                    endEditText.text.clear()
-                } else if (!isStart && currEndTime.isBefore(currStartTime)) {
-                    Toast.makeText(requireContext(), "End time cannot be earlier than start time. Try again.", Toast.LENGTH_LONG).show()
-                    startEditText.text.clear()
-                    endEditText.text.clear()
-                } else { // VALID
-                    viewHolder.modifiedTotalTime.text = adapter.formatDuration(Duration.between(currStartTime, currEndTime))
-                    if (isStart && endEditText.text.isEmpty()) {
-                        endEditText.setText(endEditText.hint)
-                    } else if (!isStart && startEditText.text.isEmpty()) {
-                        startEditText.setText(startEditText.hint)
+                // Validate time range - reject if invalid
+                when {
+                    isStart && newStartTime.isAfter(newEndTime) -> showInvalidTimeToast("Start time cannot be later than end time.")
+                    !isStart && newEndTime.isBefore(newStartTime) -> showInvalidTimeToast("End time cannot be earlier than start time.")
+                    else -> let {
+                        viewHolder.modifiedTotalTime.text = adapter.formatDuration(Duration.between(startTime, endTime))
+                        if (otherEditText.text.isEmpty()) {
+                            otherEditText.setText(otherEditText.hint)
+                        }
                     }
                 }
             },
