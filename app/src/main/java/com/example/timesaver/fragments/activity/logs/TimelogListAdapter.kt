@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.R
 import com.example.timesaver.database.Timelog
@@ -18,7 +18,10 @@ import java.time.Duration
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(TimelogDiffCallback()) {
+class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHolder>(TimelogDiffCallback()) {
+
+    private var dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern(DateFormat.US.pattern) // default
+    private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern(TimeFormat.STANDARD_TIME.pattern) // default
 
     // Parent row clickables
     private var onClickTimelogListener: ((ViewHolder) -> Unit)? = null
@@ -29,9 +32,6 @@ class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(Ti
     private var onEditStartTimeListener: ((LocalTime, LocalTime, EditText, EditText) -> Unit)? = null
     private var onEditEndTimeListener: ((LocalTime, LocalTime, EditText, EditText) -> Unit)? = null
     private var onClickConfirmListener: ((ViewHolder, Timelog) -> Unit)? = null
-
-    private var dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy") // default
-    private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a") // default
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val parentRow: LinearLayout = view.findViewById(R.id.timelog_parent_row_layout)
@@ -60,34 +60,37 @@ class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(Ti
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val timelog: Timelog = getItem(position)
+        val timelog: Timelog? = getItem(position)
 
-        // Set up parent row
-        viewHolder.dateTextView.text = timelog.date.format(dateFormat)
-        viewHolder.startTimeTextView.text = timelog.startTime.format(timeFormat)
-        viewHolder.endTimeTextView.text = timelog.endTime.format(timeFormat)
-        viewHolder.totalTimeTextView.text = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
+        // Note: nullable if it's a placeholder, but this should never be true
+        timelog?.let {
+            // Set up parent row
+            viewHolder.dateTextView.text = timelog.date.format(dateFormat)
+            viewHolder.startTimeTextView.text = timelog.startTime.format(timeFormat)
+            viewHolder.endTimeTextView.text = timelog.endTime.format(timeFormat)
+            viewHolder.totalTimeTextView.text = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
 
-        // Set up parent clickables
-        viewHolder.parentRow.setOnClickListener {
-            onClickTimelogListener?.invoke(viewHolder)
-        }
-        viewHolder.deleteIcon.setOnClickListener {
-            onClickDeleteListener?.invoke(it, timelog)
-        }
+            // Set up parent clickables
+            viewHolder.parentRow.setOnClickListener {
+                onClickTimelogListener?.invoke(viewHolder)
+            }
+            viewHolder.deleteIcon.setOnClickListener {
+                onClickDeleteListener?.invoke(it, timelog)
+            }
 
-        // Set up child clickables
-        viewHolder.confirmIcon.setOnClickListener {
-            onClickConfirmListener?.invoke(viewHolder, timelog)
-        }
-        viewHolder.dateEditText.setOnClickListener {
-            onEditDateListener?.invoke(viewHolder.dateEditText)
-        }
-        viewHolder.startTimeEditText.setOnClickListener {
-            onEditStartTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
-        }
-        viewHolder.endTimeEditText.setOnClickListener {
-            onEditEndTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
+            // Set up child clickables
+            viewHolder.confirmIcon.setOnClickListener {
+                onClickConfirmListener?.invoke(viewHolder, timelog)
+            }
+            viewHolder.dateEditText.setOnClickListener {
+                onEditDateListener?.invoke(viewHolder.dateEditText)
+            }
+            viewHolder.startTimeEditText.setOnClickListener {
+                onEditStartTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
+            }
+            viewHolder.endTimeEditText.setOnClickListener {
+                onEditEndTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
+            }
         }
     }
 
@@ -147,12 +150,14 @@ class TimelogListAdapter: ListAdapter<Timelog, TimelogListAdapter.ViewHolder>(Ti
         }
     }
 
-    fun setDateFormat(pattern: String){
-        dateFormat = DateTimeFormatter.ofPattern(pattern)
+    fun setDateFormat(format: DateFormat){
+        dateFormat = DateTimeFormatter.ofPattern(format.pattern)
+        notifyDataSetChanged()
     }
 
-    fun setTimeFormat(pattern: String){
-        timeFormat = DateTimeFormatter.ofPattern(pattern)
+    fun setTimeFormat(format: TimeFormat){
+        timeFormat = DateTimeFormatter.ofPattern(format.pattern)
+        notifyDataSetChanged()
     }
 
     fun setOnClickTimelogListener(listener: (ViewHolder) -> Unit) {

@@ -59,8 +59,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.play.services.pal)
-    implementation(libs.androidx.junit.ktx)
 
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,7 +82,9 @@ dependencies {
 
     implementation(libs.guava) // fixed ClassNotFoundException for "com.google.common.util.concurrent.ListenableFuture"
 
-    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.room.paging)
+
 
 
 }

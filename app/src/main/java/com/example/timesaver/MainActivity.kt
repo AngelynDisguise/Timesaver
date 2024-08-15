@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     val viewModel by lazy {
         ViewModelProvider(
             this,
-            MainViewModelFactory(TimesaverRepository(dao))
+            ViewModelFactory(TimesaverRepository(dao))
         ) [MainViewModel::class.java]
     }
 

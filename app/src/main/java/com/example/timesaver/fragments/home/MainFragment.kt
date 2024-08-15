@@ -183,7 +183,7 @@ class MainFragment : Fragment() {
             "MainFragment",
             "Updating Max duration..."
         )
-        val maxDuration = logs.maxOfOrNull { it.totalTime } ?: Duration.ofMinutes(30)
+        val maxDuration = (logs.maxOfOrNull { it.totalTime } ?: Duration.ofMinutes(30))
             .coerceAtLeast(Duration.ofMinutes(30))
         Log.d(
             "UILogListAdapter",

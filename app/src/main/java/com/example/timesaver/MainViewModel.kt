@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.timesaver.database.Activity
-import com.example.timesaver.database.ActivityTimelog
 import com.example.timesaver.database.Timelog
 import com.example.timesaver.database.TimesaverRepository
 import com.example.timesaver.util.Stopwatch
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
-import java.time.format.DateTimeFormatter
 
 class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     var activities: LiveData<List<Activity>> = MutableLiveData()
@@ -29,17 +27,10 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val elapsedTime: LiveData<Duration> = _elapsedTime // read-only
 
     var currentActivityIndex = -1
-    var currentActivityTimelog: LiveData<ActivityTimelog> = MutableLiveData()
 
     // MainFragment Settings
     var warnBeforeSwitch: Boolean = false
     var pauseBeforeStart: Boolean = false
-
-    // LogsFragment Settings
-    // TODO(): By today, daily, weekly, monthly?
-    var sortByNewest: Boolean = true
-    var dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
-    var timeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a")
     
     init {
         getActivities()
@@ -66,12 +57,6 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private fun getTodaysTimelogs() {
         viewModelScope.launch {
             todaysLogs = repository.getTimelogsOnDateLive(LocalDate.now())
-        }
-    }
-
-    fun getActivityTimelog(activityId: Long) {
-        viewModelScope.launch {
-            currentActivityTimelog = repository.getActivityTimelogLive(activityId)
         }
     }
 
@@ -144,18 +129,6 @@ class MainViewModel(private val repository: TimesaverRepository) : ViewModel() {
     fun addTimelog(timeLog: Timelog) {
         viewModelScope.launch {
             repository.insertTimeLog(timeLog)
-        }
-    }
-
-    fun deleteTimelog(timelog: Timelog) {
-        viewModelScope.launch {
-            repository.deleteTimelog(timelog)
-        }
-    }
-
-    fun updateTimelog(timeLog: Timelog) {
-        viewModelScope.launch {
-            repository.updateTimeLog(timeLog)
         }
     }
 

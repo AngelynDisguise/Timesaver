@@ -1,6 +1,5 @@
 package com.example.timesaver.fragments.activity
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,20 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.timesaver.MainActivity
-import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
 import com.example.timesaver.database.Activity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ActivityFragment : Fragment() {
-
-    private lateinit var viewModel: MainViewModel
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        viewModel = (requireActivity() as MainActivity).viewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

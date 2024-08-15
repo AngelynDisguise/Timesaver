@@ -1,6 +1,7 @@
 package com.example.timesaver.database
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -9,6 +10,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import java.time.LocalDate
+import java.time.LocalTime
 
 @Dao
 interface TimesaverDao {
@@ -108,7 +110,7 @@ interface TimesaverDao {
      *
      * Used in: `LogsFragment`
      * @param activityId the activity
-     * @return the resulting list of timelogs
+     * @return a `PagingSource` object that streams the resulting timelogs as `PagingData` objects
      * */
     @Query("""
         SELECT * 
@@ -116,14 +118,14 @@ interface TimesaverDao {
         WHERE activityId = :activityId
         ORDER BY date DESC, startTime DESC
         """)
-    fun getTimelogsForActivityNewestFirst(activityId: Long): List<Timelog>
+    fun getTimelogsForActivityNewestFirst(activityId: Long): PagingSource<Int, Timelog>
 
 
     /** Get all timelogs for a specific activity, sorted by newest-oldest dates and times
      *
      * Used in: `LogsFragment`
      * @param activityId the activity
-     * @return the resulting list of timelogs
+     * @return a `PagingSource` object that streams the resulting timelogs as `PagingData` objects
      * */
     @Query("""
         SELECT * 
@@ -131,7 +133,34 @@ interface TimesaverDao {
         WHERE activityId = :activityId
         ORDER BY date ASC, startTime ASC
         """)
-    fun getTimelogsForActivityOldestFirst(activityId: Long): List<Timelog>
+    fun getTimelogsForActivityOldestFirst(activityId: Long): PagingSource<Int, Timelog>
+
+    /** Get all timelogs that overlap with a given timelog's info.
+     *
+     * Used in: `LogsFragment`
+     * @param activityId the activity that owns the timelog
+     * @param excludeId the given timelog to compare against
+     * @param date the date where timelogs should not overlap
+     * @param startTime the startTime of the given timelog
+     * @param endTime the endTime of the given timelog
+     * @return the resulting list of overlapping timelogs
+     */
+    @Query("""
+        SELECT * FROM timelogs 
+        WHERE activityId = :activityId
+        AND timelogId != :excludeId
+        AND date = :date
+        AND ((startTime < :endTime AND endTime > :startTime) 
+             OR (startTime >= :startTime AND startTime < :endTime)
+             OR (endTime > :startTime AND endTime <= :endTime))
+    """)
+    suspend fun getOverlappingTimelogs(
+        activityId: Long,
+        excludeId: Long,
+        date: LocalDate,
+        startTime: LocalTime,
+        endTime: LocalTime,
+    ): List<Timelog>
 
     /* END OF QUERIES FOR TIMELOGS */
 

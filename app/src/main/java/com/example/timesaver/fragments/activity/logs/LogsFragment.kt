@@ -2,7 +2,6 @@ package com.example.timesaver.fragments.activity.logs
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -14,26 +13,37 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.timesaver.MainActivity
-import com.example.timesaver.MainViewModel
 import com.example.timesaver.R
+import com.example.timesaver.ViewModelFactory
 import com.example.timesaver.database.Timelog
+import com.example.timesaver.database.TimesaverDatabase
+import com.example.timesaver.database.TimesaverRepository
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalTime
 import java.util.Locale
 
 class LogsFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private val dao by lazy { TimesaverDatabase.getDatabase(requireContext()).timesaverDao() }
+    private val viewModel by lazy {
+         ViewModelProvider(
+            this,
+            ViewModelFactory(
+                TimesaverRepository(dao)
+            )
+        ) [LogsViewModel::class.java]
+    }
+
     private lateinit var adapter: TimelogListAdapter
     private val calendar = Calendar.getInstance()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        viewModel = (requireActivity() as MainActivity).viewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,42 +55,33 @@ class LogsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set up adapter
+        adapter = TimelogListAdapter()
+        val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
+        recyclerView.adapter = adapter
+
         // Get activity id from bundle sent by ActivityFragment
         val activityId: Long? = arguments?.getLong("activityId")
-
         activityId?.let {
             Log.i(
                 "LogsFragment",
-                "Received Activity: $activity"
+                "Received Activity ID: $activityId"
             )
 
-            // Set up adapter
-            adapter = TimelogListAdapter()
-            val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
-            recyclerView.adapter = adapter
+            // Trigger the flow of paged timelogs from the database
+            viewModel.setActivityId(it)
 
-            // Get ActivityTimelog (activity with all timelogs in history) from database
-            viewModel.getActivityTimelog(activityId)
-
-            viewModel.currentActivityTimelog.observe(viewLifecycleOwner) { activityTimelog ->
-                activityTimelog?.let {
+            // Collect the paging data from the stream
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.timelogs.collectLatest { pagingData ->
+                    adapter.submitData(pagingData)
                     Log.i(
                         "LogsFragment",
-                        "Received ActivityTimelog: $activityTimelog"
-                    )
-
-                    // Sort timelogs by date and start time
-                    val sortedTimelogs: List<Timelog> = sortTimelogs(activityTimelog.timelogs, viewModel.sortByNewest)
-
-                    // Update adapter
-                    adapter.submitList(sortedTimelogs)
-                } ?: let {
-                    Log.e(
-                        "LogsFragment",
-                        "Expected the ActivityTimelog from database but got nothing :("
+                        "Received PagedData: $pagingData"
                     )
                 }
             }
+
         } ?: let {
             Log.d(
                 "LogsFragment",
@@ -91,14 +92,7 @@ class LogsFragment : Fragment() {
         // Change chronological order of timelogs list
         val sortButton: ImageView = view.findViewById(R.id.timelog_sort_icon)
         sortButton.setOnClickListener {
-            val newOrder = !viewModel.sortByNewest
-            viewModel.sortByNewest = newOrder
-            val sortedTimelogs: List<Timelog> = sortTimelogs(adapter.currentList, newOrder)
-            adapter.submitList(sortedTimelogs)
-            Log.d(
-                "LogsFragment",
-                "sortbyNewest: ${viewModel.sortByNewest}\n${sortedTimelogs}"
-            )
+            viewModel.toggleSortOrder()
         }
 
         // Drop down edit layout
@@ -113,8 +107,10 @@ class LogsFragment : Fragment() {
 
         // Save edit input if valid
         adapter.setOnClickConfirmListener { viewHolder, timelog ->
-            if (validateEditInput(viewHolder, timelog)) {
-                adapter.toggleChildRow(viewHolder)
+            viewLifecycleOwner.lifecycleScope.launch {
+                if (validateEditInput(viewHolder, timelog, true)) {
+                    adapter.toggleChildRow(viewHolder)
+                } // else do nothing
             }
         }
 
@@ -161,7 +157,7 @@ class LogsFragment : Fragment() {
                 // Take new time and put it on the edit text
                 val time: LocalTime = LocalTime.of(hourOfDay, minute)
                 val currEditText: EditText = if (isStart) startEditText else endEditText
-                currEditText.setText(time.format(viewModel.timeFormatter))
+                currEditText.setText(time.format(viewModel.dateFormatter))
 
                 // Update start and time values for comparison
                 if (isStart) {
@@ -191,7 +187,7 @@ class LogsFragment : Fragment() {
         ).show()
     }
 
-    private fun validateEditInput(viewHolder: TimelogListAdapter.ViewHolder, timelog: Timelog): Boolean {
+    private suspend fun validateEditInput(viewHolder: TimelogListAdapter.ViewHolder, timelog: Timelog, isNew: Boolean): Boolean {
         val dateText = viewHolder.dateEditText.text
         val startText = viewHolder.startTimeEditText.text
         val endText = viewHolder.endTimeEditText.text
@@ -208,59 +204,35 @@ class LogsFragment : Fragment() {
                 startTime = currStartTime,
                 endTime = currEndTime
             )
-            return insertNewTimelog(adapter.currentList, newTimelog)
+            return insertNewTimelog(newTimelog, isNew)
         }
         return false
     }
 
-    private fun insertNewTimelog(timelogs: List<Timelog>, newTimelog: Timelog): Boolean {
-        val sortedTimelogs: List<Timelog> = sortTimelogs(timelogs, viewModel.sortByNewest)
-        val overlappingTimelog = sortedTimelogs
-            .firstOrNull { it.timelogId != newTimelog.timelogId && it.date == newTimelog.date && it.overlaps(newTimelog) }
+    private suspend fun insertNewTimelog(newTimelog: Timelog, isNew: Boolean): Boolean {
+        val isOverlapping = viewModel.checkForOverlap(newTimelog)
 
-        Log.d(
-            "LogsFragment",
-            "Overlapping timelog = $overlappingTimelog"
-        )
-
-        return overlappingTimelog?.let {
-            Toast.makeText(requireContext(), "Time range overlaps with another log on that date. " +
-                    "Please try again.", Toast.LENGTH_LONG).show()
+        return if (isOverlapping) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(requireContext(), "Time range overlaps with another log on that date. Please try again.", Toast.LENGTH_LONG).show()
+            }
             Log.d(
                 "LogsFragment",
                 "Time range (${newTimelog.startTime.format(viewModel.timeFormatter)} - ${newTimelog.endTime.format(viewModel.timeFormatter)}) overlaps with another time log on that date (${newTimelog.date})."
             )
             false
-        } ?: let {
-            val timelogExists: Boolean = timelogs.any { it.timelogId == newTimelog.timelogId }
-            if (timelogExists) {
-                viewModel.updateTimelog(newTimelog)
-            } else {
+        } else {
+            if (isNew) {
                 viewModel.addTimelog(newTimelog)
+            } else {
+                viewModel.updateTimelog(newTimelog)
             }
             true
         }
     }
 
-    private fun sortTimelogs(timelogs: List<Timelog>, byNewest: Boolean): List<Timelog> {
-        return when {
-            timelogs.isEmpty() -> emptyList()
-            byNewest -> timelogs.sortedWith(compareByDescending<Timelog> { it.date }
-                .thenByDescending { it.startTime })
-            else -> timelogs.sortedWith(compareBy<Timelog> { it.date } // ascending
-                .thenBy { it.startTime })
-        }
-    }
-
     private fun deleteTimelog(view: View, timelog: Timelog) {
-        // Confirm and provide Undo option
-        val newList = adapter.currentList.toMutableList()
-
-        val removed: Boolean = newList.remove(timelog)
-        require(removed) { "Tried to remove a timelog that doesn't exist." }
-
         viewModel.deleteTimelog(timelog)
-
         Log.i(
             "LogsFragment",
             "Deleted Timelog: $timelog"
@@ -271,7 +243,7 @@ class LogsFragment : Fragment() {
                 viewModel.addTimelog(timelog)
                 Log.i(
                     "LogsFragment",
-                    "Delete undone"
+                    "Delete undone - added back timelog for ${timelog.date.format(viewModel.dateFormatter)}"
                 )
             }
             .show()

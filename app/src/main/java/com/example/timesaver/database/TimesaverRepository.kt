@@ -1,7 +1,9 @@
 package com.example.timesaver.database
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagingSource
 import java.time.LocalDate
+import java.time.LocalTime
 
 class TimesaverRepository(private val dao: TimesaverDao) {
 
@@ -50,19 +52,30 @@ class TimesaverRepository(private val dao: TimesaverDao) {
         return dao.getTimelogsForActivity(activityId)
     }
 
-    /** @see [TimesaverDao.getTimelogsNewestFirst] */
-    fun getTimelogsForActivityNewestFirst(activityId: Long): List<Timelog> {
-        return getTimelogsForActivityNewestFirst(activityId)
+    /** @see [TimesaverDao.getTimelogsForActivityNewestFirst] */
+    fun getTimelogsForActivityNewestFirst(activityId: Long): PagingSource<Int, Timelog> {
+        return dao.getTimelogsForActivityNewestFirst(activityId)
     }
 
-    /** @see [TimesaverDao.getTimelogsOldestFirst] */
-    fun getTimelogsForActivityOldestFirst(activityId: Long): List<Timelog> {
+    /** @see [TimesaverDao.getTimelogsForActivityOldestFirst] */
+    fun getTimelogsForActivityOldestFirst(activityId: Long): PagingSource<Int, Timelog> {
         return dao.getTimelogsForActivityOldestFirst(activityId)
     }
 
     /** @see [TimesaverDao.getActivityTimelogLive] */
     fun getActivityTimelogLive(activityId: Long): LiveData<ActivityTimelog> {
         return dao.getActivityTimelogLive(activityId)
+    }
+
+    /** @see [TimesaverDao.getOverlappingTimelogs] */
+    suspend fun getOverlappingTimelogs(
+        activityId: Long,
+        excludeId: Long,
+        date: LocalDate,
+        startTime: LocalTime,
+        endTime: LocalTime,
+    ): List<Timelog> {
+        return dao.getOverlappingTimelogs(activityId, excludeId, date, startTime, endTime)
     }
 
 }
