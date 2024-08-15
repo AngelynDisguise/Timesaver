@@ -31,8 +31,8 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
 
     // Child row clickables
     private var onEditDateListener: ((EditText) -> Unit)? = null
-    private var onEditStartTimeListener: ((LocalTime, LocalTime, EditText, EditText) -> Unit)? = null
-    private var onEditEndTimeListener: ((LocalTime, LocalTime, EditText, EditText) -> Unit)? = null
+    private var onEditStartTimeListener: ((ViewHolder, LocalTime, LocalTime) -> Unit)? = null
+    private var onEditEndTimeListener: ((ViewHolder, LocalTime, LocalTime) -> Unit)? = null
     private var onClickConfirmListener: ((ViewHolder, Timelog) -> Unit)? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -49,6 +49,7 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
         val dateEditText: EditText = view.findViewById(R.id.timelog_date_edit_text_view)
         val startTimeEditText: EditText = view.findViewById(R.id.timelog_start_time_edit_text_view)
         val endTimeEditText: EditText = view.findViewById(R.id.timelog_end_time_edit_text_view)
+        val modifiedTotalTime: TextView = view.findViewById(R.id.timelog_modified_total_time_text_view)
 
         // Icons
         val deleteIcon: ImageView = view.findViewById(R.id.timelog_delete_icon)
@@ -64,7 +65,7 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val timelog: Timelog? = getItem(position)
 
-        // Note: nullable if it's a placeholder, but this should never be true
+        // Note: timelog is nullable if it's a placeholder, but this should never be true (see Flow in LogsViewModel).
         timelog?.let {
             val date = timelog.date.format(dateFormat)
             val startTime = timelog.startTime.format(timeFormat)
@@ -81,6 +82,12 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
             viewHolder.dateEditText.hint = date
             viewHolder.startTimeEditText.hint = startTime
             viewHolder.endTimeEditText.hint = endTime
+            viewHolder.modifiedTotalTime.text = "---"
+
+            // Just in case of previous edit
+            viewHolder.dateEditText.text.clear()
+            viewHolder.startTimeEditText.text.clear()
+            viewHolder.endTimeEditText.text.clear()
 
             // Set up parent clickables
             viewHolder.parentRow.setOnClickListener {
@@ -98,27 +105,12 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
                 onEditDateListener?.invoke(viewHolder.dateEditText)
             }
             viewHolder.startTimeEditText.setOnClickListener {
-                onEditStartTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
+                onEditStartTimeListener?.invoke(viewHolder, timelog.startTime, timelog.endTime)
             }
             viewHolder.endTimeEditText.setOnClickListener {
-                onEditEndTimeListener?.invoke(timelog.startTime, timelog.endTime, viewHolder.startTimeEditText, viewHolder.endTimeEditText)
+                onEditEndTimeListener?.invoke(viewHolder, timelog.startTime, timelog.endTime)
             }
         }
-    }
-
-    private fun formatDuration(duration: Duration): String {
-        val hours = duration.toHours()
-        val minutes = duration.toMinutes() % 60
-        val seconds = duration.seconds % 60
-
-        val parts = mutableListOf<String>()
-        if (hours > 1) parts.add("$hours hours")
-        if (hours.toInt() == 1) parts.add("$hours hour")
-        if (minutes > 0) parts.add("$minutes min")
-        if (seconds > 0) parts.add("$seconds sec")
-        //if (duration == Duration.ZERO) parts.add("---") // should not save if no time elapsed
-
-        return parts.joinToString(", ")
     }
 
     fun toggleChildRow(viewHolder: ViewHolder) {
@@ -167,6 +159,21 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
         }
     }
 
+    fun formatDuration(duration: Duration): String {
+        val hours = duration.toHours()
+        val minutes = duration.toMinutes() % 60
+        val seconds = duration.seconds % 60
+
+        val parts = mutableListOf<String>()
+        if (hours > 1) parts.add("$hours hours")
+        if (hours.toInt() == 1) parts.add("$hours hour")
+        if (minutes > 0) parts.add("$minutes min")
+        if (seconds > 0) parts.add("$seconds sec")
+        //if (duration == Duration.ZERO) parts.add("---") // should not save if no time elapsed
+
+        return parts.joinToString(", ")
+    }
+
     fun setDateFormat(format: DateFormat){
         dateFormat = DateTimeFormatter.ofPattern(format.pattern)
         notifyDataSetChanged()
@@ -190,11 +197,11 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
         onEditDateListener = listener
     }
 
-    fun setOnEditStartTimeListener(listener: (LocalTime, LocalTime, EditText, EditText) -> Unit) {
+    fun setOnEditStartTimeListener(listener: (ViewHolder, LocalTime, LocalTime) -> Unit) {
         onEditStartTimeListener = listener
     }
 
-    fun setOnEditEndTimeListener(listener: (LocalTime, LocalTime, EditText, EditText) -> Unit) {
+    fun setOnEditEndTimeListener(listener: (ViewHolder, LocalTime, LocalTime) -> Unit) {
         onEditEndTimeListener = listener
     }
 

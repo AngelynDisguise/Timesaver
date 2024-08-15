@@ -80,6 +80,7 @@
 
         <EditText
             android:id="@+id/timelog_date_edit_text_view"
+            android:importantForAutofill="no"
             android:focusable="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,6 +96,7 @@
 
         <EditText
             android:id="@+id/timelog_start_time_edit_text_view"
+            android:importantForAutofill="no"
             android:focusable="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -110,6 +112,7 @@
 
         <EditText
             android:id="@+id/timelog_end_time_edit_text_view"
+            android:importantForAutofill="no"
             android:focusable="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -123,15 +126,20 @@
             android:inputType="time"
             android:textSize="12sp" />
 
-        <Space
+        <TextView
+            android:id="@+id/timelog_modified_total_time_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="2.5"
             android:gravity="center_vertical"
-            android:paddingHorizontal="5dp"
-            android:layout_marginTop="-8dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginHorizontal="2dp" />
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="5dp"
+            android:text="---"
+            android:textColor="?android:textColorHint"
+            android:textSize="11sp"
+            android:textStyle="italic" />
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -144,7 +152,7 @@
                 android:scaleX="1.5"
                 android:scaleY="1.5"
                 android:layout_marginTop="-8dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:padding="12dp"
                 android:contentDescription="confirm icon"
                 android:src="@drawable/confirm_icon"/>

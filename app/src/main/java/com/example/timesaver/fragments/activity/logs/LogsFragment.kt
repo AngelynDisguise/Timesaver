@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalTime
 import java.util.Locale
@@ -118,11 +119,11 @@ class LogsFragment : Fragment() {
         adapter.setOnEditDateListener {
             openDatePicker(it)
         }
-        adapter.setOnEditStartTimeListener { start, end, se, ee ->
-            openTimePicker(start, end, se, ee,true)
+        adapter.setOnEditStartTimeListener { viewHolder, startTime, endTime ->
+            openTimePicker(startTime, endTime, viewHolder, true)
         }
-        adapter.setOnEditEndTimeListener { start, end, se, ee ->
-            openTimePicker(start, end, se, ee, false)
+        adapter.setOnEditEndTimeListener { viewHolder, startTime, endTime ->
+            openTimePicker(startTime, endTime, viewHolder, false)
         }
     }
 
@@ -143,10 +144,11 @@ class LogsFragment : Fragment() {
     private fun openTimePicker(
         startTime: LocalTime,
         endTime: LocalTime,
-        startEditText: EditText,
-        endEditText: EditText,
+        viewHolder: TimelogListAdapter.ViewHolder,
         isStart: Boolean
     ) {
+        val startEditText: EditText = viewHolder.startTimeEditText
+        val endEditText: EditText = viewHolder.endTimeEditText
         var currStartTime: LocalTime = startTime
         var currEndTime: LocalTime = endTime
 
@@ -157,7 +159,7 @@ class LogsFragment : Fragment() {
                 // Take new time and put it on the edit text
                 val time: LocalTime = LocalTime.of(hourOfDay, minute)
                 val currEditText: EditText = if (isStart) startEditText else endEditText
-                currEditText.setText(time.format(viewModel.dateFormatter))
+                currEditText.setText(time.format(viewModel.timeFormatter))
 
                 // Update start and time values for comparison
                 if (isStart) {
@@ -175,10 +177,19 @@ class LogsFragment : Fragment() {
                 // Validate time range and reject if invalid
                 if (isStart && currStartTime.isAfter(currEndTime)) {
                     Toast.makeText(requireContext(), "Start time cannot be later than end time. Try again.", Toast.LENGTH_LONG).show()
-                    currEditText.text.clear()
+                    startEditText.text.clear()
+                    endEditText.text.clear()
                 } else if (!isStart && currEndTime.isBefore(currStartTime)) {
                     Toast.makeText(requireContext(), "End time cannot be earlier than start time. Try again.", Toast.LENGTH_LONG).show()
-                    currEditText.text.clear()
+                    startEditText.text.clear()
+                    endEditText.text.clear()
+                } else { // VALID
+                    viewHolder.modifiedTotalTime.text = adapter.formatDuration(Duration.between(currStartTime, currEndTime))
+                    if (isStart && endEditText.text.isEmpty()) {
+                        endEditText.setText(endEditText.hint)
+                    } else if (!isStart && startEditText.text.isEmpty()) {
+                        startEditText.setText(startEditText.hint)
+                    }
                 }
             },
             calendar.get(Calendar.HOUR_OF_DAY),

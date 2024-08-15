@@ -48,7 +48,7 @@ class TimesaverDatabaseTest {
         CoroutineScope(Dispatchers.IO).launch {
             val deferred = async { timesaverDao.insertActivity(activity) }
             deferred.await()
-            val activities = timesaverDao.getActivities().value
+            val activities = timesaverDao.getActivitiesLive().value
             assertNotNull(activities)
             if (activities != null) {
                 assert(activities.isNotEmpty())
@@ -61,7 +61,7 @@ class TimesaverDatabaseTest {
     @Throws(Exception::class)
     fun getActivities() {
         CoroutineScope(Dispatchers.IO).launch {
-            val activities = async { timesaverDao.getActivities().value }
+            val activities = async { timesaverDao.getActivitiesLive().value }
             assertNotNull(activities.await())
             if (activities.await() != null) {
                 assert(activities.await()!!.isNotEmpty())
@@ -80,30 +80,5 @@ class TimesaverDatabaseTest {
             }
         }
         //println("test2 ended")
-    }
-
-    @Test
-    @Throws(Exception::class)
-    fun getActivityTimelogs() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val activities = async { timesaverDao.getActivityTimelogs().value }
-            assertNotNull(activities.await())
-            if (activities.await() != null) {
-                assert(activities.await()!!.isNotEmpty())
-                InstrumentationRegistry.getInstrumentation().sendStatus(
-                    1, Bundle().apply {
-                        putString("result", "getActivityTimelogs test results: $activities")
-                    }
-                )
-            } else {
-                InstrumentationRegistry.getInstrumentation().sendStatus(
-                    1, Bundle().apply {
-                        putString("result", "getActivities got null ActivityTimelogs")
-                    }
-                )
-
-            }
-        }
-        //println("test3 ended")
     }
 }
