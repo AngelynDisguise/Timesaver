@@ -23,6 +23,8 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
     private var dateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern(DateFormat.US.pattern) // default
     private var timeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern(TimeFormat.STANDARD_TIME.pattern) // default
 
+    private var expandedRow: View? = null
+
     // Parent row clickables
     private var onClickTimelogListener: ((ViewHolder) -> Unit)? = null
     private var onClickDeleteListener: ((View, Timelog) -> Unit)? = null
@@ -64,11 +66,21 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
 
         // Note: nullable if it's a placeholder, but this should never be true
         timelog?.let {
+            val date = timelog.date.format(dateFormat)
+            val startTime = timelog.startTime.format(timeFormat)
+            val endTime = timelog.endTime.format(timeFormat)
+            val duration = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
+
             // Set up parent row
-            viewHolder.dateTextView.text = timelog.date.format(dateFormat)
-            viewHolder.startTimeTextView.text = timelog.startTime.format(timeFormat)
-            viewHolder.endTimeTextView.text = timelog.endTime.format(timeFormat)
-            viewHolder.totalTimeTextView.text = formatDuration(Duration.between(timelog.startTime, timelog.endTime))
+            viewHolder.dateTextView.text = date
+            viewHolder.startTimeTextView.text = startTime
+            viewHolder.endTimeTextView.text = endTime
+            viewHolder.totalTimeTextView.text = duration
+
+            // Set up child row
+            viewHolder.dateEditText.hint = date
+            viewHolder.startTimeEditText.hint = startTime
+            viewHolder.endTimeEditText.hint = endTime
 
             // Set up parent clickables
             viewHolder.parentRow.setOnClickListener {
@@ -111,9 +123,14 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
 
     fun toggleChildRow(viewHolder: ViewHolder) {
         if (viewHolder.childRow.visibility == View.GONE) {
+            expandedRow?.let {
+                collapseChildRow(it)
+            }
             expandChildRow(viewHolder.childRow)
+            expandedRow = viewHolder.childRow
         } else {
             collapseChildRow(viewHolder.childRow)
+            expandedRow = null
         }
     }
 
