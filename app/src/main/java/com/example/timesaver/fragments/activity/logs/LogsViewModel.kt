@@ -27,17 +27,7 @@ class LogsViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val timeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(TimeFormat.STANDARD_TIME.pattern) // default
 
 
-    private var activityId: Long? = null
-
-    /** Sets the ID of the activity for which timelogs should be retrieved.
-     * Once set, this allows the `Flow` of `PagingData` to emit timelog data
-     * for the specified activity when collected.
-     *
-     * @param id the activity
-     */
-    fun setActivityId(id: Long) {
-        activityId = id
-    }
+    var activityId: Long? = null
 
     /**
      * The Flow of Paging Data

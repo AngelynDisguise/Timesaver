@@ -11,8 +11,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -57,6 +60,8 @@ class LogsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupAddTimelogLayout(view)
+
         // Set up adapter
         adapter = TimelogListAdapter()
         val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
@@ -71,7 +76,7 @@ class LogsFragment : Fragment() {
             )
 
             // Trigger the flow of paged timelogs from the database
-            viewModel.setActivityId(it)
+            viewModel.activityId = it
 
             // Collect the paging data from the stream
             viewLifecycleOwner.lifecycleScope.launch {
@@ -99,7 +104,12 @@ class LogsFragment : Fragment() {
 
         // Drop down edit layout
         adapter.setOnClickTimelogListener { viewHolder ->
-            adapter.toggleChildRow(viewHolder) // input UI is saved while fragment is alive
+            val addTimelogLayout: LinearLayout = view.findViewById(R.id.logs_add_timelog_item)
+            if (addTimelogLayout.visibility == View.VISIBLE) {
+                val addTimelogButton: Button = view.findViewById(R.id.add_timelog_button)
+                closeAddTimelogLayout(addTimelogLayout, addTimelogButton)
+            }
+            adapter.toggleRow(viewHolder.childRow) // input UI is saved while fragment is alive
         }
 
         // Delete timelog
@@ -110,8 +120,13 @@ class LogsFragment : Fragment() {
         // Save edit input if valid
         adapter.setOnClickConfirmListener { viewHolder, timelog ->
             viewLifecycleOwner.lifecycleScope.launch {
-                if (validateEditInput(viewHolder, timelog, true)) {
-                    adapter.toggleChildRow(viewHolder)
+                if (validateUpdateInput(
+                        viewHolder.dateEditText,
+                        viewHolder.startTimeEditText,
+                        viewHolder.endTimeEditText,
+                        timelog
+                )) {
+                    adapter.toggleRow(viewHolder.childRow)
                 } // else do nothing
             }
         }
@@ -120,12 +135,78 @@ class LogsFragment : Fragment() {
         adapter.setOnEditDateListener {
             openDatePicker(it)
         }
-        adapter.setOnEditStartTimeListener { viewHolder, startTime, endTime ->
-            openTimePicker(startTime, endTime, viewHolder, true)
+        adapter.setOnEditStartTimeListener { viewHolder, timelog ->
+            openTimePicker(
+                Pair(timelog.startTime, timelog.endTime),
+                viewHolder.startTimeEditText,
+                viewHolder.endTimeEditText,
+                viewHolder.modifiedTotalTime,
+                true
+            )
         }
-        adapter.setOnEditEndTimeListener { viewHolder, startTime, endTime ->
-            openTimePicker(startTime, endTime, viewHolder, false)
+        adapter.setOnEditEndTimeListener { viewHolder, timelog ->
+            openTimePicker(
+                Pair(timelog.startTime, timelog.endTime),
+                viewHolder.startTimeEditText,
+                viewHolder.endTimeEditText,
+                viewHolder.modifiedTotalTime,
+                false
+            )
         }
+    }
+
+    private fun setupAddTimelogLayout(view: View) {
+        val addTimelogButton: Button = view.findViewById(R.id.add_timelog_button)
+        val layout: LinearLayout = view.findViewById(R.id.logs_add_timelog_item)
+        val dateET: EditText = layout.findViewById(R.id.timelog_add_date_edit_text_view)
+        val startET: EditText = layout.findViewById(R.id.timelog_add_start_time_edit_text_view)
+        val endET: EditText = layout.findViewById(R.id.timelog_add_end_time_edit_text_view)
+        val durationT: TextView = layout.findViewById(R.id.timelog_add_total_time_text_view)
+        val deleteButton: ImageView = layout.findViewById(R.id.timelog_delete_icon)
+        val confirmButton: ImageView = layout.findViewById(R.id.timelog_confirm_icon)
+
+        // Opening the Add Timelog layout
+        addTimelogButton.setOnClickListener {
+            if (layout.visibility == View.GONE) {
+                openAddTimelogLayout(layout, addTimelogButton)
+            } else {
+                closeAddTimelogLayout(layout, addTimelogButton)
+            }
+        }
+
+        // Edit fields for the new Timelog
+        dateET.setOnClickListener { openDatePicker(it as EditText) }
+        startET.setOnClickListener { openTimePicker(null, startET, endET, durationT, true) }
+        endET.setOnClickListener { openTimePicker(null, startET, endET, durationT, false) }
+        durationT.text = "---"
+
+        // Adding/Deleting the Timelog
+        deleteButton.setOnClickListener { closeAddTimelogLayout(layout, addTimelogButton) }
+        confirmButton.setOnClickListener{
+            viewLifecycleOwner.lifecycleScope.launch {
+                if (validateAddInput(dateET, startET, endET)) {
+                    closeAddTimelogLayout(layout, addTimelogButton)
+                } // else do nothing
+            }
+        }
+    }
+
+    private fun openAddTimelogLayout(layout: LinearLayout, addTimelogButton: Button) {
+        addTimelogButton.text = "Cancel"
+        adapter.toggleRow(layout)
+    }
+
+    private fun closeAddTimelogLayout(addTimelogLayout: LinearLayout, addTimelogButton: Button) {
+        val dateET: EditText = addTimelogLayout.findViewById(R.id.timelog_add_date_edit_text_view)
+        val startET: EditText = addTimelogLayout.findViewById(R.id.timelog_add_start_time_edit_text_view)
+        val endET: EditText = addTimelogLayout.findViewById(R.id.timelog_add_end_time_edit_text_view)
+        val durationT: TextView = addTimelogLayout.findViewById(R.id.timelog_add_total_time_text_view)
+        dateET.text.clear()
+        startET.text.clear()
+        endET.text.clear()
+        durationT.text = "---"
+        addTimelogButton.text = "Add Timelog"
+        adapter.toggleRow(addTimelogLayout)
     }
 
     private fun openDatePicker(dateEditText: EditText) {
@@ -143,46 +224,41 @@ class LogsFragment : Fragment() {
     }
 
     private fun openTimePicker(
-        startTime: LocalTime,
-        endTime: LocalTime,
-        viewHolder: TimelogListAdapter.ViewHolder,
+        oldTimeRange: Pair<LocalTime, LocalTime>?, // we're updating if this is not null
+        startEditText: EditText,
+        endEditText: EditText,
+        durationText: TextView,
         isStart: Boolean
     ) {
-        val startEditText: EditText = viewHolder.startTimeEditText
-        val endEditText: EditText = viewHolder.endTimeEditText
         val (currEditText, otherEditText) = if (isStart) (startEditText to endEditText) else (endEditText to startEditText)
-
-        fun parseTime(text: Editable): LocalTime = viewModel.timeFormatter.parse(text, LocalTime::from)
-        fun showInvalidTimeToast(message: String) {
-            Toast.makeText(requireContext(), "$message Try again.", Toast.LENGTH_LONG).show()
-            startEditText.text.clear()
-            endEditText.text.clear()
-        }
 
         // Open Time picker
         TimePickerDialog(
             requireContext(),
             { _, hourOfDay, minute ->
-                // Take new time and put it on the selected edit text
                 val newTime: LocalTime = LocalTime.of(hourOfDay, minute)
                 currEditText.setText(newTime.format(viewModel.timeFormatter))
 
-                // Get both start and end times for validation
-                val (newStartTime, newEndTime) = when {
-                    isStart && otherEditText.text.isEmpty() -> newTime to endTime
-                    isStart -> newTime to parseTime(otherEditText.text)
-                    otherEditText.text.isEmpty() -> startTime to newTime
-                    else -> parseTime(otherEditText.text) to newTime
-                }
+                // If updating, update new time range
+                oldTimeRange?.let { (oldStartTime, oldEndTime) ->
+                    val (newStartTime, newEndTime) = when {
+                        isStart && otherEditText.text.isEmpty() -> newTime to oldEndTime
+                        isStart -> newTime to parseTime(otherEditText.text)
+                        otherEditText.text.isEmpty() -> oldStartTime to newTime
+                        else -> parseTime(otherEditText.text) to newTime
+                    }
 
-                // Validate time range - reject if invalid
-                when {
-                    isStart && newStartTime.isAfter(newEndTime) -> showInvalidTimeToast("Start time cannot be later than end time.")
-                    !isStart && newEndTime.isBefore(newStartTime) -> showInvalidTimeToast("End time cannot be earlier than start time.")
-                    else -> let {
-                        viewHolder.modifiedTotalTime.text = adapter.formatDuration(Duration.between(startTime, endTime))
+                    if (timeRangeIsValid(newStartTime, newEndTime, currEditText, isStart)) {
+                        durationText.text = adapter.formatDuration(Duration.between(newStartTime, newEndTime))
                         if (otherEditText.text.isEmpty()) {
-                            otherEditText.setText(otherEditText.hint)
+                            otherEditText.setText(otherEditText.hint) // reveal the old time range if one side is empty
+                        }
+                    }
+                } ?: let {
+                    if (otherEditText.text.isNotEmpty()) {
+                        val (newStartTime, newEndTime) = if (isStart) newTime to parseTime(otherEditText.text) else parseTime(otherEditText.text) to newTime
+                        if (timeRangeIsValid(newStartTime, newEndTime, currEditText, isStart)) {
+                            durationText.text = adapter.formatDuration(Duration.between(newStartTime, newEndTime))
                         }
                     }
                 }
@@ -193,10 +269,53 @@ class LogsFragment : Fragment() {
         ).show()
     }
 
-    private suspend fun validateEditInput(viewHolder: TimelogListAdapter.ViewHolder, timelog: Timelog, isNew: Boolean): Boolean {
-        val dateText = viewHolder.dateEditText.text
-        val startText = viewHolder.startTimeEditText.text
-        val endText = viewHolder.endTimeEditText.text
+    private fun timeRangeIsValid(startTime: LocalTime, endTime: LocalTime, currEditText: EditText, isStart: Boolean): Boolean {
+        val isValid = if (isStart) startTime < endTime else endTime > startTime
+        if (!isValid) {
+            val message = if (isStart) "Start time cannot be later than or equal to end time." else "End time cannot be earlier than or equal to start time."
+            Toast.makeText(requireContext(), "$message Try again.", Toast.LENGTH_LONG).show()
+            currEditText.text.clear()
+        }
+        return isValid
+    }
+
+    private fun parseDate(text: Editable): LocalDate = viewModel.dateFormatter.parse(text, LocalDate::from)
+    private fun parseTime(text: Editable): LocalTime = viewModel.timeFormatter.parse(text, LocalTime::from)
+
+    private suspend fun validateAddInput(dateET: EditText, startET: EditText, endET: EditText): Boolean {
+        val isInvalidMessage: String? = when {
+            dateET.text.isEmpty() -> "Please enter a date."
+            startET.text.isEmpty() -> "Please enter a start time."
+            endET.text.isEmpty() -> "Please enter an end time."
+            else -> null
+        }
+
+        isInvalidMessage?.let {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            return false
+        } ?: let {
+            viewModel.activityId?.let {
+                val newTimelog = Timelog(
+                    timelogId = 0,
+                    activityId = it,
+                    date = parseDate(dateET.text),
+                    startTime = parseTime(startET.text),
+                    endTime = parseTime(endET.text)
+                )
+                return insertNewTimelog(newTimelog, true)
+            } ?: return false
+        }
+    }
+
+    private suspend fun validateUpdateInput(
+        dateET: EditText,
+        startET: EditText,
+        endET: EditText,
+        timelog: Timelog
+    ): Boolean {
+        val dateText = dateET.text
+        val startText = startET.text
+        val endText = endET.text
 
         val currDate = if (dateText.isNotEmpty()) viewModel.dateFormatter.parse(dateText, LocalDate::from) else timelog.date
         val currStartTime = if (startText.isNotEmpty()) viewModel.timeFormatter.parse(startText, LocalTime::from) else timelog.startTime
@@ -210,7 +329,7 @@ class LogsFragment : Fragment() {
                 startTime = currStartTime,
                 endTime = currEndTime
             )
-            return insertNewTimelog(newTimelog, isNew)
+            return insertNewTimelog(newTimelog, false)
         }
         return false
     }

@@ -31,8 +31,8 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
 
     // Child row clickables
     private var onEditDateListener: ((EditText) -> Unit)? = null
-    private var onEditStartTimeListener: ((ViewHolder, LocalTime, LocalTime) -> Unit)? = null
-    private var onEditEndTimeListener: ((ViewHolder, LocalTime, LocalTime) -> Unit)? = null
+    private var onEditStartTimeListener: ((ViewHolder, Timelog) -> Unit)? = null
+    private var onEditEndTimeListener: ((ViewHolder, Timelog) -> Unit)? = null
     private var onClickConfirmListener: ((ViewHolder, Timelog) -> Unit)? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -105,28 +105,28 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
                 onEditDateListener?.invoke(viewHolder.dateEditText)
             }
             viewHolder.startTimeEditText.setOnClickListener {
-                onEditStartTimeListener?.invoke(viewHolder, timelog.startTime, timelog.endTime)
+                onEditStartTimeListener?.invoke(viewHolder, timelog)
             }
             viewHolder.endTimeEditText.setOnClickListener {
-                onEditEndTimeListener?.invoke(viewHolder, timelog.startTime, timelog.endTime)
+                onEditEndTimeListener?.invoke(viewHolder, timelog)
             }
         }
     }
 
-    fun toggleChildRow(viewHolder: ViewHolder) {
-        if (viewHolder.childRow.visibility == View.GONE) {
+    fun toggleRow(row: View) {
+        if (row.visibility == View.GONE) {
             expandedRow?.let {
-                collapseChildRow(it)
+                collapseRow(it)
             }
-            expandChildRow(viewHolder.childRow)
-            expandedRow = viewHolder.childRow
+            expandRow(row)
+            expandedRow = row
         } else {
-            collapseChildRow(viewHolder.childRow)
+            collapseRow(row)
             expandedRow = null
         }
     }
 
-    private fun expandChildRow(view: View) {
+    private fun expandRow(view: View) {
         view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         val targetHeight = view.measuredHeight
 
@@ -135,7 +135,7 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
         animateHeight(view, 0, targetHeight)
     }
 
-    private fun collapseChildRow(view: View) {
+    private fun collapseRow(view: View) {
         val initialHeight = view.height
         animateHeight(view, initialHeight, 0) {
             view.visibility = View.GONE
@@ -197,11 +197,11 @@ class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHold
         onEditDateListener = listener
     }
 
-    fun setOnEditStartTimeListener(listener: (ViewHolder, LocalTime, LocalTime) -> Unit) {
+    fun setOnEditStartTimeListener(listener: (ViewHolder, Timelog) -> Unit) {
         onEditStartTimeListener = listener
     }
 
-    fun setOnEditEndTimeListener(listener: (ViewHolder, LocalTime, LocalTime) -> Unit) {
+    fun setOnEditEndTimeListener(listener: (ViewHolder, Timelog) -> Unit) {
         onEditEndTimeListener = listener
     }
 
