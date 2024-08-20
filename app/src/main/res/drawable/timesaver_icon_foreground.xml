@@ -1,0 +1,2195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:ns0="http://schemas.android.com/apk/res/android"
+    ns0:height="66dp"
+    ns0:viewportHeight="793"
+    ns0:viewportWidth="793"
+    ns0:width="66dp">
+
+    <path ns0:fillColor="#063c18" ns0:pathData="M390,0L391,1L390,0z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00b241" ns0:pathData="M202,51C204.82,58.7 209.91,65.89 214,73C221.29,85.69 228.58,98.38 235.99,111C256.61,146.12 276.71,181.52 296.67,217C304.72,231.31 312.42,245.83 320.73,260C323.15,264.13 325.63,272.37 330.31,274.37C335.01,276.38 338.48,271.13 343,272C343.99,270.52 344,270.8 344,269C347.78,268.84 351.17,267.08 355,267L355,265C358.02,265.01 359.31,264.54 361,262C363.49,262.82 365.67,263.54 367,261C369.35,261.59 371.58,261.8 374,262L374,260L378,261C383.49,257.8 392.72,259.1 399,258.99C402.01,258.93 404.39,258.49 407,260L414,258L414,260L418,259L418,261C419.89,261.08 420.38,261.13 422,262L428,261L428,263L436,262L436,264L442,264C442,265.8 442.01,265.52 443,267C450.83,267.48 456.39,272.89 464,274C471.72,257.02 482.44,241.18 491.66,225C513.15,187.28 534.63,149.56 556.42,112C563.96,99.01 571.52,86.02 579,73C583.09,65.89 588.18,58.7 591,51C566.46,39.54 543.03,27.12 517,19.03C442.8,-4.03 363.93,-5.36 289,15.15C258.18,23.59 230.74,37.58 202,51z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#063c18" ns0:pathData="M402,0L403,1L402,0z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9e003e" ns0:pathData="M0,393L259,393C259.04,388.4 258.7,381.95 261,378L260,374C262.35,372.15 262.45,370.57 261,368C262.74,365.47 262.81,363.95 262,361L266,360L265,355L267,355C267.07,351.1 268.14,346.75 271,344C271.12,337.18 277.69,332.09 278,325C280.2,324.01 280.05,324.33 280,322L282,322L281,320L286,318C285.88,314.6 290.03,310.96 293,310C292.53,308.58 292.19,308.19 291,307C297.81,304.7 304.7,297.81 307,291C308.19,292.19 308.58,292.53 310,293C311.31,289.8 314.51,288.05 316,285L318,286C319.56,284.01 320.91,282.27 322,280C327.81,279.26 320.35,269.87 318.73,267C311.1,253.52 302.82,240.38 295.04,227C271.76,186.99 248.11,147.26 225.16,107C215.57,90.19 203.95,73.63 196,56C187.02,58.06 178.43,65.32 171,70.58C154.74,82.08 139.76,94.48 125,107.83C69.17,158.33 30.08,228.25 11.9,301C4.35,331.17 1.33,362.07 0,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#aa14b6" ns0:pathData="M597,56C588.61,73.96 577.09,90.78 567.28,108C548.02,141.8 528.89,175.74 508.74,209C499.86,223.65 491.14,238.39 482.19,253C477.33,260.93 470.92,269.14 468,278L476,280C477.45,282.48 478.14,282.9 481,283C481.85,285.64 483.65,287.57 485,290L488,289C488.76,291.23 489.75,293 491,295C494.54,295.37 496.6,297.45 497,301C506.63,306.01 509.51,317.32 518,323L517,325C520.72,328.62 521.75,334.12 526,337C525.14,341.43 527.68,343.92 529.46,347.83C531.66,352.67 533.42,357.67 533,363C533.86,364.35 533.82,364.36 534,366C534.64,367.57 534.54,367.25 534,369C535.91,372.13 536.54,374.35 536,378C538.45,381.75 538.95,388.47 539,393L793,393C792.03,385.31 792.56,377.68 791.83,370C789.98,350.53 787.81,331.15 783.58,312C766.73,235.72 727.24,161.52 669,108.83C653.05,94.4 636.95,80.64 619,68.67C612.2,64.13 605.07,57.85 597,56z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#063c18" ns0:pathData="M206,59L207,60L206,59M586,59L587,60L586,59z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M615,66L616,67L615,66M618,68L619,69L618,68z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M628,75L629,76L628,75z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#69166f" ns0:pathData="M583,80L584,81L583,80z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M645,88L646,89L645,88z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M704,147L705,148L704,147M542,151L543,152L542,151z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#005d22" ns0:pathData="M529,157L528,160C529.77,159.02 529.96,158.78 529,157z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e0025" ns0:pathData="M255.33,159.67C255.28,159.72 255.22,160.78 255.67,160.33C255.72,160.28 255.78,159.22 255.33,159.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#770e7f" ns0:pathData="M537,160L538,161L537,160z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#740d7d" ns0:pathData="M536.33,161.67C536.28,161.72 536.22,162.78 536.67,162.33C536.72,162.28 536.78,161.22 536.33,161.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007c2d" ns0:pathData="M526.33,162.67C526.28,162.72 526.22,163.78 526.67,163.33C526.72,163.28 526.78,162.22 526.33,162.67z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#5a0a60" ns0:pathData="M535,163L536,164L535,163z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M717,164L718,165L717,164z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#5c0a62" ns0:pathData="M532,167L532,170C532.7,168.45 532.7,168.55 532,167z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f22" ns0:pathData="M522,169L522,172C522.7,170.45 522.7,170.55 522,169z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#550a5b" ns0:pathData="M530,172L531,173L530,172z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#380016" ns0:pathData="M263,173L264,174L263,173z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006926" ns0:pathData="M272.33,173.67C272.28,173.72 272.22,174.78 272.67,174.33C272.72,174.28 272.78,173.22 272.33,173.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#620b69" ns0:pathData="M529.33,173.67C529.28,173.72 529.22,174.78 529.67,174.33C529.72,174.28 529.78,173.22 529.33,173.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005c21" ns0:pathData="M520,174L521,175L520,174z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M724,174L725,175L724,174z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006826" ns0:pathData="M519,175L520,176L519,175z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M726,177L727,178L726,177z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M275,178C275.41,180.09 275.22,180.02 277,181C276.31,179.61 276.02,179.14 275,178z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e0d75" ns0:pathData="M526.33,178.67C526.28,178.72 526.22,179.78 526.67,179.33C526.72,179.28 526.78,178.22 526.33,178.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00471a" ns0:pathData="M517,179L518,180L517,179z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002a0f" ns0:pathData="M516,180L516,183C516.7,181.45 516.7,181.55 516,180z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5a0a61" ns0:pathData="M525,180L526,181L525,180z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#590023" ns0:pathData="M268,181L268,184C268.7,182.45 268.7,182.55 268,181z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#39063d" ns0:pathData="M524.33,181.67C524.28,181.72 524.22,182.78 524.67,182.33C524.72,182.28 524.78,181.22 524.33,181.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004c1b" ns0:pathData="M277,183L278,184L277,183z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005720" ns0:pathData="M278,184L279,185L278,184z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003414" ns0:pathData="M514,184L514,187C514.7,185.45 514.7,185.55 514,184z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#320935" ns0:pathData="M521,185L521,188C522.02,186.86 522.31,186.39 523,185L521,185z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#360018" ns0:pathData="M271,186L272,187L271,186z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006226" ns0:pathData="M513,186L514,187L513,186z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003213" ns0:pathData="M279,187L280,188L279,187z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00240d" ns0:pathData="M512,188L513,189L512,188z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#300533" ns0:pathData="M520,188L521,189L520,188z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006a26" ns0:pathData="M281,189L282,190L281,189z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#420747" ns0:pathData="M519.33,189.67C519.28,189.72 519.22,190.78 519.67,190.33C519.72,190.28 519.78,189.22 519.33,189.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002d10" ns0:pathData="M282,191C282.41,193.09 282.22,193.02 284,194C283.31,192.61 283.02,192.14 282,191z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006b27" ns0:pathData="M510,191L511,192L510,191z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#740d7d" ns0:pathData="M519,191L520,192L519,191z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#640b6b" ns0:pathData="M518,192L519,193L518,192z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#4f0954" ns0:pathData="M517.33,193.67C517.28,193.72 517.22,194.78 517.67,194.33C517.72,194.28 517.78,193.22 517.33,193.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00541e" ns0:pathData="M284,194L284,197C284.7,195.45 284.7,195.55 284,194z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00501d" ns0:pathData="M508,195L509,196L508,195z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#3f0018" ns0:pathData="M276,196L277,197L276,196z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M507,196L508,197L507,196z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#360015" ns0:pathData="M277,197L278,198L277,197z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003914" ns0:pathData="M285,197L286,198L285,197z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#5e0c64" ns0:pathData="M515,197L516,198L515,197z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006b27" ns0:pathData="M286,198L287,199L286,198z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00240c" ns0:pathData="M506,198L507,199L506,198z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#540b5a" ns0:pathData="M514,198L515,199L514,198z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#48001d" ns0:pathData="M279,199L279,202C279.7,200.45 279.7,200.55 279,199z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00551f" ns0:pathData="M288,202L289,203L288,202z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4b0850" ns0:pathData="M511.33,203.67C511.28,203.72 511.22,204.78 511.67,204.33C511.72,204.28 511.78,203.22 511.33,203.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e0425" ns0:pathData="M49,205L50,206L49,205z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001808" ns0:pathData="M501,207L502,208L501,207z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#730d7b" ns0:pathData="M509.33,207.67C509.28,207.72 509.22,208.78 509.67,208.33C509.72,208.28 509.78,207.22 509.33,207.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5a0023" ns0:pathData="M284.33,209.67C284.28,209.72 284.22,210.78 284.67,210.33C284.72,210.28 284.78,209.22 284.33,209.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M500,209L501,210L500,209z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2b042e" ns0:pathData="M507,209L507,211C508.64,210.46 508.45,210.63 509,209L507,209z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#44001a" ns0:pathData="M285,211L286,212L285,211z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#740d7c" ns0:pathData="M506,212L507,213L506,212z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00220c" ns0:pathData="M294,213L295,214L294,213z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005b21" ns0:pathData="M497,213L498,214L497,213z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3e0742" ns0:pathData="M505,213L506,214L505,213z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M295,214L296,215L295,214z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#710d79" ns0:pathData="M505,214L506,215L505,214z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#48001c" ns0:pathData="M288.33,215.67C288.28,215.72 288.22,216.78 288.67,216.33C288.72,216.28 288.78,215.22 288.33,215.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003312" ns0:pathData="M296,216L297,217L296,216z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M495,217L496,218L495,217z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f0d77" ns0:pathData="M503,217L504,218L503,217z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#49001c" ns0:pathData="M290.33,218.67C290.28,218.72 290.22,219.78 290.67,219.33C290.72,219.28 290.78,218.22 290.33,218.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005720" ns0:pathData="M297,218L298,219L297,218z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0640" ns0:pathData="M502,219L503,220L502,219z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M493,221L494,222L493,221z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#420747" ns0:pathData="M500,222L501,223L500,222z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#540021" ns0:pathData="M295.33,227.67C295.28,227.72 295.22,228.78 295.67,228.33C295.72,228.28 295.78,227.22 295.33,227.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#47084c" ns0:pathData="M497,227L498,228L497,227z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#340638" ns0:pathData="M496,228L497,229L496,228z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00260d" ns0:pathData="M303,229L304,230L303,229z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f22" ns0:pathData="M488,229L489,230L488,229z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#230326" ns0:pathData="M495,230L496,231L495,230z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6a0c71" ns0:pathData="M495,231L496,232L495,231z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e0a" ns0:pathData="M305,232L306,233L305,232z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#430747" ns0:pathData="M494,232L495,233L494,232z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e0425" ns0:pathData="M35,233L36,234L35,233z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#340014" ns0:pathData="M298,233L299,234L298,233z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006625" ns0:pathData="M486,233L487,234L486,233z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#220324" ns0:pathData="M493,233L494,234L493,233z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#21000c" ns0:pathData="M299,234L300,235L299,234z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005a21" ns0:pathData="M306,234L307,235L306,234z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6d0d75" ns0:pathData="M493,234L494,235L493,234z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#70002c" ns0:pathData="M300.33,236.67C300.28,236.72 300.22,237.78 300.67,237.33C300.72,237.28 300.78,236.22 300.33,236.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002c10" ns0:pathData="M307,236L308,237L307,236z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#570a5d" ns0:pathData="M492,236L493,237L492,236z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006324" ns0:pathData="M308,237L309,238L308,237z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3d0741" ns0:pathData="M491,237L492,238L491,237z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#170008" ns0:pathData="M301,238L302,239L301,238z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e0a" ns0:pathData="M308,238L309,239L308,238z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#150008" ns0:pathData="M302,239L303,240L302,239z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001909" ns0:pathData="M483,239L484,240L483,239z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#72107a" ns0:pathData="M490,239L491,240L490,239z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5c1161" ns0:pathData="M489,240L490,241L489,240z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#320015" ns0:pathData="M303,241L304,242L303,241z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005c21" ns0:pathData="M310,241L311,242L310,241z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d051f" ns0:pathData="M488,241L489,242L488,241z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#23000f" ns0:pathData="M304,242L305,243L304,242z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#075f25" ns0:pathData="M481,242L482,243L481,242z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#620f68" ns0:pathData="M488,242L489,243L488,242z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#011508" ns0:pathData="M481,243L482,244L481,243z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e0025" ns0:pathData="M305.33,244.67C305.28,244.72 305.22,245.78 305.67,245.33C305.72,245.28 305.78,244.22 305.33,244.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#03260e" ns0:pathData="M480,244L481,245L480,244z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#640b6b" ns0:pathData="M487,244L488,245L487,244z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#075320" ns0:pathData="M312,245L313,246L312,245z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a084f" ns0:pathData="M486,245L487,246L486,245z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a000a" ns0:pathData="M306,246L307,247L306,246z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001708" ns0:pathData="M479,246L480,247L479,246z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e0425" ns0:pathData="M29,247L30,248L29,247z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001808" ns0:pathData="M313,247L314,248L313,247z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00280e" ns0:pathData="M478,247L479,248L478,247z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#49084e" ns0:pathData="M485,247L486,248L485,247z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#42001a" ns0:pathData="M308.33,249.67C308.28,249.72 308.22,250.78 308.67,250.33C308.72,250.28 308.78,249.22 308.33,249.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003011" ns0:pathData="M477,249L478,250L477,249z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#560a5c" ns0:pathData="M484,249L485,250L484,249z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e0a" ns0:pathData="M315,250L316,251L315,250z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#39063d" ns0:pathData="M483,250L484,251L483,250z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003a15" ns0:pathData="M476,251L477,252L476,251z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#38041b" ns0:pathData="M27,252L28,253L27,252z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00551f" ns0:pathData="M316,252L317,253L316,252z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M475,252L476,253L475,252z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#340638" ns0:pathData="M482,252L483,253L482,252z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e001e" ns0:pathData="M310,253L311,254L310,253z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00270e" ns0:pathData="M317,254L318,255L317,254z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006223" ns0:pathData="M474,254L475,255L474,254z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#45084a" ns0:pathData="M481,254L482,255L481,254z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#28000f" ns0:pathData="M311,255L312,256L311,255z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006223" ns0:pathData="M318,255L319,256L318,255z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001608" ns0:pathData="M474,255L475,256L474,255z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2a042d" ns0:pathData="M480,255L481,256L480,255z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006c27" ns0:pathData="M473,256L474,257L473,256z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5f0b66" ns0:pathData="M479,257L480,258L479,257z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#300012" ns0:pathData="M313,258L314,259L313,258z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002f11" ns0:pathData="M319,258L320,259L319,258z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00732a" ns0:pathData="M404,258C405.25,258.68 405.55,258.75 407,259C405.75,258.32 405.45,258.25 404,258z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007b2d" ns0:pathData="M407,260C409.83,260.95 412.99,260.75 416,261L414,258L407,260z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3d0742" ns0:pathData="M478,258L479,259L478,258z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f22" ns0:pathData="M320,259L321,260L320,259z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008d34" ns0:pathData="M377,262L381,260C378.74,259.18 378.25,260 377,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M385,259C386.51,259.68 387.32,259.83 389,260C387.49,259.32 386.68,259.17 385,259z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007f2e" ns0:pathData="M389,259C392.7,260.55 397.02,260 401,260C397.3,258.45 392.98,259 389,259z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00551f" ns0:pathData="M401,259C402.25,259.68 402.55,259.75 404,260C402.75,259.32 402.45,259.25 401,259z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007029" ns0:pathData="M416.67,259.33C416.22,259.78 417.28,259.72 417.33,259.67C417.78,259.22 416.72,259.28 416.67,259.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006826" ns0:pathData="M471,259L472,260L471,259z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007d2d" ns0:pathData="M374.67,260.33C374.22,260.78 375.28,260.72 375.33,260.67C375.78,260.22 374.72,260.28 374.67,260.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004a1b" ns0:pathData="M379.67,260.33C379.22,260.78 380.28,260.72 380.33,260.67C380.78,260.22 379.72,260.28 379.67,260.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009739" ns0:pathData="M381,260C382.51,260.68 383.32,260.83 385,261C383.49,260.32 382.68,260.17 381,260z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003b15" ns0:pathData="M388,260C391.96,261.66 396.74,261 401,261C397.04,259.34 392.26,260 388,260z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001f0b" ns0:pathData="M410,260C411.25,260.68 411.55,260.75 413,261C411.75,260.32 411.45,260.25 410,260z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00260d" ns0:pathData="M416.67,260.33C416.22,260.78 417.28,260.72 417.33,260.67C417.78,260.22 416.72,260.28 416.67,260.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00481a" ns0:pathData="M418,261C419.81,261.57 420.07,261.46 422,261C420.34,260.59 419.76,260.69 418,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#350639" ns0:pathData="M477,260L478,261L477,260z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f0019" ns0:pathData="M315,261L316,262L315,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003212" ns0:pathData="M321,261L322,262L321,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0a8334" ns0:pathData="M366,264L370,263C369.4,261.8 369.53,262.02 368,261C366.98,262.14 366.69,262.61 366,264z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006525" ns0:pathData="M370.67,261.33C370.22,261.78 371.28,261.72 371.33,261.67C371.78,261.22 370.72,261.28 370.67,261.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00501d" ns0:pathData="M375.67,261.33C375.22,261.78 376.28,261.72 376.33,261.67C376.78,261.22 375.72,261.28 375.67,261.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001808" ns0:pathData="M380.67,261.33C380.22,261.78 381.28,261.72 381.33,261.67C381.78,261.22 380.72,261.28 380.67,261.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003f17" ns0:pathData="M382,261C383.25,261.68 383.55,261.75 385,262C383.75,261.32 383.45,261.25 382,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003914" ns0:pathData="M413,263L416,262C414.22,261.05 413.98,261.23 413,263z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#035921" ns0:pathData="M423,261C424.54,262.27 425.05,262.49 427,263C425.54,261.92 424.75,261.56 423,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006324" ns0:pathData="M427,261L428,262L427,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001507" ns0:pathData="M470,261L471,262L470,261z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006324" ns0:pathData="M322,262L323,263L322,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008e34" ns0:pathData="M360,265L364,264C363.4,262.8 363.53,263.02 362,262C360.98,263.14 360.69,263.61 360,265z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004419" ns0:pathData="M364,262L362,265L365,266C365.04,263.92 365.05,263.72 364,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001a09" ns0:pathData="M368,263C370.09,264.43 370.59,264.06 372,262L368,263z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M372.67,262.33C372.22,262.78 373.28,262.72 373.33,262.67C373.78,262.22 372.72,262.28 372.67,262.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00230c" ns0:pathData="M376,262C377.25,262.68 377.55,262.75 379,263C377.75,262.32 377.45,262.25 376,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00200b" ns0:pathData="M417.67,262.33C417.22,262.78 418.28,262.72 418.33,262.67C418.78,262.22 417.72,262.28 417.67,262.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001507" ns0:pathData="M427,262L427,265L430,264C428.86,262.98 428.39,262.69 427,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00551f" ns0:pathData="M429,262L430,265L433,264C431.54,262.92 430.75,262.56 429,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009737" ns0:pathData="M432,262L433,265C436.19,265.06 439,265.94 442,267C441.75,265.55 441.68,265.25 441,264L436,264L436,262L432,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e0954" ns0:pathData="M476,262L477,263L476,262z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c000b" ns0:pathData="M316,263L317,264L316,263z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001f0b" ns0:pathData="M424.67,263.33C424.22,263.78 425.28,263.72 425.33,263.67C425.78,263.22 424.72,263.28 424.67,263.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004719" ns0:pathData="M469,263L470,264L469,263z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2d0530" ns0:pathData="M475,263L476,264L475,263z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00541e" ns0:pathData="M323,264L324,265L323,264z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001a09" ns0:pathData="M358,267L362,266C361.4,264.8 361.53,265.02 360,264C358.98,265.14 358.69,265.61 358,267z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#054b1d" ns0:pathData="M366.67,264.33C366.22,264.78 367.28,264.72 367.33,264.67C367.78,264.22 366.72,264.28 366.67,264.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001c0a" ns0:pathData="M434,264L435,265L434,264z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003513" ns0:pathData="M355,265C354.78,266.69 354.78,267.32 355,269C357,267.75 358.05,267.25 359,265L355,265z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004017" ns0:pathData="M438,265L439,266L438,265z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001b09" ns0:pathData="M468,265L469,266L468,265z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#240426" ns0:pathData="M474,265L475,266L474,265z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#22000d" ns0:pathData="M318,266L319,267L318,266z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M353,266C349.83,267.48 347.34,268.31 345,271L346,272C348.79,270.64 353.95,269.72 353,266z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004c1b" ns0:pathData="M442,266L443,267L442,266z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00742a" ns0:pathData="M444,266L446,270C446.56,267.69 446,267.24 444,266z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004c1b" ns0:pathData="M467,266L468,267L467,266z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005820" ns0:pathData="M448,267L447,268L448,270L450,269C449.45,267.36 449.64,267.55 448,267z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c0640" ns0:pathData="M473,267L474,268L473,267z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001507" ns0:pathData="M325,268L326,269L325,268z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008631" ns0:pathData="M451,268C452.1,269.46 452.54,269.9 454,271C453.1,268.88 453.12,268.9 451,268z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f0321" ns0:pathData="M472,268L473,269L472,268z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001407" ns0:pathData="M344,269C342.7,270.52 341.81,271.12 340,272C342.71,273.35 344.68,272.09 344,269z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00240d" ns0:pathData="M449,269C450.31,270.62 450.88,270.69 453,271C451.46,269.73 450.95,269.51 449,269z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001608" ns0:pathData="M466,269L467,270L466,269z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#47001c" ns0:pathData="M320,270L321,271L320,270z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004418" ns0:pathData="M326,270L327,271L326,270z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00822f" ns0:pathData="M339,273C340.46,271.9 340.9,271.46 342,270C339.88,270.9 339.9,270.88 339,273z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005e22" ns0:pathData="M454.33,270.67C454.28,270.72 454.22,271.78 454.67,271.33C454.72,271.28 454.78,270.22 454.33,270.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004218" ns0:pathData="M465,270L466,271L465,270z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#130115" ns0:pathData="M471,270L472,271L471,270z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003814" ns0:pathData="M454,273L457,273L456,271C454.36,271.55 454.55,271.36 454,273z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6c0c74" ns0:pathData="M471,271L472,272L471,271z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003212" ns0:pathData="M327,272L328,273L327,272z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003914" ns0:pathData="M338,272C336.81,273.19 336.47,273.58 336,275C337.95,274.49 338.46,274.27 340,273L338,272z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006223" ns0:pathData="M458.33,272.67C458.28,272.72 458.22,273.78 458.67,273.33C458.72,273.28 458.78,272.22 458.33,272.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002a0f" ns0:pathData="M464,272L465,273L464,272z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2f0532" ns0:pathData="M470,272L471,273L470,272z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006826" ns0:pathData="M328,273L329,274L328,273z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001507" ns0:pathData="M455,273L456,275C457.64,274.45 457.45,274.64 458,273L455,273z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001407" ns0:pathData="M458,274C459.46,275.08 460.25,275.44 462,276C461.53,274.58 461.19,274.19 460,273L458,274z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00792c" ns0:pathData="M461.33,273.67C461.28,273.72 461.22,274.78 461.67,274.33C461.72,274.28 461.78,273.22 461.33,273.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#120114" ns0:pathData="M469,273L470,274L469,273z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c0118" ns0:pathData="M323.33,274.67C323.28,274.72 323.22,275.78 323.67,275.33C323.72,275.28 323.78,274.22 323.33,274.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00742a" ns0:pathData="M334.33,274.67C334.28,274.72 334.22,275.78 334.67,275.33C334.72,275.28 334.78,274.22 334.33,274.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00471a" ns0:pathData="M462,274L462,276C463.64,275.45 463.45,275.64 464,274L462,274z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009737" ns0:pathData="M329,275C330.73,276.05 330.93,276.05 333,276C331.49,275.32 330.68,275.17 329,275z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00260d" ns0:pathData="M333,275C332.04,276.52 331.61,277.34 331,279C332.77,278.05 333.61,277.43 335,276L333,275z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001909" ns0:pathData="M335,275L336,277C337.64,276.45 337.45,276.64 338,275L335,275z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#430747" ns0:pathData="M468,275L469,276L468,275z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00250d" ns0:pathData="M329,276L330,277L329,276z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006525" ns0:pathData="M330.33,276.67C330.28,276.72 330.22,277.78 330.67,277.33C330.72,277.28 330.78,276.22 330.33,276.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f0321" ns0:pathData="M467,276L468,277L467,276z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0640" ns0:pathData="M467,277L466,278L467,280L469,279C468.45,277.36 468.64,277.55 467,277z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7a0e82" ns0:pathData="M469.33,277.67C469.28,277.72 469.22,278.78 469.67,278.33C469.72,278.28 469.78,277.22 469.33,277.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0017" ns0:pathData="M325,278L326,279L325,278z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#350639" ns0:pathData="M470,278L469,280L471,280C471,278.15 471.3,278.65 470,278z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#72002d" ns0:pathData="M325,279L324,281L326,281C326,279.15 326.3,279.65 325,279z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#820f8b" ns0:pathData="M471,279L471,281C472.64,280.45 472.45,280.64 473,279L471,279z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#72002d" ns0:pathData="M322.33,280.67C322.28,280.72 322.22,281.78 322.67,281.33C322.72,281.28 322.78,280.22 322.33,280.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2b0010" ns0:pathData="M326,280L327,281L326,280z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#18021a" ns0:pathData="M470.33,280.67C470.28,280.72 470.22,281.78 470.67,281.33C470.72,281.28 470.78,280.22 470.33,280.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a021c" ns0:pathData="M472,280L471,283L474,283C473.31,281.61 473.02,281.14 472,280z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#770e7f" ns0:pathData="M473.33,280.67C473.28,280.72 473.22,281.78 473.67,281.33C473.72,281.28 473.78,280.22 473.33,280.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7a1483" ns0:pathData="M475,280C475.41,282.09 475.22,282.02 477,283C476.31,281.61 476.02,281.14 475,280z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0017" ns0:pathData="M323,281C324.25,281.68 324.55,281.75 326,282C324.75,281.32 324.45,281.25 323,281z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2f0533" ns0:pathData="M474,281L475,285C475.39,283.08 475.15,282.64 474,281z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M775,281L776,282L775,281z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#46001b" ns0:pathData="M321,282C321.55,283.64 321.36,283.45 323,284L323,282L321,282z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140007" ns0:pathData="M323,282C323.55,283.64 323.36,283.45 325,284L325,282L323,282z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#48001c" ns0:pathData="M320.33,283.67C320.28,283.72 320.22,284.78 320.67,284.33C320.72,284.28 320.78,283.22 320.33,283.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5c0a63" ns0:pathData="M476.67,283.33C476.22,283.78 477.28,283.72 477.33,283.67C477.78,283.22 476.72,283.28 476.67,283.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#861090" ns0:pathData="M478.33,283.67C478.28,283.72 478.22,284.78 478.67,284.33C478.72,284.28 478.78,283.22 478.33,283.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#881092" ns0:pathData="M480,283L480,286C480.7,284.45 480.7,284.55 480,283z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#510020" ns0:pathData="M318.33,284.67C318.28,284.72 318.22,285.78 318.67,285.33C318.72,285.28 318.78,284.22 318.33,284.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140008" ns0:pathData="M319,284L318,288C319.3,286.33 319.55,286.01 319,284z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#330537" ns0:pathData="M477,284L476,286L478,286C478,284.15 478.3,284.65 477,284z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#210323" ns0:pathData="M479,284L478,287C479.77,286.02 479.95,285.78 479,284z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e001e" ns0:pathData="M316,285L316,287L318,287C317.45,285.36 317.64,285.55 316,285z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#740d7d" ns0:pathData="M480,286C481.61,287.31 483.08,288.19 485,289C483.46,286.82 482.64,286.43 480,286z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4d001e" ns0:pathData="M313,290L316,288C313.86,286.88 313.47,287.75 313,290z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a000a" ns0:pathData="M316.33,287.67C316.28,287.72 316.22,288.78 316.67,288.33C316.72,288.28 316.78,287.22 316.33,287.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#250427" ns0:pathData="M480,287C481.14,288.02 481.61,288.31 483,289C482.02,287.22 482.09,287.41 480,287z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4c0a51" ns0:pathData="M484.33,289.67C484.28,289.72 484.22,290.78 484.67,290.33C484.72,290.28 484.78,289.22 484.33,289.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#29042b" ns0:pathData="M486,289L485,292L488,292C487.31,290.61 487.02,290.14 486,289z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#850f8f" ns0:pathData="M487.33,289.67C487.28,289.72 487.22,290.78 487.67,290.33C487.72,290.28 487.78,289.22 487.33,289.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b001a" ns0:pathData="M310,293L313,291C310.86,289.88 310.47,290.75 310,293z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#650027" ns0:pathData="M307,291C305.86,293.36 304.66,295.47 304,298C306.33,295.93 307.86,294.14 307,291z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5f0b66" ns0:pathData="M488,291C488.46,292.89 489.07,294.28 490,296C490.65,293.61 489.77,292.67 488,291z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#160008" ns0:pathData="M308,292C309.56,293.81 310.44,293.81 312,292L308,292z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#18000b" ns0:pathData="M307,294C305.5,296 303.96,297.44 302,299C305.19,299.49 307.86,297.29 307,294z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#430948" ns0:pathData="M491,296L494,296L493,294C491.36,294.55 491.55,294.36 491,296z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e0425" ns0:pathData="M13,295L14,296L13,295z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#580a5e" ns0:pathData="M494,295C494.68,297.21 495.08,297.7 497,299C496.16,297.23 495.46,296.31 494,295z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5d0e63" ns0:pathData="M497,299L498,300L497,299z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M780,299L781,300L780,299z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e0b64" ns0:pathData="M496,301C497.14,302.02 497.61,302.31 499,303C498.02,301.22 498.09,301.41 496,301z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#190009" ns0:pathData="M299,302C297.44,303.96 296,305.5 294,307C297.29,307.86 299.49,305.19 299,302z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8d1097" ns0:pathData="M499.67,302.33C499.22,302.78 500.28,302.72 500.33,302.67C500.78,302.22 499.72,302.28 499.67,302.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f0744" ns0:pathData="M498,303C499.14,304.02 499.61,304.31 501,305C500.02,303.22 500.09,303.41 498,303z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#50001f" ns0:pathData="M291,307C293.84,307.78 295.55,306.51 298,305C295.36,304.3 293.43,305.83 291,307z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6d0d75" ns0:pathData="M501.67,304.33C501.22,304.78 502.28,304.72 502.33,304.67C502.78,304.22 501.72,304.28 501.67,304.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d031f" ns0:pathData="M500,305C501.25,305.68 501.55,305.75 503,306C501.75,305.32 501.45,305.25 500,305z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#891093" ns0:pathData="M502,306C503.54,307.27 504.05,307.49 506,308C504.54,306.92 503.75,306.56 502,306z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2f0632" ns0:pathData="M501,307C502.68,308.63 502.71,308.69 505,309L504,311C505.78,310.02 505.59,310.09 506,308L501,307z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#93119e" ns0:pathData="M506,309C506.98,310.78 506.91,310.59 509,311C507.86,309.98 507.39,309.69 506,309z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3e001b" ns0:pathData="M290,313L293,311C290.86,309.88 290.47,310.75 290,313z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#46084b" ns0:pathData="M506.67,311.33C506.22,311.78 507.28,311.72 507.33,311.67C507.78,311.22 506.72,311.28 506.67,311.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e0d76" ns0:pathData="M508.33,311.67C508.28,311.72 508.22,312.78 508.67,312.33C508.72,312.28 508.78,311.22 508.33,311.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4f001f" ns0:pathData="M287,316L290,314C287.86,312.88 287.47,313.75 287,316z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#190009" ns0:pathData="M288,314C289.81,314.57 290.07,314.46 292,314C290.34,313.59 289.76,313.69 288,314z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4f0955" ns0:pathData="M507.67,313.33C507.22,313.78 508.28,313.72 508.33,313.67C508.78,313.22 507.72,313.28 507.67,313.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#800f8a" ns0:pathData="M509,313C510,314.92 510.08,315.1 512,316C511,314.08 510.92,313.9 509,313z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#250428" ns0:pathData="M508,314C508.56,315.75 508.92,316.54 510,318C509.97,315.66 509.9,315.33 508,314z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#49001c" ns0:pathData="M285,316C285.55,317.64 285.36,317.45 287,318L287,316L285,316z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a000a" ns0:pathData="M287.67,316.33C287.22,316.78 288.28,316.72 288.33,316.67C288.78,316.22 287.72,316.28 287.67,316.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#520958" ns0:pathData="M511.33,316.67C511.28,316.72 511.22,317.78 511.67,317.33C511.72,317.28 511.78,316.22 511.33,316.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#79002f" ns0:pathData="M283.33,318.67C283.28,318.72 283.22,319.78 283.67,319.33C283.72,319.28 283.78,318.22 283.33,318.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e001e" ns0:pathData="M284.67,318.33C284.22,318.78 285.28,318.72 285.33,318.67C285.78,318.22 284.72,318.28 284.67,318.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140007" ns0:pathData="M284,319C285.81,319.57 286.07,319.46 288,319C286.34,318.59 285.76,318.69 284,319z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#510957" ns0:pathData="M512.67,318.33C512.22,318.78 513.28,318.72 513.33,318.67C513.78,318.22 512.72,318.28 512.67,318.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f0321" ns0:pathData="M511,320C512.72,321.06 512.92,321.04 515,321C513.27,319.95 513.07,319.95 511,320z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#86108f" ns0:pathData="M513.67,319.33C513.22,319.78 514.28,319.72 514.33,319.67C514.78,319.22 513.72,319.28 513.67,319.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#75002e" ns0:pathData="M281.67,320.33C281.22,320.78 282.28,320.72 282.33,320.67C282.78,320.22 281.72,320.28 281.67,320.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#45001b" ns0:pathData="M283.67,320.33C283.22,320.78 284.28,320.72 284.33,320.67C284.78,320.22 283.72,320.28 283.67,320.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#780e81" ns0:pathData="M515,320C515.03,321.83 514.92,321.56 516,323C515.75,321.55 515.68,321.25 515,320z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#400019" ns0:pathData="M282,321L282,323L284,323C283.45,321.36 283.64,321.55 282,321z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e002c" ns0:pathData="M280.67,322.33C280.22,322.78 281.28,322.72 281.33,322.67C281.78,322.22 280.72,322.28 280.67,322.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140007" ns0:pathData="M281,326C282.39,325.31 282.86,325.02 284,324C281.6,323.42 281.51,323.52 281,326z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#47084c" ns0:pathData="M514.67,323.33C514.22,323.78 515.28,323.72 515.33,323.67C515.78,323.22 514.72,323.28 514.67,323.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#770e7f" ns0:pathData="M516.67,323.33C516.22,323.78 517.28,323.72 517.33,323.67C517.78,323.22 516.72,323.28 516.67,323.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7e0031" ns0:pathData="M280,324L278,325C279.48,325.79 280.8,325.87 280,324z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2c052f" ns0:pathData="M516,324C516.03,325.83 515.92,325.56 517,327C516.75,325.55 516.68,325.25 516,324z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#660c6e" ns0:pathData="M517.33,325.67C517.28,325.72 517.22,326.78 517.67,326.33C517.72,326.28 517.78,325.22 517.33,325.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#26000f" ns0:pathData="M279,326C279.55,327.64 279.36,327.45 281,328L281,326L279,326z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#820f8c" ns0:pathData="M518,326C518.54,327.64 518.36,327.45 520,328L520,326L518,326z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#730334" ns0:pathData="M278,327L276,331C277.98,329.84 278.74,328.95 280,327L278,327z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#18021a" ns0:pathData="M517.67,327.33C517.22,327.78 518.28,327.72 518.33,327.67C518.78,327.22 517.72,327.28 517.67,327.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M786,327L787,328L786,327z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#420747" ns0:pathData="M518.67,328.33C518.22,328.78 519.28,328.72 519.33,328.67C519.78,328.22 518.72,328.28 518.67,328.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#240426" ns0:pathData="M518,329C518.56,330.75 518.92,331.54 520,333C519.69,330.71 519.63,330.68 518,329z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#700d78" ns0:pathData="M519,329C519.54,330.64 519.36,330.45 521,331L521,329L519,329z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8c1096" ns0:pathData="M521.33,330.67C521.28,330.72 521.22,331.78 521.67,331.33C521.72,331.28 521.78,330.22 521.33,330.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4f0955" ns0:pathData="M520.67,332.33C520.22,332.78 521.28,332.72 521.33,332.67C521.78,332.22 520.72,332.28 520.67,332.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#600025" ns0:pathData="M274,335C276.09,334.59 276.02,334.78 277,333C275.42,333.68 275.22,333.8 274,335z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#770e7f" ns0:pathData="M521,333C521.54,334.64 521.36,334.45 523,335L523,333L521,333z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2c0011" ns0:pathData="M274,336C272.81,337.19 272.47,337.58 272,339L273,340C274.3,338.33 274.55,338.01 274,336z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#430748" ns0:pathData="M522.67,336.33C522.22,336.78 523.28,336.72 523.33,336.67C523.78,336.22 522.72,336.28 522.67,336.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6d0d75" ns0:pathData="M524,336L523,337L524,339L526,338C525.46,336.36 525.64,336.55 524,336z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7e0037" ns0:pathData="M271,339C270.78,340.69 270.78,341.32 271,343C272.27,341.46 272.49,340.95 273,339L271,339z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#28042b" ns0:pathData="M523,339C524.02,341.48 524.44,342.26 527,343C525.74,341.05 524.98,340.16 523,339z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5b0c62" ns0:pathData="M525,339L526,340L525,339z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f000c" ns0:pathData="M273,341L269,344C271.54,344.55 273.08,343.69 273,341z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#580a5e" ns0:pathData="M526,343L525,344L526,346L528,345C527.46,343.36 527.64,343.55 526,343z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a001d" ns0:pathData="M270,345C268.12,347.88 267.14,350.77 266,354C269.76,352.95 270.3,349.3 272,346L270,345z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#86108f" ns0:pathData="M527,345L527,348L529,348L530,356L533,359C533.71,354.77 530.61,347.37 527,345z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c031e" ns0:pathData="M527,346L528,347L527,346z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f0744" ns0:pathData="M528,348L529,349L528,348z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#400844" ns0:pathData="M528,351L529,352L528,351z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f0321" ns0:pathData="M529,352L530,353L529,352z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#54095a" ns0:pathData="M529,353L530,354L529,353z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#27000f" ns0:pathData="M265,355L266,360L269,355C267.32,354.78 266.69,354.78 265,355z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2f0533" ns0:pathData="M530,354L531,355L530,354z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#690c70" ns0:pathData="M531.33,356.67C531.28,356.72 531.22,357.78 531.67,357.33C531.72,357.28 531.78,356.22 531.33,356.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#500956" ns0:pathData="M532,358C531.83,360.27 531.86,361.08 533,363C533.33,360.63 533.3,359.99 532,358z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#77002e" ns0:pathData="M264,360C262.84,361.82 262.86,361.83 263,364C264.15,362.36 264.39,361.92 264,360z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c0017" ns0:pathData="M265.33,360.67C265.28,360.72 265.22,361.78 265.67,361.33C265.72,361.28 265.78,360.22 265.33,360.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#310013" ns0:pathData="M264,362L262,365C263.68,365.22 264.31,365.22 266,365C265.31,363.61 265.02,363.14 264,362z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d031f" ns0:pathData="M531,363C532.14,364.02 532.61,364.31 534,365C533.02,363.22 533.09,363.41 531,363z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7d0e86" ns0:pathData="M534.33,363.67C534.28,363.72 534.22,364.78 534.67,364.33C534.72,364.28 534.78,363.22 534.33,363.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#350938" ns0:pathData="M532.33,365.67C532.28,365.72 532.22,366.78 532.67,366.33C532.72,366.28 532.78,365.22 532.33,365.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#601066" ns0:pathData="M533,365L534,369C534.55,366.99 534.3,366.67 533,365z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6c002c" ns0:pathData="M263,366C261.84,367.82 261.86,367.83 262,370C263.15,368.36 263.39,367.92 263,366z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0019" ns0:pathData="M264.33,366.67C264.28,366.72 264.22,367.78 264.67,367.33C264.72,367.28 264.78,366.22 264.33,366.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8a1094" ns0:pathData="M535.33,366.67C535.28,366.72 535.22,367.78 535.67,367.33C535.72,367.28 535.78,366.22 535.33,366.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M791,367L792,368L791,367z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#28000f" ns0:pathData="M263,368C263.41,370.09 263.22,370.02 265,371C264.31,369.61 264.02,369.14 263,368z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f0a44" ns0:pathData="M533.33,368.67C533.28,368.72 533.22,369.78 533.67,369.33C533.72,369.28 533.78,368.22 533.33,368.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#620b69" ns0:pathData="M535,370L535,373C535.7,371.45 535.7,371.55 535,370z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#440320" ns0:pathData="M262,371C261.32,372.58 261.2,372.78 260,374C260.65,376.39 261.03,377.54 263,379C262.83,376.23 263,373.57 262,371z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#230325" ns0:pathData="M534,371L533,374C534.64,374.55 534.46,374.36 535,376C535.65,373.77 535.32,372.93 534,371z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b000c" ns0:pathData="M263.33,373.67C263.28,373.72 263.22,374.78 263.67,374.33C263.72,374.28 263.78,373.22 263.33,373.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#520958" ns0:pathData="M536.33,373.67C536.28,373.72 536.22,374.78 536.67,374.33C536.72,374.28 536.78,373.22 536.33,373.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#850f8f" ns0:pathData="M536.33,375.67C536.28,375.72 536.22,376.78 536.67,376.33C536.72,376.28 536.78,375.22 536.33,375.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#580a5e" ns0:pathData="M535.33,376.67C535.28,376.72 535.22,377.78 535.67,377.33C535.72,377.28 535.78,376.22 535.33,376.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#77002f" ns0:pathData="M259,378L259,381C260.02,379.86 260.31,379.39 261,378L259,378z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d031f" ns0:pathData="M536,378L536,381C536.7,379.45 536.7,379.55 536,378z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#600b67" ns0:pathData="M537.33,378.67C537.28,378.72 537.22,379.78 537.67,379.33C537.72,379.28 537.78,378.22 537.33,378.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5c0024" ns0:pathData="M260,379C260.08,381.64 260,383.27 262,385C261.44,382.9 260.95,380.94 260,379z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#86108f" ns0:pathData="M537.33,380.67C537.28,380.72 537.22,381.78 537.67,381.33C537.72,381.28 537.78,380.22 537.33,380.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d000b" ns0:pathData="M261,381L261,384C261.7,382.45 261.7,382.55 261,381z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#530959" ns0:pathData="M536.33,381.67C536.28,381.72 536.22,382.78 536.67,382.33C536.72,382.28 536.78,381.22 536.33,381.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#210323" ns0:pathData="M535,382L535,385C535.7,383.45 535.7,383.55 535,382z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#73127b" ns0:pathData="M536.33,383.67C536.28,383.72 536.22,384.78 536.67,384.33C536.72,384.28 536.78,383.22 536.33,383.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5d0024" ns0:pathData="M259,385L259,394C260.26,391.01 260.26,387.99 259,385z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#18010b" ns0:pathData="M260,385C261.25,385.68 261.55,385.75 263,386C261.75,385.32 261.45,385.25 260,385z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a084f" ns0:pathData="M537,385L537,394C538.26,391.01 538.26,387.99 537,385z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#780e81" ns0:pathData="M538,385L538,389C538.71,387.24 538.71,386.76 538,385z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#210210" ns0:pathData="M0,387L1,388L0,387z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a000a" ns0:pathData="M260,387L260,394C261.06,391.47 261.06,389.53 260,387z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#90119a" ns0:pathData="M538,389L538,393C538.71,391.24 538.71,390.76 538,389z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521257" ns0:pathData="M792,389L793,390L792,389z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#24000e" ns0:pathData="M175,393C183.37,396.51 196.92,394 206,394C197.63,390.49 184.08,393 175,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#390016" ns0:pathData="M206,393C210.97,395.09 217.64,394 223,394C218.03,391.91 211.36,393 206,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e0025" ns0:pathData="M223,393C229.45,395.7 239.03,394 246,394C239.55,391.3 229.97,393 223,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#75002e" ns0:pathData="M246,393C249.96,394.66 254.74,394 259,394C255.04,392.34 250.26,393 246,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f0d77" ns0:pathData="M538,393C540.61,394.1 543.16,393.99 546,394C543.39,392.9 540.84,393.01 538,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#580a5e" ns0:pathData="M546,393C549.96,394.66 554.74,394 559,394C555.04,392.34 550.26,393 546,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#47084c" ns0:pathData="M559,393C562.96,394.66 567.74,394 572,394C568.04,392.34 563.26,393 559,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2b042e" ns0:pathData="M572,393C578.93,395.91 589.5,394 597,394C590.07,391.09 579.5,393 572,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140215" ns0:pathData="M597,393C600.7,394.55 605.02,394 609,394L632,394C628.3,392.45 623.98,393 620,393L597,393z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#151000" ns0:pathData="M223,398C225.89,399.21 228.87,399 232,399C229.11,397.79 226.13,398 223,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#433200" ns0:pathData="M232,398C234.05,398.87 235.75,398.95 238,399C235.95,398.13 234.25,398.05 232,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#604800" ns0:pathData="M238,398C240.33,398.98 242.46,398.98 245,399C242.67,398.02 240.54,398.02 238,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#926e00" ns0:pathData="M245,398C247.89,399.21 250.87,399 254,399C251.11,397.79 248.13,398 245,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#cd9a00" ns0:pathData="M254,398C255.77,398.78 257.04,398.91 259,399C257.23,398.22 255.96,398.09 254,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8e6a00" ns0:pathData="M259,398L259,401C259.7,399.45 259.7,399.55 259,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2a2000" ns0:pathData="M260,398L260,401C260.7,399.45 260.7,399.55 260,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004b67" ns0:pathData="M537,398L537,401C537.7,399.45 537.7,399.55 537,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006187" ns0:pathData="M538,398C540.61,399.1 543.16,398.99 546,399C543.39,397.9 540.84,398.01 538,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00425b" ns0:pathData="M546,398C548.33,398.98 550.46,398.98 553,399C550.67,398.02 548.54,398.02 546,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00222f" ns0:pathData="M553,398C555.33,398.98 557.46,398.98 560,399C557.67,398.02 555.54,398.02 553,398z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#221900" ns0:pathData="M135,399C140.22,401.19 147.37,400 153,400C147.78,397.81 140.63,399 135,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4e3b00" ns0:pathData="M153,399C157.47,400.88 163.18,400 168,400C163.53,398.12 157.82,399 153,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#684e00" ns0:pathData="M168,399C170.61,400.1 173.16,399.99 176,400C173.39,398.9 170.84,399.01 168,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#836200" ns0:pathData="M176,399C178.61,400.1 181.16,399.99 184,400C181.39,398.9 178.84,399.01 176,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a17900" ns0:pathData="M184,399C186.89,400.21 189.87,400 193,400C190.11,398.79 187.13,399 184,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c69500" ns0:pathData="M193,399C195.89,400.21 198.87,400 202,400C199.11,398.79 196.13,399 193,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ffc000" ns0:pathData="M0,400C0,502.58 43.65,604.65 116,677C133.7,694.7 153.16,710.78 174,724.67C178.63,727.75 183.2,730.97 188,733.79C189.91,734.92 192.42,736.73 194.79,736.17C198.99,735.18 202.04,726.4 204,723L227.15,683C246.85,648.69 265.84,613.87 286.25,580C295.03,565.44 303.66,550.8 312.04,536C315.79,529.36 320.51,523.28 323,516C321.36,515.46 321.55,515.64 321,514L319,515L317,511L315,512C313.52,509.67 312.74,509.24 310,509C309.52,506.4 309.52,505.97 307,506C303.49,496.85 288.99,491.8 288,482L284,481C284.34,479.33 284.54,479.69 283,479C283.05,476.67 283.2,476.99 281,476C281.34,474.33 281.54,474.69 280,474C279.92,471.54 279.27,471.06 277,470L278,468C276.52,467.01 276.8,467 275,467C276.42,459.33 267.69,451.02 267,443L264,442C265.15,438.55 264.8,437.6 263,434L264,433L262,433C262.58,429.04 261.71,425.05 262,421C261,419.47 260.38,418.16 259,417L261,412C258.77,408.58 258.74,403.09 259,399L0,400z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008cc1" ns0:pathData="M538,399L538,402C538.7,400.45 538.7,400.55 538,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00b9ff" ns0:pathData="M539,399C539.2,404.02 539.66,409.58 537,414C537.16,416.42 537.01,417.8 536,420C537.19,421.19 537.53,421.58 538,423L536,423C536.07,424.95 536.35,424.94 535,426L537,430C535.46,430.69 535.66,430.33 536,432L534,432C534.21,433.66 534.49,433.54 533,434C532.95,436.73 532.9,438.98 531,441C531.71,443.36 531.75,445.56 532,448C530.2,448 530.48,448.01 529,449C528.26,454.39 524.63,464.17 520,467C519.66,470.26 518.81,472.27 516,474C515.52,478.82 512.11,481.82 508,484L507,490C498.71,493.96 493.75,507.01 484,508L483,512C479.31,512.23 477.59,515.53 474,516C472.55,517.61 471.95,518.06 470,519C498.75,565.79 525.86,613.51 553.42,661C567.93,685.99 584.78,710.83 597,737C605.68,735.01 613.76,728.01 621,723.02C638.1,711.23 653.63,698.08 669,684.17C727.25,631.47 766.72,557.29 783.58,481C789.51,454.12 790.85,427.26 793,400L539,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008dc2" ns0:pathData="M584,399C587.43,400.44 591.3,400 595,400C591.57,398.56 587.7,399 584,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007aa9" ns0:pathData="M595,399C597.89,400.21 600.87,400 604,400C601.11,398.79 598.13,399 595,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005372" ns0:pathData="M604,399C608.97,401.09 615.64,400 621,400C616.03,397.91 609.36,399 604,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003b51" ns0:pathData="M621,399C623.61,400.1 626.16,399.99 629,400C626.39,398.9 623.84,399.01 621,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00222f" ns0:pathData="M629,399C633.22,400.77 638.46,400 643,400C638.78,398.23 633.54,399 629,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00131a" ns0:pathData="M643,399C646.43,400.44 650.3,400 654,400C650.57,398.56 646.7,399 643,399z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#664d00" ns0:pathData="M259,401L259,405C259.71,403.24 259.71,402.76 259,401z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003144" ns0:pathData="M537,401L537,404C537.7,402.45 537.7,402.55 537,401z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b98b00" ns0:pathData="M258,402L258,405C258.7,403.45 258.7,403.55 258,402z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006e98" ns0:pathData="M538,402L538,405C538.7,403.45 538.7,403.55 538,402z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0092c9" ns0:pathData="M539,404L537,410C539.04,408.06 539.95,406.72 539,404z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#af8700" ns0:pathData="M260,405L260,408C260.7,406.45 260.7,406.55 260,405z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#493800" ns0:pathData="M261,405L260,411C261.49,408.82 261.89,407.51 261,405z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00445d" ns0:pathData="M538.33,405.67C538.28,405.72 538.22,406.78 538.67,406.33C538.72,406.28 538.78,405.22 538.33,405.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001219" ns0:pathData="M535,407L536,408L535,407z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004964" ns0:pathData="M536,407L536,410C536.7,408.45 536.7,408.55 536,407z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c19100" ns0:pathData="M259,408L259,411C259.7,409.45 259.7,409.55 259,408z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005271" ns0:pathData="M537,410L537,413C537.7,411.45 537.7,411.55 537,410z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#806000" ns0:pathData="M259,411L260,412L259,411z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#181200" ns0:pathData="M260,411L261,412L260,411z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0084b7" ns0:pathData="M538,411L538,414C538.7,412.45 538.7,412.55 538,411z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#644c00" ns0:pathData="M261,412L261,415C261.7,413.45 261.7,413.55 261,412z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#231c00" ns0:pathData="M262,412L263,413L262,412z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a57c00" ns0:pathData="M260.33,413.67C260.28,413.72 260.22,414.78 260.67,414.33C260.72,414.28 260.78,413.22 260.33,413.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00212e" ns0:pathData="M537,413L538,414L537,413z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#000e14" ns0:pathData="M535.33,414.67C535.28,414.72 535.22,415.78 535.67,415.33C535.72,415.28 535.78,414.22 535.33,414.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006a93" ns0:pathData="M536,414L537,419C537.65,416.77 537.32,415.93 536,414z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#775d00" ns0:pathData="M260.33,415.67C260.28,415.72 260.22,416.78 260.67,416.33C260.72,416.28 260.78,415.22 260.33,415.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bc8d00" ns0:pathData="M259,416L260,417L259,416z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#473a00" ns0:pathData="M261,416L262,419C262.68,417.75 262.75,417.45 263,416L261,416z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#735c00" ns0:pathData="M261,417C261.18,418.88 261.44,420.2 262,422C262.47,419.86 262.13,418.9 261,417z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e29" ns0:pathData="M536,417L537,418L536,417z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#000e14" ns0:pathData="M534.67,418.33C534.22,418.78 535.28,418.72 535.33,418.67C535.78,418.22 534.72,418.28 534.67,418.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9e7800" ns0:pathData="M260.33,419.67C260.28,419.72 260.22,420.78 260.67,420.33C260.72,420.28 260.78,419.22 260.33,419.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002635" ns0:pathData="M535,419L535,422C535.7,420.45 535.7,420.55 535,419z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00506e" ns0:pathData="M536.33,420.67C536.28,420.72 536.22,421.78 536.67,421.33C536.72,421.28 536.78,420.22 536.33,420.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008dc1" ns0:pathData="M537,421C535.96,422.19 535.66,422.6 535,424C536.85,423.03 537.72,422.86 537,421z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ad8200" ns0:pathData="M261,422L262,423L261,422z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00212d" ns0:pathData="M534.33,422.67C534.28,422.72 534.22,423.78 534.67,423.33C534.72,423.28 534.78,422.22 534.33,422.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#725600" ns0:pathData="M261,423L262,424L261,423z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c69b00" ns0:pathData="M262,424L263,425L262,424z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#544100" ns0:pathData="M263,424L264,425L263,424z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003346" ns0:pathData="M535,424C533.63,425.92 533.65,425.71 534,428C535.15,426.36 535.39,425.92 535,424z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#876500" ns0:pathData="M262,425L263,426L262,425z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#151000" ns0:pathData="M263,425L264,426L263,425z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006f9a" ns0:pathData="M536,425L537,426L536,425z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0b6387" ns0:pathData="M791,425L792,426L791,425z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#d1a000" ns0:pathData="M261,426C261.68,427.58 261.8,427.78 263,429C262.32,427.42 262.2,427.22 261,426z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#463500" ns0:pathData="M262,426L263,427L262,426z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#917000" ns0:pathData="M263,427L264,428L263,427z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c1500" ns0:pathData="M264,427L265,428L264,427z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0083b5" ns0:pathData="M535,427L536,428L535,427z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1e1700" ns0:pathData="M263.33,428.67C263.28,428.72 263.22,429.78 263.67,429.33C263.72,429.28 263.78,428.22 263.33,428.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005777" ns0:pathData="M535,428L536,429L535,428z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0099d3" ns0:pathData="M536,428L534,429C535.48,429.79 536.8,429.87 536,428z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7a5c00" ns0:pathData="M262,429L263,430L262,429z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#463500" ns0:pathData="M264,429L264,431C265.64,430.45 265.45,430.64 266,429L264,429z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003d54" ns0:pathData="M533,429L534,430L533,429z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bd9100" ns0:pathData="M263,430L264,431L263,430z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00161e" ns0:pathData="M533,430C532.11,431.74 531.55,433.13 531,435L534,434C533.94,432.26 533.98,432.36 535,431L533,430z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006186" ns0:pathData="M534,430L535,431L534,430z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#846400" ns0:pathData="M262,432C263.14,433.02 263.61,433.31 265,434C265,432.2 264.99,432.48 264,431L262,432z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0084b6" ns0:pathData="M535,431L536,432L535,431z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#352900" ns0:pathData="M265,432L266,433L265,432z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00648a" ns0:pathData="M533,432L534,433L533,432z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0085b8" ns0:pathData="M534,433L535,434L534,433z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a58001" ns0:pathData="M263,434L265,438C265.58,436.63 265.8,435.49 266,434L263,434z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#191400" ns0:pathData="M266,434L267,435L266,434z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#016084" ns0:pathData="M532,434L533,435L532,434z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#433200" ns0:pathData="M265,435L266,436L265,435z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00364a" ns0:pathData="M532,435C531.12,437.1 530.95,437.75 531,440L529,440L530,442L528,442L528,445L531,445C530.72,442.06 532.2,438.39 534,436L532,435z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0080b1" ns0:pathData="M533,435L534,436L533,435z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#645201" ns0:pathData="M266,436L267,437L266,436z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a1300" ns0:pathData="M266,437L267,438L266,437z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0074a0" ns0:pathData="M532,437L533,438L532,437z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ca9800" ns0:pathData="M264,438L264,442L268,443C266.79,440.95 265.75,439.59 264,438z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#433200" ns0:pathData="M265,438L266,439L265,438z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#694f00" ns0:pathData="M266,439L267,440L266,439z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007fb0" ns0:pathData="M532,440L533,441L532,440z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#483a00" ns0:pathData="M268,442L269,443L268,442z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00648a" ns0:pathData="M531,442L532,443L531,442z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f5400" ns0:pathData="M267,443L268,444L267,443z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0082b3" ns0:pathData="M530,443L531,444L530,443z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009ad4" ns0:pathData="M531,443L529,448C530.45,447.75 530.75,447.68 532,447C532.12,445.44 532.44,444.53 533,443L531,443z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a88300" ns0:pathData="M266,444C267,445.92 267.08,446.1 269,447L269,444L266,444z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#221900" ns0:pathData="M268,445L269,446L268,445z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005a7c" ns0:pathData="M529,445L530,446L529,445z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#675300" ns0:pathData="M269,446L268,447L269,449L271,448C270.45,446.36 270.64,446.55 269,446z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001118" ns0:pathData="M527,446L528,448C529.64,447.45 529.46,447.64 530,446L527,446z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a5860d" ns0:pathData="M3,447L4,448L3,447z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003e55" ns0:pathData="M527,448L528,449L527,448z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007aa9" ns0:pathData="M528.67,448.33C528.22,448.78 529.28,448.72 529.33,448.67C529.78,448.22 528.72,448.28 528.67,448.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#896700" ns0:pathData="M268,449L269,450L268,449z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f2f00" ns0:pathData="M269.67,449.33C269.22,449.78 270.28,449.72 270.33,449.67C270.78,449.22 269.72,449.28 269.67,449.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005a7c" ns0:pathData="M527,451L530,451L529,449C527.36,449.55 527.54,449.36 527,451z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8e6a00" ns0:pathData="M269,450L270,451L269,450z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#271e00" ns0:pathData="M271,450L272,451L271,450z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a98500" ns0:pathData="M270,451L269,452L270,454L272,453C271.45,451.36 271.64,451.55 270,451z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001820" ns0:pathData="M525,451C525.03,452.83 524.92,452.56 526,454C525.75,452.55 525.68,452.25 525,451z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003144" ns0:pathData="M526,451L526,453C527.64,452.45 527.46,452.64 528,451L526,451z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0087bb" ns0:pathData="M528,451L529,452L528,451z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0398ce" ns0:pathData="M527,452L526,454L528,454C528,452.15 528.3,452.65 527,452z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#685500" ns0:pathData="M271.67,453.33C271.22,453.78 272.28,453.72 272.33,453.67C272.78,453.22 271.72,453.28 271.67,453.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ab8400" ns0:pathData="M271,454L272,455L271,454z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3a3001" ns0:pathData="M272.67,454.33C272.22,454.78 273.28,454.72 273.33,454.67C273.78,454.22 272.72,454.28 272.67,454.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0077a5" ns0:pathData="M526,454L526,457L528,456C527.46,454.36 527.64,454.55 526,454z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#947501" ns0:pathData="M272,455L273,456L272,455z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#161000" ns0:pathData="M273,455C273.03,456.83 272.92,456.56 274,458C273.75,456.55 273.68,456.25 273,455z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003f57" ns0:pathData="M525,455L524,457L526,457C526,455.15 526.3,455.65 525,455z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b08400" ns0:pathData="M271,456L271,458L273,458C272.45,456.36 272.64,456.55 271,456z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0074a0" ns0:pathData="M525,457L526,458L525,457z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#745800" ns0:pathData="M272.67,458.33C272.22,458.78 273.28,458.72 273.33,458.67C273.78,458.22 272.72,458.28 272.67,458.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2e2602" ns0:pathData="M274.67,458.33C274.22,458.78 275.28,458.72 275.33,458.67C275.78,458.22 274.72,458.28 274.67,458.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006d97" ns0:pathData="M524,458C524.03,459.83 523.92,459.56 525,461C524.75,459.55 524.68,459.25 524,458z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bd9900" ns0:pathData="M272,459C273.22,460.2 273.42,460.32 275,461C273.78,459.8 273.58,459.68 272,459z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#765d03" ns0:pathData="M274,459L275,460L274,459z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#191400" ns0:pathData="M276,459L277,460L276,459z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6b5600" ns0:pathData="M275,460C275.03,461.83 274.92,461.56 276,463C275.75,461.55 275.68,461.25 275,460z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00374c" ns0:pathData="M522.67,460.33C522.22,460.78 523.28,460.72 523.33,460.67C523.78,460.22 522.72,460.28 522.67,460.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#241c00" ns0:pathData="M276,461L276,464L278,463C277.45,461.36 277.64,461.55 276,461z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00131a" ns0:pathData="M521,461L521,463C522.64,462.45 522.46,462.64 523,461L521,461z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0087bb" ns0:pathData="M523,461C523.03,462.83 522.92,462.56 524,464C523.75,462.55 523.68,462.25 523,461z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005271" ns0:pathData="M521.67,463.33C521.22,463.78 522.28,463.72 522.33,463.67C522.78,463.22 521.72,463.28 521.67,463.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#876500" ns0:pathData="M275.67,464.33C275.22,464.78 276.28,464.72 276.33,464.67C276.78,464.22 275.72,464.28 275.67,464.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b2c00" ns0:pathData="M277,464L276,466L278,466C278,464.15 278.3,464.65 277,464z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0094cc" ns0:pathData="M522,464C522.03,465.83 521.92,465.56 523,467C522.75,465.55 522.68,465.25 522,464z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#181300" ns0:pathData="M279,465L280,466L279,465z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#d7a200" ns0:pathData="M275.67,466.33C275.22,466.78 276.28,466.72 276.33,466.67C276.78,466.22 275.72,466.28 275.67,466.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a37c00" ns0:pathData="M277.33,466.67C277.28,466.72 277.22,467.78 277.67,467.33C277.72,467.28 277.78,466.22 277.33,466.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#443300" ns0:pathData="M278,466L278,469L280,468C279.45,466.36 279.64,466.55 278,466z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003143" ns0:pathData="M518,466L518,470C519.08,468.54 519.44,467.75 520,466L518,466z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005d81" ns0:pathData="M520.67,466.33C520.22,466.78 521.28,466.72 521.33,466.67C521.78,466.22 520.72,466.28 520.67,466.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0084b7" ns0:pathData="M519,468L519,470C520.64,469.45 520.46,469.64 521,468L519,468z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9e7700" ns0:pathData="M277.67,469.33C277.22,469.78 278.28,469.72 278.33,469.67C278.78,469.22 277.72,469.28 277.67,469.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#564300" ns0:pathData="M279.67,469.33C279.22,469.78 280.28,469.72 280.33,469.67C280.78,469.22 279.72,469.28 279.67,469.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001923" ns0:pathData="M516,469L516,471C517.64,470.45 517.46,470.64 518,469L516,469z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9c7500" ns0:pathData="M279.33,470.67C279.28,470.72 279.22,471.78 279.67,471.33C279.72,471.28 279.78,470.22 279.33,470.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#181200" ns0:pathData="M281,470L282,471L281,470z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007cac" ns0:pathData="M517.67,470.33C517.22,470.78 518.28,470.72 518.33,470.67C518.78,470.22 517.72,470.28 517.67,470.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#665100" ns0:pathData="M280.67,471.33C280.22,471.78 281.28,471.72 281.33,471.67C281.78,471.22 280.72,471.28 280.67,471.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00394e" ns0:pathData="M516.67,471.33C516.22,471.78 517.28,471.72 517.33,471.67C517.78,471.22 516.72,471.28 516.67,471.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00a2e0" ns0:pathData="M518,471C518.03,472.83 517.92,472.56 519,474C518.75,472.55 518.68,472.25 518,471z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b1400" ns0:pathData="M281.67,472.33C281.22,472.78 282.28,472.72 282.33,472.67C282.78,472.22 281.72,472.28 281.67,472.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#957000" ns0:pathData="M280.67,473.33C280.22,473.78 281.28,473.72 281.33,473.67C281.78,473.22 280.72,473.28 280.67,473.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#634c00" ns0:pathData="M282.33,473.67C282.28,473.72 282.22,474.78 282.67,474.33C282.72,474.28 282.78,473.22 282.33,473.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004058" ns0:pathData="M515.33,473.67C515.28,473.72 515.22,474.78 515.67,474.33C515.72,474.28 515.78,473.22 515.33,473.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00678f" ns0:pathData="M516.67,473.33C516.22,473.78 517.28,473.72 517.33,473.67C517.78,473.22 516.72,473.28 516.67,473.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b2d00" ns0:pathData="M285,474L283,475C284.48,475.79 285.8,475.87 285,474z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#936e00" ns0:pathData="M281.67,475.33C281.22,475.78 282.28,475.72 282.33,475.67C282.78,475.22 281.72,475.28 281.67,475.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003245" ns0:pathData="M513.67,475.33C513.22,475.78 514.28,475.72 514.33,475.67C514.78,475.22 513.72,475.28 513.67,475.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0076a3" ns0:pathData="M515.67,475.33C515.22,475.78 516.28,475.72 516.33,475.67C516.78,475.22 515.72,475.28 515.67,475.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#977c03" ns0:pathData="M283.67,476.33C283.22,476.78 284.28,476.72 284.33,476.67C284.78,476.22 283.72,476.28 283.67,476.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003143" ns0:pathData="M512,476L512,478L514,478C513.46,476.36 513.64,476.55 512,476z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005778" ns0:pathData="M514.33,476.67C514.28,476.72 514.22,477.78 514.67,477.33C514.72,477.28 514.78,476.22 514.33,476.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009fdc" ns0:pathData="M515.33,476.67C515.28,476.72 515.22,477.78 515.67,477.33C515.72,477.28 515.78,476.22 515.33,476.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b1500" ns0:pathData="M284,477C285.52,479.11 286.53,480.2 289,481C287.48,478.89 286.47,477.8 284,477z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b98b00" ns0:pathData="M283,478C284.25,478.68 284.55,478.75 286,479C284.75,478.32 284.45,478.25 283,478z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#076488" ns0:pathData="M511,478C511.55,479.64 511.36,479.45 513,480L513,478L511,478z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00a8e8" ns0:pathData="M513,478L511,482C513.13,480.85 513.78,480.12 515,478L513,478z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5d4700" ns0:pathData="M285,479L286,480L285,479z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#000f15" ns0:pathData="M509,479C510.25,479.68 510.55,479.75 512,480C510.75,479.32 510.45,479.25 509,479z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a67d00" ns0:pathData="M284.67,480.33C284.22,480.78 285.28,480.72 285.33,480.67C285.78,480.22 284.72,480.28 284.67,480.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005c80" ns0:pathData="M510.67,480.33C510.22,480.78 511.28,480.72 511.33,480.67C511.78,480.22 510.72,480.28 510.67,480.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9d7800" ns0:pathData="M286.67,481.33C286.22,481.78 287.28,481.72 287.33,481.67C287.78,481.22 286.72,481.28 286.67,481.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#433400" ns0:pathData="M288.33,481.67C288.28,481.72 288.22,482.78 288.67,482.33C288.72,482.28 288.78,481.22 288.33,481.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006a93" ns0:pathData="M510.67,482.33C510.22,482.78 511.28,482.72 511.33,482.67C511.78,482.22 510.72,482.28 510.67,482.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f5400" ns0:pathData="M287.67,483.33C287.22,483.78 288.28,483.72 288.33,483.67C288.78,483.22 287.72,483.28 287.67,483.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005879" ns0:pathData="M507,483C508.25,483.68 508.55,483.75 510,484C508.75,483.32 508.45,483.25 507,483z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#e1a900" ns0:pathData="M288,484L290,489C290.89,486.42 290.17,485.55 288,484z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#584300" ns0:pathData="M289.67,484.33C289.22,484.78 290.28,484.72 290.33,484.67C290.78,484.22 289.72,484.28 289.67,484.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#916d00" ns0:pathData="M291,485C291.77,490.26 296.33,494.7 301,497C298.49,492.48 294.37,488.92 291,485z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#241d00" ns0:pathData="M292,485L293,486L292,485z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004965" ns0:pathData="M505,486C506.81,486.57 507.07,486.46 509,486C507.34,485.59 506.76,485.69 505,486z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e29" ns0:pathData="M504,486L502,491C504.17,489.45 504.89,488.58 504,486z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1f1800" ns0:pathData="M292,487L300,496C301.14,491.68 295.71,488.02 292,487z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0097d0" ns0:pathData="M505,487C506.25,487.68 506.55,487.75 508,488C506.75,487.32 506.45,487.25 505,487z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0074a0" ns0:pathData="M505,488L505,490L507,490C506.45,488.36 506.64,488.55 505,488z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#daa400" ns0:pathData="M291.67,489.33C291.22,489.78 292.28,489.72 292.33,489.67C292.78,489.22 291.72,489.28 291.67,489.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#03212c" ns0:pathData="M781,489L782,490L781,489z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001f2a" ns0:pathData="M500,490C497.26,494.87 494.87,497.26 490,500C495.12,501.42 501.42,495.12 500,490z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0075a2" ns0:pathData="M503.67,490.33C503.22,490.78 504.28,490.72 504.33,490.67C504.78,490.22 503.72,490.28 503.67,490.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00597a" ns0:pathData="M501.67,491.33C501.22,491.78 502.28,491.72 502.33,491.67C502.78,491.22 501.72,491.28 501.67,491.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0097d0" ns0:pathData="M503,491C501.96,492.19 501.66,492.6 501,494C502.85,493.03 503.72,492.86 503,491z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00729d" ns0:pathData="M499,493C497.97,496.94 495.24,497.98 493,501C497.72,499.49 499.49,497.72 501,493L499,493z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#705500" ns0:pathData="M301,496C301.41,498.09 301.22,498.02 303,499C302.31,497.61 302.02,497.14 301,496z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#463500" ns0:pathData="M303,498C303.58,500.7 304.26,500.79 307,501L303,498z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c19100" ns0:pathData="M302.33,499.67C302.28,499.72 302.22,500.78 302.67,500.33C302.72,500.28 302.78,499.22 302.33,499.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#251c00" ns0:pathData="M307,500L307,503C307.7,501.45 307.7,501.55 307,500z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#957000" ns0:pathData="M303,501C304.61,502.31 306.08,503.19 308,504C306.46,501.82 305.64,501.43 303,501z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005778" ns0:pathData="M491.33,501.67C491.28,501.72 491.22,502.78 491.67,502.33C491.72,502.28 491.78,501.22 491.33,501.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0097d1" ns0:pathData="M492,501L492,504C493.02,502.86 493.31,502.39 494,501L492,501z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00141c" ns0:pathData="M489,502C485.73,505.01 482.59,506.6 481,511C484.38,508.35 488.61,505.52 491,502L489,502z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#443400" ns0:pathData="M308.33,503.67C308.28,503.72 308.22,504.78 308.67,504.33C308.72,504.28 308.78,503.22 308.33,503.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#423300" ns0:pathData="M310,503L310,506C310.7,504.45 310.7,504.55 310,503z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0075a2" ns0:pathData="M490,503L490,506C491.02,504.86 491.31,504.39 492,503L490,503z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bc8d00" ns0:pathData="M307.33,504.67C307.28,504.72 307.22,505.78 307.67,505.33C307.72,505.28 307.78,504.22 307.33,504.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b98f00" ns0:pathData="M309.33,504.67C309.28,504.72 309.22,505.78 309.67,505.33C309.72,505.28 309.78,504.22 309.33,504.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005271" ns0:pathData="M485,509L490,506C487.05,505 486.09,506.28 485,509z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c49300" ns0:pathData="M310,506L310,509C310.7,507.45 310.7,507.55 310,506z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a3800" ns0:pathData="M311.33,506.67C311.28,506.72 311.22,507.78 311.67,507.33C311.72,507.28 311.78,506.22 311.33,506.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#433200" ns0:pathData="M313,506L313,509C313.7,507.45 313.7,507.55 313,506z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009cd7" ns0:pathData="M487.33,506.67C487.28,506.72 487.22,507.78 487.67,507.33C487.72,507.28 487.78,506.22 487.33,506.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#be9000" ns0:pathData="M312.33,507.67C312.28,507.72 312.22,508.78 312.67,508.33C312.72,508.28 312.78,507.22 312.33,507.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2d2300" ns0:pathData="M315.33,507.67C315.28,507.72 315.22,508.78 315.67,508.33C315.72,508.28 315.78,507.22 315.33,507.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a37a00" ns0:pathData="M313,509L315,512C315.57,510.19 315.46,509.93 315,508L313,509z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006a93" ns0:pathData="M483.33,508.67C483.28,508.72 483.22,509.78 483.67,509.33C483.72,509.28 483.78,508.22 483.33,508.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#261d00" ns0:pathData="M316.33,509.67C316.28,509.72 316.22,510.78 316.67,510.33C316.72,510.28 316.78,509.22 316.33,509.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#191300" ns0:pathData="M318,509L318,512C318.7,510.45 318.7,510.55 318,509z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#000f15" ns0:pathData="M479,509L479,512C479.7,510.45 479.7,510.55 479,509z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9f7a00" ns0:pathData="M317,510C317.41,512.09 317.22,512.02 319,513C318.31,511.61 318.02,511.14 317,510z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00597b" ns0:pathData="M480.33,510.67C480.28,510.72 480.22,511.78 480.67,511.33C480.72,511.28 480.78,510.22 480.33,510.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00678f" ns0:pathData="M482.33,510.67C482.28,510.72 482.22,511.78 482.67,511.33C482.72,511.28 482.78,510.22 482.33,510.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#745b00" ns0:pathData="M319.33,511.67C319.28,511.72 319.22,512.78 319.67,512.33C319.72,512.28 319.78,511.22 319.33,511.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#065f81" ns0:pathData="M478.33,511.67C478.28,511.72 478.22,512.78 478.67,512.33C478.72,512.28 478.78,511.22 478.33,511.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0b6387" ns0:pathData="M775,511L776,512L775,511z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#221a00" ns0:pathData="M320.67,512.33C320.22,512.78 321.28,512.72 321.33,512.67C321.78,512.22 320.72,512.28 320.67,512.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002c3d" ns0:pathData="M476.67,512.33C476.22,512.78 477.28,512.72 477.33,512.67C477.78,512.22 476.72,512.28 476.67,512.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0081b2" ns0:pathData="M479.67,512.33C479.22,512.78 480.28,512.72 480.33,512.67C480.78,512.22 479.72,512.28 479.67,512.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b68900" ns0:pathData="M319.33,513.67C319.28,513.72 319.22,514.78 319.67,514.33C319.72,514.28 319.78,513.22 319.33,513.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e5600" ns0:pathData="M320.67,513.33C320.22,513.78 321.28,513.72 321.33,513.67C321.78,513.22 320.72,513.28 320.67,513.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002c3d" ns0:pathData="M475.33,513.67C475.28,513.72 475.22,514.78 475.67,514.33C475.72,514.28 475.78,513.22 475.33,513.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005170" ns0:pathData="M477.33,513.67C477.28,513.72 477.22,514.78 477.67,514.33C477.72,514.28 477.78,513.22 477.33,513.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a17900" ns0:pathData="M321,514L321,516L323,516C322.45,514.36 322.64,514.54 321,514z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4d3a00" ns0:pathData="M323.33,514.67C323.28,514.72 323.22,515.78 323.67,515.33C323.72,515.28 323.78,514.22 323.33,514.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00364b" ns0:pathData="M473,514L473,516L475,516C474.45,514.36 474.64,514.54 473,514z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009ad5" ns0:pathData="M476,514L476,516L478,516C477.45,514.36 477.64,514.54 476,514z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00739f" ns0:pathData="M475.33,515.67C475.28,515.72 475.22,516.78 475.67,516.33C475.72,516.28 475.78,515.22 475.33,515.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#916d00" ns0:pathData="M323,516L324,517L323,516z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001720" ns0:pathData="M469,516L469,519C470.02,517.86 470.31,517.39 471,516L469,516z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003144" ns0:pathData="M471.33,516.67C471.28,516.72 471.22,517.78 471.67,517.33C471.72,517.28 471.78,516.22 471.33,516.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006186" ns0:pathData="M473.33,516.67C473.28,516.72 473.22,517.78 473.67,517.33C473.72,517.28 473.78,516.22 473.33,516.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#161000" ns0:pathData="M323,517L324,518L323,517z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0077a5" ns0:pathData="M470.33,517.67C470.28,517.72 470.22,518.78 470.67,518.33C470.72,518.28 470.78,517.22 470.33,517.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#009dd9" ns0:pathData="M472,517L471,519L473,519C473,517.15 473.3,517.65 472,517z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#423200" ns0:pathData="M322,518L323,519L322,518z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#471206" ns0:pathData="M328,518L327,520L329,520C329,518.15 329.3,518.65 328,518z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1e0702" ns0:pathData="M330,518C330.68,519.58 330.8,519.78 332,521C331.32,519.42 331.2,519.22 330,518z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a77d00" ns0:pathData="M321,519L322,520L321,519z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#95270e" ns0:pathData="M328,521L331,521L330,519C328.36,519.54 328.55,519.36 328,521z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#251c00" ns0:pathData="M321,520L322,521L321,520z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ff4418" ns0:pathData="M327,520C319.94,536.96 309.32,552.98 300.33,569C279.3,606.47 258.15,643.82 236.58,681C229.04,693.99 221.49,706.98 214,720C209.91,727.11 204.82,734.3 202,742C226.54,753.46 249.97,765.89 276,773.97C350.24,797.04 429.04,798.37 504,777.85C534.82,769.41 562.26,755.42 591,742C587.17,731.55 579.96,721.66 574.42,712C563.5,692.96 552.44,673.99 541.42,655C526.55,629.38 511.65,603.8 497.1,578C486.77,559.7 477.3,540.73 466,523C462.8,523.71 460.89,524.29 459,527C456.71,527.31 456.68,527.37 455,529C453.81,527.81 453.42,527.47 452,527C451.01,528.48 451,528.2 451,530C448.67,529.95 448.99,529.8 448,532C445.5,531.01 443.67,531.01 441,531L441,533C437.11,532.93 432.37,533.74 430,537C428.58,536.53 428.19,536.19 427,535C425.43,535.7 424.71,535.87 423,536C420.07,537.59 417.29,537.37 414,537C402.1,544.15 385.8,535.47 373,538C371.16,535.6 368.56,535.44 366,534C364.36,533.82 364.35,533.86 363,533C358.82,533.33 355.09,531.93 351,532L351,530L345,530C344.01,527.8 344.33,527.95 342,528C342,526.2 341.99,526.48 341,525C335.63,525.49 331.63,522.3 327,520z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5f1908" ns0:pathData="M332.33,520.67C332.28,520.72 332.22,521.78 332.67,521.33C332.72,521.28 332.78,520.22 332.33,520.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#200802" ns0:pathData="M464,520L464,522C465.64,521.46 465.45,521.64 466,520L464,520z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001923" ns0:pathData="M470,520L471,521L470,520z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a1306" ns0:pathData="M326,521L327,522L326,521z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#d53914" ns0:pathData="M329,521C330.25,521.68 330.55,521.75 332,522C330.75,521.32 330.45,521.25 329,521z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a22b0f" ns0:pathData="M332,523L335,523L334,521C332.36,521.54 332.55,521.36 332,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3e1005" ns0:pathData="M460,524C461.46,522.9 461.9,522.46 463,521C460.88,521.9 460.9,521.88 460,524z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#651b09" ns0:pathData="M463.33,521.67C463.28,521.72 463.22,522.78 463.67,522.33C463.72,522.28 463.78,521.22 463.33,521.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c33412" ns0:pathData="M465,521L464,523L466,523C466,521.15 466.3,521.65 465,521z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002e40" ns0:pathData="M471,521L472,522L471,521z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c2f00" ns0:pathData="M320,522L321,523L320,522z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4d1407" ns0:pathData="M336.33,522.67C336.28,522.72 336.22,523.78 336.67,523.33C336.72,523.28 336.78,522.22 336.33,522.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b12f10" ns0:pathData="M461,524L464,524L463,522C461.36,522.54 461.55,522.36 461,524z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1e0702" ns0:pathData="M466,522L467,523L466,522z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008ec4" ns0:pathData="M472,522L473,523L472,522z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#765b00" ns0:pathData="M319,523L320,524L319,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a1306" ns0:pathData="M325,523L326,524L325,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#e03c15" ns0:pathData="M333,523L334,525C335.64,524.46 335.45,524.64 336,523L333,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#94270e" ns0:pathData="M337,523L336,524L337,526L339,525C338.45,523.36 338.64,523.54 337,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#180601" ns0:pathData="M339,523L340,524L339,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#300c04" ns0:pathData="M341,523L340,524C341.1,525.46 341.54,525.9 343,527C342.49,525.05 342.27,524.54 341,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8b250d" ns0:pathData="M459,523L458,525L460,525C460,523.15 460.3,523.65 459,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#97280e" ns0:pathData="M466,523L467,524L466,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001117" ns0:pathData="M472,523L473,524L472,523z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b0702" ns0:pathData="M324,524L325,525L324,524z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#471206" ns0:pathData="M456.33,524.67C456.28,524.72 456.22,525.78 456.67,525.33C456.72,525.28 456.78,524.22 456.33,524.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00131b" ns0:pathData="M473,524L474,525L473,524z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#594600" ns0:pathData="M318,525L319,526L318,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#aa2d10" ns0:pathData="M324,525L325,526L324,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#611a09" ns0:pathData="M339,525L340,526L339,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#721e0a" ns0:pathData="M344,525L343,526L344,528L346,527C345.45,525.36 345.64,525.54 344,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#451206" ns0:pathData="M451,525L450,526L451,528L453,527C452.45,525.36 452.64,525.54 451,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#96280e" ns0:pathData="M455,525L454,526L455,528L457,527C456.45,525.36 456.64,525.54 455,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#d13813" ns0:pathData="M457,525L458,527C459.64,526.46 459.45,526.64 460,525L457,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#83220c" ns0:pathData="M467,525L468,526L467,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008dc2" ns0:pathData="M474,525L475,526L474,525z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#461206" ns0:pathData="M468,526L469,527L468,526z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00394f" ns0:pathData="M474,526L475,527L474,526z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e5a00" ns0:pathData="M317,527L318,528L317,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#581708" ns0:pathData="M323,527L324,528L323,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9d290e" ns0:pathData="M342,527L343,528L342,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#98280e" ns0:pathData="M345,527L345,530L347,529C346.45,527.36 346.64,527.54 345,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6c1c0a" ns0:pathData="M347,527L348,528L347,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4f1507" ns0:pathData="M448,527L449,528L448,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6d1d0a" ns0:pathData="M450,527C450.03,528.83 449.92,528.56 451,530C450.75,528.55 450.68,528.25 450,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#601909" ns0:pathData="M453,527L454,528L453,527z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c63512" ns0:pathData="M454.33,527.67C454.28,527.72 454.22,528.78 454.67,528.33C454.72,528.28 454.78,527.22 454.33,527.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a88300" ns0:pathData="M316,528L317,529L316,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bf3312" ns0:pathData="M347,528C347.9,529.92 348.08,530 350,531C349.55,528.76 349.23,528.51 347,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#461206" ns0:pathData="M348,528L349,529L348,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#471307" ns0:pathData="M351,528L352,529L351,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3b0f06" ns0:pathData="M444,528C442.3,528.79 441.82,528.98 440,529L440,531C437.15,530.92 436.32,531.15 436,534C438.67,532.33 446.48,531.47 444,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9d290e" ns0:pathData="M448.33,528.67C448.28,528.72 448.22,529.78 448.67,529.33C448.72,529.28 448.78,528.22 448.33,528.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#451206" ns0:pathData="M469,528L470,529L469,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001e2a" ns0:pathData="M475,528L476,529L475,528z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b53011" ns0:pathData="M322,529L323,530L322,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#711e0a" ns0:pathData="M350,529L351,530L350,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#be3314" ns0:pathData="M351,529C351.25,530.45 351.32,530.75 352,532L359,534C356.63,531.6 354.11,530.3 351,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#160501" ns0:pathData="M352,529L353,530L352,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#661b09" ns0:pathData="M353,529L354,530L353,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#751f0b" ns0:pathData="M445,529L446,530L445,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c93513" ns0:pathData="M447,529C447.03,530.83 446.92,530.56 448,532C447.75,530.55 447.68,530.25 447,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b43011" ns0:pathData="M469,529L470,530L469,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00364a" ns0:pathData="M476,529L477,530L476,529z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e4700" ns0:pathData="M315,530L316,531L315,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#401105" ns0:pathData="M321,530L322,531L321,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2e0c04" ns0:pathData="M354,530L355,531L354,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7b210b" ns0:pathData="M355,530L356,531L355,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ab2d10" ns0:pathData="M443,530L444,531L443,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1e0702" ns0:pathData="M470,530L471,531L470,530z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#977100" ns0:pathData="M314,531L315,532L314,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b43011" ns0:pathData="M321,531L322,532L321,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3d1005" ns0:pathData="M356,531L357,532L356,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#86230c" ns0:pathData="M357,531L358,532L357,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6b1c0a" ns0:pathData="M358,532C359.99,533.3 360.63,533.33 363,533C361.08,531.86 360.27,531.83 358,532z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#240903" ns0:pathData="M363,531C363.41,533.09 363.22,533.02 365,534C364.31,532.61 364.02,532.14 363,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#82220c" ns0:pathData="M442,531L443,532L442,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#140501" ns0:pathData="M471,531L472,532L471,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005271" ns0:pathData="M477,531L478,532L477,531z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#371006" ns0:pathData="M365.67,532.33C365.22,532.78 366.28,532.72 366.33,532.67C366.78,532.22 365.72,532.28 365.67,532.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7e210b" ns0:pathData="M432,534C434.4,534.58 434.49,534.47 435,532C433.61,532.69 433.14,532.98 432,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#96280e" ns0:pathData="M437,532L438,533L437,532z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a72c0f" ns0:pathData="M440,532L441,533L440,532z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a32b0f" ns0:pathData="M471,532L472,533L471,532z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7c5e00" ns0:pathData="M313,533L314,534L313,533z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#91260d" ns0:pathData="M320,533L321,534L320,533z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7c2410" ns0:pathData="M365,533C366.79,534.42 367.71,534.7 370,535C368.31,533.94 366.96,533.48 365,533z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#471409" ns0:pathData="M368.67,533.33C368.22,533.78 369.28,533.72 369.33,533.67C369.78,533.22 368.72,533.28 368.67,533.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#401105" ns0:pathData="M371,534C372.31,535.46 373.23,536.16 375,537L374,533L371,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#391007" ns0:pathData="M424,536C425.75,535.44 426.54,535.08 428,534C425.61,533.86 425.41,534.03 424,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a72c0f" ns0:pathData="M435,533L436,534L435,533z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003042" ns0:pathData="M478,533L479,534L478,533z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#511507" ns0:pathData="M319,534L320,535L319,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a52c0f" ns0:pathData="M363.67,534.33C363.22,534.78 364.28,534.72 364.33,534.67C364.78,534.22 363.72,534.28 363.67,534.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#270a03" ns0:pathData="M418,534C418.98,535.78 418.91,535.59 421,536C419.86,534.98 419.39,534.69 418,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#200802" ns0:pathData="M422.67,534.33C422.22,534.78 423.28,534.72 423.33,534.67C423.78,534.22 422.72,534.28 422.67,534.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#cd3613" ns0:pathData="M429,534L428,537C429.77,536.02 429.95,535.78 429,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#370e04" ns0:pathData="M430.67,534.33C430.22,534.78 431.28,534.72 431.33,534.67C431.78,534.22 430.72,534.28 430.67,534.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#601909" ns0:pathData="M472,534L473,535L472,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005473" ns0:pathData="M479,534L480,535L479,534z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#957000" ns0:pathData="M312,535L313,536L312,535z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b93111" ns0:pathData="M366.67,535.33C366.22,535.78 367.28,535.72 367.33,535.67C367.78,535.22 366.72,535.28 366.67,535.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7c210b" ns0:pathData="M370,535C371.25,535.68 371.55,535.75 373,536C371.75,535.32 371.45,535.25 370,535z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a1306" ns0:pathData="M375,535C376.25,535.68 376.55,535.75 378,536C376.75,535.32 376.45,535.25 375,535z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c0702" ns0:pathData="M382,535C383.25,535.68 383.55,535.75 385,536C383.75,535.32 383.45,535.25 382,535z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c73616" ns0:pathData="M421,538C422.92,537.1 423,536.92 424,535C422.08,535.9 422,536.08 421,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6b1c0a" ns0:pathData="M427.67,535.33C427.22,535.78 428.28,535.72 428.33,535.67C428.78,535.22 427.72,535.28 427.67,535.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bf9000" ns0:pathData="M311,536L312,537L311,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#86230c" ns0:pathData="M318,536L319,537L318,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b22f10" ns0:pathData="M375,536C376.25,536.68 376.55,536.75 378,537C376.75,536.32 376.45,536.25 375,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#330d04" ns0:pathData="M379.67,536.33C379.22,536.78 380.28,536.72 380.33,536.67C380.78,536.22 379.72,536.28 379.67,536.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#681b09" ns0:pathData="M381.67,536.33C381.22,536.78 382.28,536.72 382.33,536.67C382.78,536.22 381.72,536.28 381.67,536.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#962c13" ns0:pathData="M383.67,536.33C383.22,536.78 384.28,536.72 384.33,536.67C384.78,536.22 383.72,536.28 383.67,536.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#611a09" ns0:pathData="M407,536C409.31,537.39 411.31,537.77 414,538C411.69,536.61 409.69,536.23 407,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#84230c" ns0:pathData="M414,536C415.75,537.26 416.86,537.61 419,538C417.25,536.74 416.14,536.39 414,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b0702" ns0:pathData="M417,536L418,537L417,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#93270d" ns0:pathData="M419,536C420.25,536.68 420.55,536.75 422,537C420.75,536.32 420.45,536.25 419,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8d250d" ns0:pathData="M424.67,536.33C424.22,536.78 425.28,536.72 425.33,536.67C425.78,536.22 424.72,536.28 424.67,536.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#99280e" ns0:pathData="M473,536L474,537L473,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006c96" ns0:pathData="M480,536L481,537L480,536z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4b1406" ns0:pathData="M317,537L318,538L317,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ce3713" ns0:pathData="M373.67,537.33C373.22,537.78 374.28,537.72 374.33,537.67C374.78,537.22 373.72,537.28 373.67,537.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7a200b" ns0:pathData="M378.67,537.33C378.22,537.78 379.28,537.72 379.33,537.67C379.78,537.22 378.72,537.28 378.67,537.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b32f11" ns0:pathData="M380.67,537.33C380.22,537.78 381.28,537.72 381.33,537.67C381.78,537.22 380.72,537.28 380.67,537.33z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3d1005" ns0:pathData="M385,537C386.51,537.68 387.32,537.83 389,538C387.49,537.32 386.68,537.17 385,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#681b09" ns0:pathData="M389,537C392.7,538.55 397.02,538 401,538C397.3,536.45 392.98,537 389,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#320d04" ns0:pathData="M401,537C402.51,537.68 403.32,537.83 405,538C403.49,537.32 402.68,537.17 401,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#d83914" ns0:pathData="M403,539C405.75,540.08 407.42,539.34 410,538C407.58,537.33 405.46,538.46 403,539z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#481306" ns0:pathData="M474,537L475,538L474,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00151d" ns0:pathData="M480,537L481,538L480,537z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#af8500" ns0:pathData="M310,538L311,539L310,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a12b0f" ns0:pathData="M385,538C386.51,538.68 387.32,538.83 389,539C387.49,538.32 386.68,538.17 385,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#cb3613" ns0:pathData="M389,538C392.7,539.55 397.02,539 401,539C397.3,537.45 392.98,538 389,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#95270e" ns0:pathData="M401,538C402.25,538.68 402.55,538.75 404,539C402.75,538.32 402.45,538.25 401,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#611a09" ns0:pathData="M404,538C405.25,538.68 405.55,538.75 407,539C405.75,538.32 405.45,538.25 404,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a82c0f" ns0:pathData="M411,538C412.25,538.68 412.55,538.75 414,539C412.75,538.32 412.45,538.25 411,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00445e" ns0:pathData="M481,538L482,539L481,538z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#473700" ns0:pathData="M310,539L311,540L310,539z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#461206" ns0:pathData="M316,539L317,540L316,539z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9d290e" ns0:pathData="M475,539L476,540L475,539z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006f9a" ns0:pathData="M482,539L483,540L482,539z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ac2e10" ns0:pathData="M316,540L317,541L316,540z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a1306" ns0:pathData="M476,540L477,541L476,540z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#221b00" ns0:pathData="M309,541L310,542L309,541z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1a0602" ns0:pathData="M315,541L316,542L315,541z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003042" ns0:pathData="M483,541L484,542L483,541z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c2d00" ns0:pathData="M308,542L309,543L308,542z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005676" ns0:pathData="M484,542L485,543L484,542z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#94270e" ns0:pathData="M314,543L315,544L314,543z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#93270d" ns0:pathData="M477,543L478,544L477,543z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#806700" ns0:pathData="M307,544L308,545L307,544z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#551607" ns0:pathData="M478,544L479,545L478,544z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0077a5" ns0:pathData="M485,544L486,545L485,544z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4b1406" ns0:pathData="M313,545L314,546L313,545z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001d28" ns0:pathData="M485,545L486,546L485,545z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3e3300" ns0:pathData="M306,546L307,547L306,546z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f1d0a" ns0:pathData="M479,546L480,547L479,546z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004058" ns0:pathData="M486,546L487,547L486,546z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7c5f00" ns0:pathData="M305,547L306,548L305,547z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#87240c" ns0:pathData="M312,547L313,548L312,547z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00719c" ns0:pathData="M487,547L488,548L487,547z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#320d04" ns0:pathData="M311,548L312,549L311,548z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#360e04" ns0:pathData="M480,548L481,549L480,548z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001f2b" ns0:pathData="M487,548L488,549L487,548z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#281e00" ns0:pathData="M304,549L305,550L304,549z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#250903" ns0:pathData="M481,549L482,550L481,549z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#624a00" ns0:pathData="M303,550L304,551L303,550z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8c2912" ns0:pathData="M310,550L311,551L310,550z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003447" ns0:pathData="M488,550L489,551L488,550z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2f0d05" ns0:pathData="M309,551L310,552L309,551z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#441307" ns0:pathData="M482,551L483,552L482,551z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00516f" ns0:pathData="M489,551L490,552L489,551z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ad8400" ns0:pathData="M302,552L303,553L302,552z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#962a11" ns0:pathData="M309,552L310,553L309,552z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2d0d05" ns0:pathData="M483,552L484,553L483,552z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008dc3" ns0:pathData="M490,552L491,553L490,552z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#271e00" ns0:pathData="M302,553L303,554L302,553z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00445d" ns0:pathData="M490,553L491,554L490,553z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3a2c00" ns0:pathData="M301,554L302,555L301,554z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6d1d0a" ns0:pathData="M308,554L309,555L308,554z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c0703" ns0:pathData="M484,554L485,555L484,554z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a5860d" ns0:pathData="M33,555L34,556L33,555z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a17900" ns0:pathData="M300,555L301,556L300,555z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#441206" ns0:pathData="M307,555L308,556L307,555z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#76200b" ns0:pathData="M484,555L485,556L484,555z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004b66" ns0:pathData="M491,555L492,556L491,555z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#453600" ns0:pathData="M300,556L301,557L300,556z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#150501" ns0:pathData="M485,556L486,557L485,556z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00648a" ns0:pathData="M492,556L493,557L492,556z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#330d04" ns0:pathData="M306,557L307,558L306,557z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#483a00" ns0:pathData="M299,558L300,559L299,558z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8c250d" ns0:pathData="M306,558L307,559L306,558z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e1d0a" ns0:pathData="M486,558L487,559L486,558z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003143" ns0:pathData="M493,558L494,559L493,558z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#675000" ns0:pathData="M298,559L299,560L298,559z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#240903" ns0:pathData="M305,559L306,560L305,559z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00445d" ns0:pathData="M494,559L495,560L494,559z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d0702" ns0:pathData="M487,560L488,561L487,560z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2e2300" ns0:pathData="M297,561L298,562L297,561z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#80220c" ns0:pathData="M304,561L305,562L304,561z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ae2e10" ns0:pathData="M487,561L488,562L487,561z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006186" ns0:pathData="M495,561L496,562L495,561z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f2f00" ns0:pathData="M296,562L297,563L296,562z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#87240c" ns0:pathData="M488,562L489,563L488,562z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00161f" ns0:pathData="M495,562L496,563L495,562z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#230903" ns0:pathData="M303,563L304,564L303,563z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#170501" ns0:pathData="M489,563L490,564L489,563z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00384d" ns0:pathData="M496,563L497,564L496,563z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#876500" ns0:pathData="M295,564L296,565L295,564z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b63011" ns0:pathData="M303,564L304,565L303,564z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6c1c0a" ns0:pathData="M489,564L490,565L489,564z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f83" ns0:pathData="M497,564L498,565L497,564z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1b1400" ns0:pathData="M295,565L296,566L295,565z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#91260d" ns0:pathData="M302,565L303,566L302,565z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001a24" ns0:pathData="M497,565L498,566L497,565z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#352800" ns0:pathData="M294,566L295,567L294,566z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#170501" ns0:pathData="M301,566L302,567L301,566z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#771f0b" ns0:pathData="M490,566L491,567L490,566z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#471206" ns0:pathData="M491.33,566.67C491.28,566.72 491.22,567.78 491.67,567.33C491.72,567.28 491.78,566.22 491.33,566.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#826100" ns0:pathData="M293,567L294,568L293,567z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1c0702" ns0:pathData="M300,567L301,568L300,567z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002d3e" ns0:pathData="M498,567L499,568L498,567z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#302500" ns0:pathData="M293,568L294,569L293,568z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a12b0f" ns0:pathData="M300,568L301,569L300,568z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00394e" ns0:pathData="M499,568L500,569L499,568z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9d290e" ns0:pathData="M492,569L493,570L492,569z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0080b1" ns0:pathData="M500,569L501,570L500,569z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#382b00" ns0:pathData="M292,570L293,571L292,570z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#571708" ns0:pathData="M299,570L300,571L299,570z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#511507" ns0:pathData="M493,570L494,571L493,570z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001720" ns0:pathData="M500,570L501,571L500,570z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008dc2" ns0:pathData="M501,570L502,571L501,570z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#463500" ns0:pathData="M291,571L292,572L291,571z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ab2d10" ns0:pathData="M493,571L494,572L493,571z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#000f15" ns0:pathData="M501,571L502,572L501,571z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9e2a0e" ns0:pathData="M298,572L299,573L298,572z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0087bb" ns0:pathData="M502,572L503,573L502,572z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8a6e00" ns0:pathData="M290,573L291,574L290,573z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#411105" ns0:pathData="M297,573L298,574L297,573z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#94270e" ns0:pathData="M494,573L495,574L494,573z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004f6c" ns0:pathData="M502,573L503,574L502,573z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#211b00" ns0:pathData="M290,574L291,575L290,574z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#93270d" ns0:pathData="M297,574L298,575L297,574z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6f1d0a" ns0:pathData="M495,574L496,575L495,574z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0084b7" ns0:pathData="M503,574L504,575L503,574z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#342a00" ns0:pathData="M289,575L290,576L289,575z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#816100" ns0:pathData="M288,576L289,577L288,576z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8c250d" ns0:pathData="M296,576L297,577L296,576z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3c1005" ns0:pathData="M496,576L497,577L496,576z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004f6c" ns0:pathData="M504,576L505,577L504,576z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#aa8000" ns0:pathData="M287,577L288,578L287,577z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5e1908" ns0:pathData="M295,577L296,578L295,577z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a42b0f" ns0:pathData="M496,577L497,578L496,577z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001821" ns0:pathData="M504,577L505,578L504,577z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#78200b" ns0:pathData="M497,578L498,579L497,578z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006d97" ns0:pathData="M505,578L506,579L505,578z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#977100" ns0:pathData="M286,579L287,580L286,579z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#160501" ns0:pathData="M294,579L295,580L294,579z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#260a03" ns0:pathData="M498,579L499,580L498,579z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#007aa9" ns0:pathData="M506,579L507,580L506,579z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4b3900" ns0:pathData="M286,580L287,581L286,580z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8d250d" ns0:pathData="M294,580L295,581L294,580z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#731e0a" ns0:pathData="M498,580L499,581L498,580z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001b26" ns0:pathData="M506,580L507,581L506,580z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9b7400" ns0:pathData="M285,581L286,582L285,581z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6a1c09" ns0:pathData="M293,581L294,582L293,581z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bb8d00" ns0:pathData="M284,582L285,583L284,582z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7a200b" ns0:pathData="M499,582L500,583L499,582z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004b67" ns0:pathData="M507,582L508,583L507,582z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5b4600" ns0:pathData="M284,583L285,584L284,583z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#150501" ns0:pathData="M291,583L292,584L291,583z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ad2e10" ns0:pathData="M292,583L293,584L292,583z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a1306" ns0:pathData="M500,583L501,584L500,583z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f83" ns0:pathData="M508,583L509,584L508,583z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#151000" ns0:pathData="M284,584L285,585L284,584z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#84230c" ns0:pathData="M291,584L292,585L291,584z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#180601" ns0:pathData="M501,584L502,585L501,584z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#795f00" ns0:pathData="M283,585L284,586L283,585z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#441206" ns0:pathData="M502,585L502,588C502.7,586.45 502.7,586.55 502,585z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002837" ns0:pathData="M509,585L510,586L509,585z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#936f00" ns0:pathData="M282,586L283,587L282,586z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#260a03" ns0:pathData="M290,586L291,587L290,586z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002d3e" ns0:pathData="M510,586L511,587L510,586z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2a2100" ns0:pathData="M282,587L283,588L282,587z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#190602" ns0:pathData="M289,587L290,588L289,587z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b22f10" ns0:pathData="M290,587L291,588L290,587z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9a290e" ns0:pathData="M289,588L290,589L289,588z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#190602" ns0:pathData="M503,588L504,589L503,588z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00739f" ns0:pathData="M511,588L512,589L511,588z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#574700" ns0:pathData="M281,589L282,590L281,589z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#461206" ns0:pathData="M288.33,589.67C288.28,589.72 288.22,590.78 288.67,590.33C288.72,590.28 288.78,589.22 288.33,589.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00151d" ns0:pathData="M511,589L512,590L511,589z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0081b2" ns0:pathData="M512,589L513,590L512,589z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#675000" ns0:pathData="M280,590L281,591L280,590z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#aa2d10" ns0:pathData="M504.33,590.67C504.28,590.72 504.22,591.78 504.67,591.33C504.72,591.28 504.78,590.22 504.33,590.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a3d06" ns0:pathData="M51,591L52,592L51,591z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bf9000" ns0:pathData="M279,591L280,592L279,591z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1e0702" ns0:pathData="M287,591L288,592L287,591z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008abe" ns0:pathData="M513,591L514,592L513,591z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c59400" ns0:pathData="M278,592L279,593L278,592z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#181200" ns0:pathData="M279,592L280,593L279,592z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b12f10" ns0:pathData="M287,592L288,593L287,592z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#240903" ns0:pathData="M505,592L506,593L505,592z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004c68" ns0:pathData="M513,592L514,593L513,592z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#614900" ns0:pathData="M278,593L279,594L278,593z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3e1208" ns0:pathData="M286,593L287,594L286,593z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#250903" ns0:pathData="M506,593L507,594L506,593z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#005f83" ns0:pathData="M514,593L515,594L514,593z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#231a00" ns0:pathData="M278,594L279,595L278,594z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#280c06" ns0:pathData="M285,594L286,595L285,594z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#92270e" ns0:pathData="M506,594L507,595L506,594z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#896700" ns0:pathData="M277,595L278,596L277,595z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#782411" ns0:pathData="M285,595L286,596L285,595z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4c180c" ns0:pathData="M507,595L508,596L507,595z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00749f" ns0:pathData="M515,595L516,596L515,595z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a07800" ns0:pathData="M276,596L277,597L276,596z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4d1508" ns0:pathData="M508.33,596.67C508.28,596.72 508.22,597.78 508.67,597.33C508.72,597.28 508.78,596.22 508.33,596.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002d3e" ns0:pathData="M515,596L516,597L515,596z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4a3900" ns0:pathData="M276,597L277,598L276,597z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e1d0a" ns0:pathData="M284,597L285,598L284,597z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002f40" ns0:pathData="M516,597L517,598L516,597z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#561708" ns0:pathData="M283,598L284,599L283,598z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b53011" ns0:pathData="M508,598L509,599L508,598z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006992" ns0:pathData="M517,598L518,599L517,598z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#534200" ns0:pathData="M275,599L276,600L275,599z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a42b0f" ns0:pathData="M509,599L510,600L509,599z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00729e" ns0:pathData="M518,599L519,600L518,599z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#765900" ns0:pathData="M274,600L275,601L274,600z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#601909" ns0:pathData="M510.33,600.67C510.28,600.72 510.22,601.78 510.67,601.33C510.72,601.28 510.78,600.22 510.33,600.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#91260d" ns0:pathData="M282,601L283,602L282,601z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b39304" ns0:pathData="M273,602L274,603L273,602z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e1d0a" ns0:pathData="M281,602L282,603L281,602z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#300c04" ns0:pathData="M511,602L512,603L511,602z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00394e" ns0:pathData="M519,602L520,603L519,602z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#171300" ns0:pathData="M273,603L274,604L273,603z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002e40" ns0:pathData="M520,603L520,606C520.7,604.45 520.7,604.55 520,603z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4d3a00" ns0:pathData="M272,604L273,605L272,604z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6c1c0a" ns0:pathData="M512.33,604.67C512.28,604.72 512.22,605.78 512.67,605.33C512.72,605.28 512.78,604.22 512.33,604.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#513d00" ns0:pathData="M271,605L272,606L271,605z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#1d0702" ns0:pathData="M279,605L280,606L279,605z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0082b3" ns0:pathData="M521,605L522,606L521,605z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#88240d" ns0:pathData="M279,606L280,607L279,606z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5d1808" ns0:pathData="M513,606L514,607L513,606z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#008cc1" ns0:pathData="M522,606L523,607L522,606z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#af8600" ns0:pathData="M270,607L271,608L270,607z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#71210e" ns0:pathData="M278,607L279,608L278,607z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#015d80" ns0:pathData="M522,607L523,608L522,607z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b08500" ns0:pathData="M269,608L270,609L269,608z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#201800" ns0:pathData="M270,608L271,609L270,608z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5b1a0b" ns0:pathData="M515,608L515,611C515.7,609.45 515.7,609.55 515,608z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002d3d" ns0:pathData="M522,608L523,609L522,608z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2c0c04" ns0:pathData="M277,609L278,610L277,609z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#003345" ns0:pathData="M523,609L524,610L523,609z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#200802" ns0:pathData="M276,610L277,611L276,610z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ac2e10" ns0:pathData="M277,610L278,611L277,610z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00648b" ns0:pathData="M524,610L525,611L524,610z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#604d00" ns0:pathData="M268,611L269,612L268,611z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#cd3613" ns0:pathData="M276.33,611.67C276.28,611.72 276.22,612.78 276.67,612.33C276.72,612.28 276.78,611.22 276.33,611.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#621a09" ns0:pathData="M516,611L517,612L516,611z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006e98" ns0:pathData="M525,611L526,612L525,611z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#856400" ns0:pathData="M267,612L268,613L267,612z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3a0f05" ns0:pathData="M517.33,612.67C517.28,612.72 517.22,613.78 517.67,613.33C517.72,613.28 517.78,612.22 517.33,612.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00435c" ns0:pathData="M525,612L526,613L525,612z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#8f6b00" ns0:pathData="M266,613L267,614L266,613z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#370e04" ns0:pathData="M274,613L274,616C275.02,614.86 275.31,614.39 276,613L274,613z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00161f" ns0:pathData="M525,613L526,614L525,613z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#281e00" ns0:pathData="M266,614L267,615L266,614z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ab2d10" ns0:pathData="M517,614L518,615L517,614z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#200802" ns0:pathData="M518,614L519,615L518,614z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#ce3713" ns0:pathData="M518.33,615.67C518.28,615.72 518.22,616.78 518.67,616.33C518.72,616.28 518.78,615.22 518.33,615.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0086b9" ns0:pathData="M527,615L528,616L527,615z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#332600" ns0:pathData="M265,616L266,617L265,616z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b22f10" ns0:pathData="M274,616L275,617L274,616z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004965" ns0:pathData="M527,616L528,617L527,616z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#5a4600" ns0:pathData="M264.33,617.67C264.28,617.72 264.22,618.78 264.67,618.33C264.72,618.28 264.78,617.22 264.33,617.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a42b0f" ns0:pathData="M273,617L274,618L273,617z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#390f05" ns0:pathData="M519,617C519.54,618.64 519.36,618.46 521,619L521,617L519,617z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004a66" ns0:pathData="M528,617L529,618L528,617z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#441206" ns0:pathData="M271,618L271,621C272.02,619.86 272.31,619.39 273,618L271,618z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006085" ns0:pathData="M529,618L530,619L529,618z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#03212c" ns0:pathData="M724,618L725,619L724,618z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#674f00" ns0:pathData="M263,619L264,620L263,619z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3a0f05" ns0:pathData="M521,619L522,620L521,619z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#c33412" ns0:pathData="M521.33,620.67C521.28,620.72 521.22,621.78 521.67,621.33C521.72,621.28 521.78,620.22 521.33,620.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b79400" ns0:pathData="M262,621L263,622L262,621z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#2b0b03" ns0:pathData="M270,621L271,622L270,621z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#001923" ns0:pathData="M530,621L531,622L530,621z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0088bc" ns0:pathData="M531,621L532,622L531,621z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#b78a00" ns0:pathData="M261,622L262,623L261,622z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9c290e" ns0:pathData="M522,622L523,623L522,622z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#280a03" ns0:pathData="M523,622L523,625C523.7,623.45 523.7,623.55 523,622z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#002f41" ns0:pathData="M531.33,622.67C531.28,622.72 531.22,623.78 531.67,623.33C531.72,623.28 531.78,622.22 531.33,622.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#bc8d00" ns0:pathData="M260,623L261,624L260,623z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#332600" ns0:pathData="M261,623L262,624L261,623z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#342700" ns0:pathData="M260.33,624.67C260.28,624.72 260.22,625.78 260.67,625.33C260.72,625.28 260.78,624.22 260.33,624.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#4f1507" ns0:pathData="M268,624L268,627C269.02,625.86 269.31,625.39 270,624L268,624z" ns0:strokeColor="#00000000" />
+    <path ns0:fillColor="#96280e" ns0:pathData="M524.33,625.67C524.28,625.72 524.22,626.78 524.67,626.33C524.72,626.28 524.78,625.22 524.33,625.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004c69" ns0:pathData="M533,626L534,627L533,626z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#521507" ns0:pathData="M267,627L268,628L267,627z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#00648b" ns0:pathData="M534,627L535,628L534,627z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#7b6000" ns0:pathData="M258,628L259,629L258,628z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#006890" ns0:pathData="M535.33,628.67C535.28,628.72 535.22,629.78 535.67,629.33C535.72,629.28 535.78,628.22 535.33,628.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0b6387" ns0:pathData="M717,628L718,629L717,628z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#957900" ns0:pathData="M257.33,629.67C257.28,629.72 257.22,630.78 257.67,630.33C257.72,630.28 257.78,629.22 257.33,629.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#004660" ns0:pathData="M536.33,630.67C536.28,630.72 536.22,631.78 536.67,631.33C536.72,631.28 536.78,630.22 536.33,630.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#926f00" ns0:pathData="M256,631L257,632L256,631z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#421106" ns0:pathData="M264,631L264,634C264.7,632.45 264.7,632.55 264,631z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#a42b0f" ns0:pathData="M265,631L266,632L265,631z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#80220c" ns0:pathData="M527,631L528,632L527,631z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#741f0a" ns0:pathData="M528.33,632.67C528.28,632.72 528.22,633.78 528.67,633.33C528.72,633.28 528.78,632.22 528.33,632.67z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#731e0a" ns0:pathData="M263,634L264,635L263,634z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#6e1d0a" ns0:pathData="M529,634L530,635L529,634z" ns0:strokeColor="#00000000" />
+
+
+    <path ns0:fillColor="#982d16" ns0:pathData="M262,636L263,637L262,636z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9f311a" ns0:pathData="M530,636L531,637L530,636z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0b6387" ns0:pathData="M704,645L705,646L704,645z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#0b6387" ns0:pathData="M645,704L646,705L645,704M628,717L629,718L628,717z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#03212c" ns0:pathData="M618,724L619,725L618,724z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9f311a" ns0:pathData="M206,733L207,734L206,733M586,733L587,734L586,733z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f130b" ns0:pathData="M281,775L282,776L281,775M511,775L512,776L511,775z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f140b" ns0:pathData="M299,780L300,781L299,780M493,780L494,781L493,780z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9f321a" ns0:pathData="M327,786L328,787L327,786M465,786L466,787L465,786z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f130b" ns0:pathData="M367,791L368,792L367,791M425,791L426,792L425,791z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f140b" ns0:pathData="M389,792L390,793L389,792z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#9f311a" ns0:pathData="M390,792L391,793L390,792M402,792L403,793L402,792z" ns0:strokeColor="#00000000" />
+
+    <path ns0:fillColor="#3f140b" ns0:pathData="M403,792L404,793L403,792z" ns0:strokeColor="#00000000" />
+
+</vector>
