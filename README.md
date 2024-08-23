@@ -98,5 +98,5 @@ or
   cd ~/AndroidStudioProjects/Timesaver/app/build/outputs/apk/debug
   ```
   ```
-  adb install adb install app-debug.apk 
+  adb install app-debug.apk 
   ```
