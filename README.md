@@ -86,6 +86,9 @@ git clone git@github.com:AngelynDisguise/Timesaver.git
 ### 2) Build a debug APK
 - Use the Gradle wrapper to build:
 ```
+cd ~/AndroidStudioProjects/Timesaver
+```
+```
 ./gradlew build
 ```
 or
@@ -95,7 +98,7 @@ or
 
 ### 4) Install the app using ```adb```
   ```
-  cd ~/AndroidStudioProjects/Timesaver/app/build/outputs/apk/debug
+  cd ./app/build/outputs/apk/debug
   ```
   ```
   adb install app-debug.apk 
