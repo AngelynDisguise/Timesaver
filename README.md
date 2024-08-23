@@ -89,7 +89,7 @@ git clone git@github.com:AngelynDisguise/Timesaver.git
 ./gradlew build
 ```
 or
-- Build via Android Studio: **Build --> Build App Bundle(s) / APK(s) --> Build APK(s)
+- Build via Android Studio: **Build --> Build App Bundle(s) / APK(s) --> Build APK(s)**
 
 ### 3) [Connect to an Android emulator or a physical Android device](https://developer.android.com/studio/run/device)
 
