@@ -1,4 +1,4 @@
-# Timesaver ([0.0.1-alpha](https://github.com/AngelynDisguise/Timesaver/releases/0.0.1-alpha))
+# Timesaver ([0.0.2-alpha](https://github.com/AngelynDisguise/Timesaver/releases/0.0.2-alpha))
 Optimize your productivity with automatic time tracking and effortless task switching. <br/>
 Stay focused on work, get insights on your day, and achieve more.
 
