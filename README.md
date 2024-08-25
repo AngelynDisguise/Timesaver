@@ -29,7 +29,7 @@ Stay focused on work, get insights on your day, and achieve more.
 
 | <img src="https://github.com/user-attachments/assets/5d9ea43e-080c-4505-bc16-9e3f654b09cd"> | <img src="https://github.com/user-attachments/assets/c8498ca6-9bcd-40f0-9047-a96e73102064"> |
 |-------------------------|-------------------------|
-| <img src="https://github.com/user-attachments/assets/779bc54b-c421-41b7-809d-5f70edb8abdd"> | <img src="https://github.com/user-attachments/assets/e4cd6e03-ee7f-43e6-977e-2f4a7a5d6625"> |
+| <img src="https://github.com/user-attachments/assets/48f0953b-79cb-4787-b3a5-d55b2e04207a"> | <img src="https://github.com/user-attachments/assets/e4cd6e03-ee7f-43e6-977e-2f4a7a5d6625"> |
 
 <br/>
 
