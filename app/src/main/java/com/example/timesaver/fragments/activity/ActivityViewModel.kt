@@ -1,4 +1,4 @@
-package com.example.timesaver.fragments.activity.logs
+package com.example.timesaver.fragments.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,6 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.timesaver.database.Activity
 import com.example.timesaver.database.Timelog
 import com.example.timesaver.database.TimesaverRepository
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.format.DateTimeFormatter
 
-class LogsViewModel(private val repository: TimesaverRepository) : ViewModel() {
+class ActivityViewModel(private val repository: TimesaverRepository) : ViewModel() {
     private val _sortOrder = MutableStateFlow(SortOrder.NEWEST_FIRST)
     private val sortOrder: StateFlow<SortOrder> = _sortOrder.asStateFlow()
 
@@ -27,7 +28,7 @@ class LogsViewModel(private val repository: TimesaverRepository) : ViewModel() {
     val timeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern(TimeFormat.STANDARD_TIME.pattern) // default
 
 
-    var activityId: Long? = null
+    var activity: Activity? = null
 
     /**
      * The Flow of Paging Data
@@ -41,10 +42,10 @@ class LogsViewModel(private val repository: TimesaverRepository) : ViewModel() {
                 maxSize = 100
             )
         ) {
-            activityId?.let { id ->
+            activity?.let {
                 when (order) {
-                    SortOrder.NEWEST_FIRST -> repository.getTimelogsForActivityNewestFirst(id)
-                    SortOrder.OLDEST_FIRST -> repository.getTimelogsForActivityOldestFirst(id)
+                    SortOrder.NEWEST_FIRST -> repository.getTimelogsForActivityNewestFirst(it.activityId)
+                    SortOrder.OLDEST_FIRST -> repository.getTimelogsForActivityOldestFirst(it.activityId)
                 }
             } ?: throw IllegalStateException("activityId not set")
         }.flow

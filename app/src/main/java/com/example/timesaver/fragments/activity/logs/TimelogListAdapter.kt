@@ -14,8 +14,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.R
 import com.example.timesaver.database.Timelog
+import com.example.timesaver.fragments.activity.DateFormat
+import com.example.timesaver.fragments.activity.TimeFormat
 import java.time.Duration
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 class TimelogListAdapter: PagingDataAdapter<Timelog, TimelogListAdapter.ViewHolder>(TimelogDiffCallback()) {

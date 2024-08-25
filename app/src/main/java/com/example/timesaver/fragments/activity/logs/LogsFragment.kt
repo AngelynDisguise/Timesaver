@@ -2,6 +2,7 @@ package com.example.timesaver.fragments.activity.logs
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -17,14 +18,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.timesaver.R
-import com.example.timesaver.ViewModelFactory
 import com.example.timesaver.database.Timelog
-import com.example.timesaver.database.TimesaverDatabase
-import com.example.timesaver.database.TimesaverRepository
+import com.example.timesaver.fragments.activity.ActivityFragment
+import com.example.timesaver.fragments.activity.ActivityViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -37,14 +36,15 @@ import java.util.Locale
 
 class LogsFragment : Fragment() {
 
-    private val dao by lazy { TimesaverDatabase.getDatabase(requireContext()).timesaverDao() }
-    private val viewModel by lazy {
-         ViewModelProvider(
-            this,
-            ViewModelFactory(
-                TimesaverRepository(dao)
-            )
-        ) [LogsViewModel::class.java]
+    private lateinit var viewModel: ActivityViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        val parentFragment = parentFragment
+        require(parentFragment is ActivityFragment) {
+            "LogsFragment must be a child of ActivityFragment, instead it is a child of $parentFragment."
+        }
+        viewModel = parentFragment.viewModel
     }
 
     private lateinit var adapter: TimelogListAdapter
@@ -67,33 +67,15 @@ class LogsFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.logs_recycler_view)
         recyclerView.adapter = adapter
 
-        // Get activity id from bundle sent by ActivityFragment
-        val activityId: Long? = arguments?.getLong("activityId")
-        activityId?.let {
-            Log.i(
-                "LogsFragment",
-                "Received Activity ID: $activityId"
-            )
-
-            // Trigger the flow of paged timelogs from the database
-            viewModel.activityId = it
-
-            // Collect the paging data from the stream
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.timelogs.collectLatest { pagingData ->
-                    adapter.submitData(pagingData)
-                    Log.i(
-                        "LogsFragment",
-                        "Received PagedData: $pagingData"
-                    )
-                }
+        // Collect the paging data from the stream
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.timelogs.collectLatest { pagingData ->
+                adapter.submitData(pagingData)
+                Log.i(
+                    "LogsFragment",
+                    "Received PagedData: $pagingData"
+                )
             }
-
-        } ?: let {
-            Log.d(
-                "LogsFragment",
-                "Expected an activity id from ActivityFragment bundle but got nothing :("
-            )
         }
 
         // Change chronological order of timelogs list
@@ -294,10 +276,10 @@ class LogsFragment : Fragment() {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             return false
         } ?: let {
-            viewModel.activityId?.let {
+            viewModel.activity?.let {
                 val newTimelog = Timelog(
                     timelogId = 0,
-                    activityId = it,
+                    activityId = it.activityId,
                     date = parseDate(dateET.text),
                     startTime = parseTime(startET.text),
                     endTime = parseTime(endET.text)

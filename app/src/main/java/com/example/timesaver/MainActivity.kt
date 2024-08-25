@@ -2,11 +2,11 @@ package com.example.timesaver
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
@@ -25,12 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
 
     private val dao by lazy { TimesaverDatabase.getDatabase(applicationContext).timesaverDao() }
-    val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelFactory(TimesaverRepository(dao))
-        ) [MainViewModel::class.java]
-    }
+    val viewModel: MainViewModel by viewModels { ViewModelFactory(TimesaverRepository(dao)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
